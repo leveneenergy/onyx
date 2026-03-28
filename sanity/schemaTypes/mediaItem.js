@@ -70,6 +70,13 @@ export default defineType({
       of: [{type: 'string'}],
       options: {layout: 'tags'},
     }),
+    defineField({
+  name: 'folder',
+  title: 'Folder / Album',
+  type: 'reference',
+  to: [{type: 'mediaFolder'}],
+  description: 'Assign this item to a folder or album',
+}),
   ],
   orderings: [
     {

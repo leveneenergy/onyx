@@ -3,169 +3,234 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Our Subsidiaries — Levene Energies Limited Limited</title>
-  <meta name="description" content="Explore Levene Energies Limited' diversified portfolio of energy subsidiaries spanning upstream, downstream, trading and renewables."/>
-  <meta property="og:title" content="Our Subsidiaries — Levene Energies Limited"/>
-  <meta property="og:description" content="Discover our companies across the full energy value chain — from exploration to renewables."/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:image" content="./image/levenelogo.png"/>
+  <title>Our Subsidiaries — Levene Energies Limited</title>
+  <meta name="description" content="Explore Levene Energies Limited's diversified portfolio of energy subsidiaries spanning upstream, downstream, trading and renewables."/>
   <link rel="shortcut icon" href="./image/levene-energies.png" type="image/x-icon">
-
   <link rel="stylesheet" href="./css/style.css"/>
+  <link rel="stylesheet" href="./css/subsidiaries.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
-<body>
+<body class="sub-page">
 
-<!-- Header -->
 <div id="header-placeholder"></div>
 
 <script>
+
   fetch('header.html')
     .then(r => {
-      if (!r.ok) throw new Error('Header not found');
+      if (!r.ok) throw new Error('Header file not found');
       return r.text();
     })
     .then(html => {
       document.getElementById('header-placeholder').innerHTML = html;
+      initNav(); 
     })
     .catch(err => console.error('Failed to load header:', err));
+
+  function initNav() {
+    const hamburger = document.getElementById('hamburger');
+    const navList   = document.getElementById('nav-list');
+    const navClose  = document.getElementById('nav-close');
+
+    if (hamburger && navList) {
+      hamburger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        navList.classList.add('open');
+        document.body.style.overflow = 'hidden'; 
+      });
+    }
+
+    if (navClose) {
+      navClose.addEventListener('click', function() {
+        navList.classList.remove('open');
+        document.body.style.overflow = '';
+        document.querySelectorAll('.nav-list .dropdown').forEach(function(d) {
+          d.classList.remove('mob-open');
+        });
+      });
+    }
+
+   
+    document.addEventListener('click', function(e) {
+      if (navList && navList.classList.contains('open')) {
+        if (!navList.contains(e.target) && e.target !== hamburger) {
+          navList.classList.remove('open');
+          document.body.style.overflow = '';
+          document.querySelectorAll('.nav-list .dropdown').forEach(function(d) {
+            d.classList.remove('mob-open');
+          });
+        }
+      }
+    });
+
+
+    document.querySelectorAll('.nav-list .dropdown > a').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        if (window.innerWidth > 768) return;
+        e.preventDefault();
+        e.stopPropagation();
+        var dropdown = link.closest('.dropdown');
+        var isOpen   = dropdown.classList.contains('mob-open');
+        document.querySelectorAll('.nav-list .dropdown').forEach(function(d) {
+          d.classList.remove('mob-open');
+        });
+        if (!isOpen) dropdown.classList.add('mob-open');
+      });
+    });
+
+    
+    document.querySelectorAll('.nav-list > li:not(.dropdown) > a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        if (window.innerWidth > 768) return;
+        navList.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
 </script>
 
-<!-- Page Hero -->
+
+
 <section class="page-hero">
   <div class="page-hero-inner">
     <div class="section-label">Our Business</div>
-    <h1>SUBSIDIARIES</h1>
-    <p>Diversified portfolio across upstream, midstream, downstream, trading and renewables</p>
+    <h1>Our Subsidiaries</h1>
+    <p>A diversified family of companies spanning upstream exploration, midstream logistics, downstream distribution, energy trading and the frontiers of renewable power — each a recognised leader in its sector.</p>
     <div class="breadcrumb">
-      <a href="index.html">Home</a><span>/</span><span>Subsidiaries</span>
+      <a href="index.html">Home</a><span>/</span>
+      <span style="color:rgba(255,255,255,.75)">Subsidiaries</span>
     </div>
   </div>
 </section>
 
-<!-- Subsidiaries Grid -->
-<section class="subs-section">
-  <div class="subs-wrap">
-    <div class="subs-grid" id="subs-grid">
-      <div style="grid-column: span 3; text-align: center; padding: 6rem 1rem; color: var(--muted);">
-        <i class="fas fa-spinner fa-spin" style="font-size: 2.5rem; margin-bottom: 1rem;"></i>
-        <p>Loading our subsidiaries...</p>
+<section class="subs-filter-section">
+  <div class="subs-filter-inner">
+    <div class="subs-header">
+      <div>
+        <div class="section-label">Our Companies</div>
+        <h2 class="section-title">A Portfolio Built Across<br><em>the Value Chain</em></h2>
+      </div>
+      <p style="max-width:360px;color:var(--muted);font-size:.93rem;line-height:1.8;">From upstream exploration to renewable energy deployment, our subsidiaries operate across every critical segment of the energy industry.</p>
+    </div>
+    <div class="filter-bar" id="subs-filters">
+      <button class="filter-pill active" data-filter="all">All Sectors</button>
+    </div>
+  </div>
+</section>
+
+<section class="subs-rows-section">
+  <div class="subs-rows-inner" id="subs-rows">
+    <div class="subs-loading"><i class="fas fa-spinner fa-spin"></i><p>Loading our subsidiaries…</p></div>
+  </div>
+</section>
+
+<section class="chain-section">
+  <div class="chain-inner">
+    <div class="chain-header">
+      <div>
+        <div class="section-label" style="color:var(--gold);">
+          <span style="display:flex;align-items:center;gap:.75rem;">
+            <span style="width:32px;height:2px;background:var(--gold);display:block;flex-shrink:0;"></span>
+            Full Spectrum Coverage
+          </span>
+        </div>
+        <h2 class="section-title" style="color:#fff;margin-top:.5rem;">
+          Operating Across the<br><em style="color:var(--gold);font-weight:300;">Entire Value Chain</em>
+        </h2>
+      </div>
+      <p>Our subsidiaries are strategically positioned at every node of the energy value chain — creating synergies, controlling quality, and serving customers end-to-end.</p>
+    </div>
+    <div class="chain-steps">
+      <div class="chain-step">
+        <div class="chain-icon svg-icon"><img src="./image/Asset 9.svg" alt="Upstream"/></div>
+        <div class="chain-title">Upstream</div>
+        <div class="chain-desc">Exploration, appraisal and production of crude oil and natural gas assets</div>
+      </div>
+      <div class="chain-step">
+        <div class="chain-icon svg-icon"><img src="./image/Asset 8.svg" alt="Trading"/></div>
+        <div class="chain-title">Trading</div>
+        <div class="chain-desc">Commodity trading, risk management and market optimisation</div>
+      </div>
+      <div class="chain-step">
+        <div class="chain-icon svg-icon"><img src="./image/Asset 7.svg" alt="Gas & Power"/></div>
+        <div class="chain-title">Gas &amp; Power</div>
+        <div class="chain-desc">Gas monetisation, power generation and grid distribution</div>
+      </div>
+      <div class="chain-step">
+        <div class="chain-icon svg-icon"><img src="./image/Asset 8.svg" alt="Renewables"/></div>
+        <div class="chain-title">Renewables</div>
+        <div class="chain-desc">Solar, wind and distributed energy for a low-carbon future</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA Band -->
-<section class="cta-band">
-  <h2>Interested in partnering with one of our subsidiaries?</h2>
-  <p>Reach out to discuss opportunities, collaborations or investment.</p>
-  <a href="contact.html" class="btn btn--green">Get in Touch</a>
-</section>
 <div id="footer-placeholder"></div>
-
 <script>
-  fetch('footer.html')
-    .then(r => r.text())
-    .then(html => document.getElementById('footer-placeholder').innerHTML = html)
-    .catch(err => console.error('Failed to load footer:', err));
+  fetch('footer.html').then(r=>r.text()).then(h=>document.getElementById('footer-placeholder').innerHTML=h).catch(e=>console.error(e));
 </script>
 
-<!-- Scripts -->
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  // Mobile nav (only once)
-  const hamburger = document.getElementById('hamburger');
-  const navList   = document.getElementById('nav-list');
-  const navClose  = document.getElementById('nav-close');
-
-  if (hamburger && navList) {
-    hamburger.addEventListener('click', e => {
-      e.stopPropagation();
-      navList.classList.add('open');
-    });
-  }
-
-  if (navClose) {
-    navClose.addEventListener('click', () => {
-      navList.classList.remove('open');
-      document.querySelectorAll('.nav-list .dropdown').forEach(d => d.classList.remove('mob-open'));
-    });
-  }
-
-  document.querySelectorAll('.nav-list .dropdown > a').forEach(link => {
-    link.addEventListener('click', e => {
-      if (window.innerWidth > 768) return;
-      e.preventDefault();
-      e.stopPropagation();
-      const dropdown = link.closest('.dropdown');
-      const isOpen = dropdown.classList.contains('mob-open');
-      document.querySelectorAll('.nav-list .dropdown').forEach(d => d.classList.remove('mob-open'));
-      if (!isOpen) dropdown.classList.add('mob-open');
-    });
-  });
+document.addEventListener('DOMContentLoaded',()=>{
+  const hb=document.getElementById('hamburger'),nl=document.getElementById('nav-list'),nc=document.getElementById('nav-close');
+  if(hb&&nl)hb.addEventListener('click',e=>{e.stopPropagation();nl.classList.add('open');});
+  if(nc)nc.addEventListener('click',()=>{nl.classList.remove('open');document.querySelectorAll('.nav-list .dropdown').forEach(d=>d.classList.remove('mob-open'));});
+  document.querySelectorAll('.nav-list .dropdown > a').forEach(l=>{l.addEventListener('click',e=>{if(window.innerWidth>768)return;e.preventDefault();e.stopPropagation();const dd=l.closest('.dropdown'),op=dd.classList.contains('mob-open');document.querySelectorAll('.nav-list .dropdown').forEach(d=>d.classList.remove('mob-open'));if(!op)dd.classList.add('mob-open');});});
 });
 </script>
 
-<!-- Subsidiaries Loading -->
 <script>
-const esc = s => String(s || '')
-  .replace(/&/g, '&amp;')
-  .replace(/</g, '&lt;')
-  .replace(/>/g, '&gt;')
-  .replace(/"/g, '&quot;');
+const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+(async()=>{
+  const rows=document.getElementById('subs-rows'),filters=document.getElementById('subs-filters');
+  const BASE='https://ilajnehi.apicdn.sanity.io/v2025-06-01/data/query/production';
+  const q=`*[_type=="subsidiary"]|order(order asc){"slug":slug.current,name,tagline,sector,"desc":pt::text(description),"imgUrl":coverImage.asset->url}`;
+  let all=[];
 
-(async () => {
-  const grid = document.getElementById('subs-grid');
-  const BASE = 'https://ilajnehi.apicdn.sanity.io/v2025-06-01/data/query/production';
-  const q = `*[_type=="subsidiary"]|order(order asc){"slug":slug.current,name,tagline,sector,"desc":pt::text(description),"imgUrl":coverImage.asset->url}`;
-
-  try {
-    const res = await fetch(`${BASE}?query=${encodeURIComponent(q)}`);
-    if (!res.ok) throw new Error('Sanity fetch failed');
-    const data = await res.json();
-    const subs = data.result || [];
-
-    if (!subs.length) {
-      grid.innerHTML = `
-        <div class="empty-state" style="grid-column: span 3; text-align: center; padding: 6rem 1rem;">
-          <i class="fas fa-building" style="font-size: 4rem; color: var(--muted); opacity: 0.5;"></i>
-          <p style="margin: 1.5rem 0;">No subsidiaries found yet.</p>
-          <p style="font-size: 0.95rem; color: var(--muted);">Add subsidiaries in <a href="https://leveneenergy-studio.sanity.studio" target="_blank" style="color: var(--green); font-weight: 600;">Sanity Studio</a></p>
-        </div>`;
-      return;
-    }
-
-    grid.innerHTML = subs.map(s => {
-      const href = `subsidiary.html?slug=${esc(s.slug)}`;
-      const srcQ = s.imgUrl ? `${s.imgUrl}?w=600&auto=format&fit=crop&q=80` : null;
-
-      return `
-      <article class="sub-card" onclick="location.href='${href}'" style="cursor: pointer;">
-        <div class="sub-card-img">
-          ${srcQ 
-            ? `<img src="${srcQ}" alt="${esc(s.name)}" loading="lazy"/>` 
-            : `<div class="placeholder"><i class="fas fa-industry"></i></div>`}
-          <span class="sub-card-sector">${esc(s.sector || '')}</span>
+  const render=list=>{
+    if(!list.length){rows.innerHTML=`<div class="subs-loading"><i class="fas fa-building" style="opacity:.3;"></i><p>No subsidiaries found.</p></div>`;return;}
+    rows.innerHTML=list.map((s,i)=>{
+      const href=`subsidiary.html?slug=${esc(s.slug)}`;
+      const img=s.imgUrl?`${s.imgUrl}?w=900&auto=format&fit=crop&q=80`:null;
+      const rev=i%2===1;
+      return `<a href="${href}" class="sub-row${rev?' reverse':''}">
+        <div class="sub-row-text">
+          ${s.sector?`<div class="sub-row-sector">${esc(s.sector)}</div>`:''}
+          <h2 class="sub-row-name">${esc(s.name)}</h2>
+          ${s.tagline?`<p class="sub-row-tagline">${esc(s.tagline)}</p>`:''}
+          ${s.desc?`<p class="sub-row-desc">${esc(s.desc)}</p>`:''}
+          <span class="sub-row-link">Read More <i class="fas fa-arrow-right"></i></span>
         </div>
-        <div class="sub-card-body">
-          <h2 class="sub-card-name">${esc(s.name)}</h2>
-          <p class="sub-card-desc">${esc(s.desc || s.tagline || 'Leading innovation in the energy sector.')}</p>
-          <a href="${href}" class="sub-card-link" onclick="event.stopPropagation()">
-            View details <i class="fas fa-arrow-right"></i>
-          </a>
+        <div class="sub-row-img">
+          ${img?`<img src="${img}" alt="${esc(s.name)}" loading="lazy"/>`:`<div class="img-fallback"><i class="fas fa-industry"></i></div>`}
         </div>
-      </article>`;
+      </a>`;
     }).join('');
-  } catch (err) {
-    console.error('Failed to load subsidiaries:', err);
-    grid.innerHTML = `
-      <div style="grid-column: span 3; text-align: center; padding: 6rem 1rem; color: var(--muted);">
-        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-        <p>Failed to load subsidiaries. Please try again later.</p>
-      </div>`;
+    const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:.1});
+    document.querySelectorAll('.sub-row').forEach(el=>io.observe(el));
+  };
+
+  try{
+    const res=await fetch(`${BASE}?query=${encodeURIComponent(q)}`);
+    if(!res.ok)throw new Error();
+    const{result:subs=[]}=await res.json();
+    all=subs;
+    if(!subs.length){render([]);return;}
+    [...new Set(subs.map(s=>s.sector).filter(Boolean))].forEach(sec=>{
+      const b=document.createElement('button');b.className='filter-pill';b.dataset.filter=sec;
+      b.textContent=sec.charAt(0).toUpperCase()+sec.slice(1);filters.appendChild(b);
+    });
+    render(subs);
+    filters.addEventListener('click',e=>{
+      const p=e.target.closest('.filter-pill');if(!p)return;
+      filters.querySelectorAll('.filter-pill').forEach(x=>x.classList.remove('active'));p.classList.add('active');
+      const f=p.dataset.filter;render(f==='all'?all:all.filter(s=>s.sector===f));
+    });
+  }catch(e){
+    console.error(e);
+    rows.innerHTML=`<div class="subs-loading"><i class="fas fa-exclamation-triangle"></i><p>Failed to load subsidiaries.</p></div>`;
   }
 })();
 </script>
-
 </body>
 </html>
