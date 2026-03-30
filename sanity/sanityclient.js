@@ -1,10 +1,3 @@
-/**
- * sanity-client.js
- * Thin wrapper around the Sanity CDN API for the Levene Energies website.
- *
- * Project ID : ilajnehi
- * API base   : https://ilajnehi.apicdn.sanity.io/v2025-06-01
- */
 
 const SANITY_BASE = 'https://ilajnehi.apicdn.sanity.io/v2025-06-01';
 const DATASET     = 'production';

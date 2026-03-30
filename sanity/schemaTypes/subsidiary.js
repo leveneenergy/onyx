@@ -15,43 +15,64 @@ export default defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      options: {source: 'name'},
+      options: { source: 'name' },
       validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'tagline',
       title: 'Tagline',
       type: 'string',
-      description: 'Short one-liner shown under the name',
+      description: 'Short catchy one-liner shown under the company name',
     }),
+
     defineField({
       name: 'logo',
-      title: 'Logo',
+      title: 'Company Logo',
       type: 'image',
-      options: {hotspot: true},
+      options: { hotspot: true },
+      description: 'Square or horizontal logo for listings and previews',
     }),
     defineField({
       name: 'coverImage',
-      title: 'Cover Image',
+      title: 'Hero Cover Image',
       type: 'image',
-      options: {hotspot: true},
+      options: { hotspot: true },
+      description: 'Large hero background image at the top of the detail page',
     }),
     defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'array',
-      of: [{type: 'block'}],
+      name: 'mainImage',
+      title: 'Main Content Image',
+      type: 'image',
+      options: { hotspot: true },
+      description: 'Primary image shown on the LEFT side of the main content section',
     }),
+    defineField({
+      name: 'secondaryImage',
+      title: 'Secondary Image',
+      type: 'image',
+      options: { hotspot: true },
+      description: 'Image used in the second split section ("Our Commitment" area)',
+    }),
+
+
+    defineField({
+      name: 'description',
+      title: 'Full Description',
+      type: 'array',
+      of: [{ type: 'block' }],
+      description: 'Rich text content for the main body',
+    }),
+
     defineField({
       name: 'sector',
       title: 'Sector',
       type: 'string',
       options: {
         list: [
-          {title: 'Upstream', value: 'upstream'},
-          {title: 'Gas', value: 'gas'},
-          {title: 'Renewables', value: 'renewables'},
-          {title: 'Trading', value: 'trading'},
+          { title: 'Upstream', value: 'upstream' },
+          { title: 'Gas & Power', value: 'gas' },
+          { title: 'Renewables', value: 'renewables' },
+          { title: 'Trading', value: 'trading' },
         ],
       },
     }),
@@ -64,17 +85,23 @@ export default defineType({
       name: 'order',
       title: 'Display Order',
       type: 'number',
-      description: 'Lower number = shown first',
+      description: 'Lower number appears first in the subsidiaries list',
     }),
   ],
+
   orderings: [
     {
       title: 'Display Order',
       name: 'orderAsc',
-      by: [{field: 'order', direction: 'asc'}],
+      by: [{ field: 'order', direction: 'asc' }],
     },
   ],
+
   preview: {
-    select: {title: 'name', subtitle: 'sector', media: 'logo'},
+    select: {
+      title: 'name',
+      subtitle: 'sector',
+      media: 'logo',
+    },
   },
 })
