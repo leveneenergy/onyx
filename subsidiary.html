@@ -92,14 +92,12 @@
   }
 </script>
 
-
   <div id="sub-page-root">
     <div class="sub-loading-state">
       <i class="fas fa-spinner fa-spin" style="color: var(--navy); opacity: 0.4"></i>
       <p>Loading subsidiary details…</p>
     </div>
   </div>
-
 
   <div id="footer-placeholder"></div>
   <script>
@@ -109,7 +107,6 @@
       .catch(err => console.error("Footer load failed:", err));
   </script>
 
-  
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const hb = document.getElementById("hamburger");
@@ -124,7 +121,7 @@
     });
   </script>
 
-  
+  <!-- Main Script -->
   <script>
     const esc = s => String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
@@ -163,7 +160,7 @@
 
       document.getElementById("sub-page-root").innerHTML = `
         <!-- Hero Section -->
-        <section class="sub-hero" style="border-bottom: 4px solid var(--green, #2e7d32);">
+        <section class="sub-hero" style="border-bottom: 4px solid var(--green, #2e7d32); min-height: calc(var(--hero-min-height, 100vh) - 10px);">
           ${heroImg ? `<img class="sub-hero-bg" src="${heroImg}" alt="${esc(sub.name)}" />` : ""}
           <div class="sub-hero-overlay"></div>
           <div class="sub-hero-content">
@@ -259,7 +256,6 @@
         </div>`;
     }
 
-    // Fetch from Sanity
     (async () => {
       const slug = new URLSearchParams(location.search).get("slug")?.trim();
       if (!slug) {
