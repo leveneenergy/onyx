@@ -1,6 +1,5 @@
 @import url("https://use.typekit.net/ojd6uuf.css");
 
-
 :root {
   --navy: #174caa;
   --navy-mid: #0a2460;
@@ -62,7 +61,6 @@ button {
   border: none;
   background: none;
 }
-
 
 .container {
   max-width: 1280px;
@@ -1171,49 +1169,51 @@ button {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(rgba(212, 221, 240, 0.72), rgba(4, 24, 68, 0.60));
+  background: linear-gradient(rgba(212, 221, 240, 0.72), rgba(4, 24, 68, 0.6));
   pointer-events: none;
 }
 
-
 .media-page .page-hero {
-  background-image: linear-gradient(rgba(4, 24, 68, 0.72), rgba(4, 24, 68, 0.60)), 
-                    url('../image/16.-Levene-Hydrocarbon-Webpage-Image.jpg');
+  background-image:
+    linear-gradient(rgba(4, 24, 68, 0.72), rgba(4, 24, 68, 0.6)),
+    url("../image/16.-Levene-Hydrocarbon-Webpage-Image.jpg");
 }
 
 .sub-page .page-hero {
-  background-image: linear-gradient(rgba(11, 17, 31, 0.72), rgba(4, 24, 68, 0.60)), 
-                    url('../image/Solar-Mini-Grid-Project.jpg');
+  background-image:
+    linear-gradient(rgba(11, 17, 31, 0.72), rgba(4, 24, 68, 0.6)),
+    url("../image/Solar-Mini-Grid-Project.jpg");
 }
 
 .press-page .page-hero {
-  background-image: linear-gradient(rgba(11, 17, 31, 0.72), rgba(4, 24, 68, 0.60)), 
-                    url('../image/Solar-Mini-Grid-Project.jpg');
+  background-image:
+    linear-gradient(rgba(11, 17, 31, 0.72), rgba(4, 24, 68, 0.6)),
+    url("../image/Solar-Mini-Grid-Project.jpg");
 }
 
 .mgt-page .page-hero {
-  background-image: linear-gradient(rgba(4, 24, 68, 0.72), rgba(4, 24, 68, 0.60)), 
-                    url('../image/board.jpeg');
+  background-image:
+    linear-gradient(rgba(4, 24, 68, 0.72), rgba(4, 24, 68, 0.6)),
+    url("../image/board.jpeg");
 }
 
 .contact-page .page-hero {
-  background-image: linear-gradient(rgba(4, 24, 68, 0.72), rgba(4, 24, 68, 0.60)), 
-                    url('../image/Solar-Mini-Grid-Project.jpg');
+  background-image:
+    linear-gradient(rgba(4, 24, 68, 0.72), rgba(4, 24, 68, 0.6)),
+    url("../image/Solar-Mini-Grid-Project.jpg");
 }
 
 .subsidiary-page .page-hero {
-  background-image: linear-gradient(rgba(4, 24, 68, 0.72), rgba(4, 24, 68, 0.60)), 
-                    url('../image/16.-Levene-Hydrocarbon-Webpage-Image.jpg');
+  background-image:
+    linear-gradient(rgba(4, 24, 68, 0.72), rgba(4, 24, 68, 0.6)),
+    url("../image/16.-Levene-Hydrocarbon-Webpage-Image.jpg");
 }
-
-
-
 
 .page-hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.25), transparent 60%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), transparent 60%);
   pointer-events: none;
 }
 
@@ -1234,7 +1234,7 @@ button {
 
 .page-hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 4rem);  
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 600;
   color: var(--white);
   line-height: 1.1;
@@ -1267,8 +1267,6 @@ button {
 .breadcrumb span {
   color: rgba(255, 255, 255, 0.3);
 }
-
-
 
 .pr-slider-section {
   position: relative;
@@ -1702,7 +1700,9 @@ button {
   color: var(--text);
   line-height: 1.7;
 }
-.office-address strong { color: var(--navy); }
+.office-address strong {
+  color: var(--navy);
+}
 
 .map-section {
   margin-top: 2.5rem;
@@ -1710,7 +1710,7 @@ button {
   background: var(--smoke);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 .map-section iframe {
   width: 100%;
@@ -1731,7 +1731,9 @@ button {
   gap: 1rem;
 }
 
-.form-group { margin-bottom: 1.2rem; }
+.form-group {
+  margin-bottom: 1.2rem;
+}
 .form-group label {
   display: block;
   font-size: 0.8rem;
@@ -1745,7 +1747,7 @@ button {
 .form-group select,
 .form-group textarea {
   width: 100%;
-  padding: 0.85rem 1rem;
+  padding: 0.5rem 1rem;
   border: 1.5px solid var(--smoke);
   border-radius: var(--radius);
   font-family: var(--font-body);
@@ -1772,31 +1774,73 @@ button {
   margin-bottom: 1.5rem;
 }
 
+.recaptcha-wrap {
+  margin: 0.6rem 0 0;
+  overflow: hidden;
+}
 
+.recaptcha-wrap .g-recaptcha {
+  transform: scale(0.82);
+  transform-origin: left top;
+  display: inline-block;
+}
+
+.recaptcha-wrap .g-recaptcha-holder {
+  height: 64px;
+  overflow: hidden;
+}
+
+.form-error {
+  display: none;
+  color: #e53935;
+  font-size: 0.78rem;
+  margin-top: 0.3rem;
+}
+.form-error.show {
+  display: block;
+}
+
+.newsletter-err {
+  display: none;
+  color: #e53935;
+  font-size: 0.78rem;
+  margin-top: 0.3rem;
+}
+.newsletter-err.show {
+  display: block;
+}
 
 /* ===== NEWSLETTER SECTION ===== */
 .newsletter-section {
   background: var(--navy, #0a1f3c);
   position: relative;
   overflow: hidden;
-  padding: 5rem 5%;
+  padding: 2.5rem 4%;
 }
 .newsletter-section::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle at 10% 50%, rgba(30, 138, 46, 0.12) 0%, transparent 50%),
-    radial-gradient(circle at 90% 20%, rgba(30, 138, 46, 0.08) 0%, transparent 45%);
+    radial-gradient(
+      circle at 10% 50%,
+      rgba(30, 138, 46, 0.12) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(30, 138, 46, 0.08) 0%,
+      transparent 45%
+    );
   pointer-events: none;
 }
 .newsletter-section::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
 }
@@ -1812,7 +1856,9 @@ button {
   z-index: 1;
 }
 
-.newsletter-copy { color: #fff; }
+.newsletter-copy {
+  color: #fff;
+}
 
 .newsletter-label {
   display: inline-flex;
@@ -1826,7 +1872,7 @@ button {
   margin-bottom: 1.25rem;
 }
 .newsletter-label::before {
-  content: '';
+  content: "";
   display: inline-block;
   width: 24px;
   height: 2px;
@@ -1842,17 +1888,20 @@ button {
   margin-bottom: 1rem;
   color: #fff;
 }
-.newsletter-copy h2 em { font-style: normal; color: var(--green, #1e8a2e); }
+.newsletter-copy h2 em {
+  font-style: normal;
+  color: var(--green, #1e8a2e);
+}
 .newsletter-copy p {
   font-size: 0.97rem;
   line-height: 1.8;
-  color: rgba(255,255,255,0.65);
+  color: rgba(255, 255, 255, 0.65);
   margin-bottom: 2rem;
 }
 
 .newsletter-form-panel {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 2.5rem;
   backdrop-filter: blur(10px);
@@ -1866,7 +1915,7 @@ button {
 }
 .newsletter-form-panel > p {
   font-size: 0.85rem;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255, 255, 255, 0.5);
   margin-bottom: 1.75rem;
 }
 
@@ -1875,7 +1924,7 @@ button {
   margin-bottom: 1rem;
   border-radius: 8px;
   overflow: hidden;
-  border: 1.5px solid rgba(255,255,255,0.15);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
   transition: border-color 0.3s ease;
 }
 .newsletter-email-row:focus-within {
@@ -1885,7 +1934,7 @@ button {
 .newsletter-email-row input[type="email"] {
   flex: 1;
   padding: 0.9rem 1.1rem;
-  background: rgba(255,255,255,0.07);
+  background: rgba(255, 255, 255, 0.07);
   border: none;
   outline: none;
   font-size: 0.92rem;
@@ -1893,7 +1942,9 @@ button {
   font-family: var(--font-body, sans-serif);
   min-width: 0;
 }
-.newsletter-email-row input[type="email"]::placeholder { color: rgba(255,255,255,0.35); }
+.newsletter-email-row input[type="email"]::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
 
 .newsletter-submit-btn {
   padding: 0.9rem 1.4rem;
@@ -1911,18 +1962,27 @@ button {
   gap: 0.5rem;
   font-family: var(--font-body, sans-serif);
 }
-.newsletter-submit-btn:hover { background: #177325; }
-.newsletter-submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+.newsletter-submit-btn:hover {
+  background: #177325;
+}
+.newsletter-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
 
 .newsletter-privacy {
   font-size: 0.75rem;
-  color: rgba(255,255,255,0.35);
+  color: rgba(255, 255, 255, 0.35);
   display: flex;
   align-items: flex-start;
   gap: 0.5rem;
   line-height: 1.5;
 }
-.newsletter-privacy i { margin-top: 1px; color: var(--green, #1e8a2e); flex-shrink: 0; }
+.newsletter-privacy i {
+  margin-top: 1px;
+  color: var(--green, #1e8a2e);
+  flex-shrink: 0;
+}
 
 .newsletter-success {
   display: none;
@@ -1940,14 +2000,20 @@ button {
   justify-content: center;
   margin: 0 auto 1rem;
 }
-.newsletter-success-icon i { color: var(--green, #1e8a2e); font-size: 1.4rem; }
+.newsletter-success-icon i {
+  color: var(--green, #1e8a2e);
+  font-size: 1.4rem;
+}
 .newsletter-success h4 {
   font-family: var(--font-display, Georgia, serif);
   font-size: 1.15rem;
   color: #fff;
   margin-bottom: 0.4rem;
 }
-.newsletter-success p { font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+.newsletter-success p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+}
 
 .newsletter-err {
   display: none;
@@ -1956,15 +2022,26 @@ button {
   margin-top: -0.5rem;
   margin-bottom: 0.75rem;
 }
-.newsletter-err.show { display: block; }
-.newsletter-email-row.invalid { border-color: #f87171; }
+.newsletter-err.show {
+  display: block;
+}
+.newsletter-email-row.invalid {
+  border-color: #f87171;
+}
 
 @media (max-width: 992px) {
-  .newsletter-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-  .newsletter-copy h2 { font-size: 1.8rem; }
+  .newsletter-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .newsletter-copy h2 {
+    font-size: 1.8rem;
+  }
 }
 @media (max-width: 480px) {
-  .newsletter-form-panel { padding: 1.75rem; }
+  .newsletter-form-panel {
+    padding: 1.75rem;
+  }
 }
 
 /* ===== ANIMATIONS ===== */
