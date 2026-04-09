@@ -1494,6 +1494,7 @@ button {
   padding: 6rem 5%;
   overflow: hidden;
   background: linear-gradient(135deg, #f0f7f2 0%, #e8f4fd 40%, #f5f0e8 100%);
+  
 }
 .mvv-section::before {
   content: "";
@@ -1539,6 +1540,7 @@ button {
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  
 }
 .mvv-item {
   background: rgba(255, 255, 255, 0.72);
