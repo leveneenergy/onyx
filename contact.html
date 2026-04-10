@@ -10,23 +10,32 @@
   <meta property="og:type" content="website"/>
   <meta property="og:image" content="./image/levenelogo.png"/>
   <link rel="shortcut icon" href="./image/levene-energies.png" type="image/x-icon">
+
+  <!--Google Analytics GA4-->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GT-MJBVZ5P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GT-MJBVZ5P');
+  </script>
+
   <link rel="stylesheet" href="./css/style.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
-
+ 
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
     emailjs.init('jkvw2eb_Ngzf5kamN');
   </script>
 
-
+  
 </head>
 <body class="contact-page">
 
 <div id="header-placeholder"></div>
 
 <script>
-
   fetch('header.html')
     .then(r => {
       if (!r.ok) throw new Error('Header file not found');
@@ -34,7 +43,7 @@
     })
     .then(html => {
       document.getElementById('header-placeholder').innerHTML = html;
-      initNav(); 
+      initNav();
     })
     .catch(err => console.error('Failed to load header:', err));
 
@@ -47,7 +56,7 @@
       hamburger.addEventListener('click', function(e) {
         e.stopPropagation();
         navList.classList.add('open');
-        document.body.style.overflow = 'hidden'; 
+        document.body.style.overflow = 'hidden';
       });
     }
 
@@ -61,7 +70,6 @@
       });
     }
 
-   
     document.addEventListener('click', function(e) {
       if (navList && navList.classList.contains('open')) {
         if (!navList.contains(e.target) && e.target !== hamburger) {
@@ -73,7 +81,6 @@
         }
       }
     });
-
 
     document.querySelectorAll('.nav-list .dropdown > a').forEach(function(link) {
       link.addEventListener('click', function(e) {
@@ -89,7 +96,6 @@
       });
     });
 
-    
     document.querySelectorAll('.nav-list > li:not(.dropdown) > a').forEach(function(link) {
       link.addEventListener('click', function() {
         if (window.innerWidth > 768) return;
@@ -213,7 +219,7 @@
         </div>
         <div class="form-group">
           <label for="f-surname">Last Name *</label>
-          <input type="text" id="f-surname" placeholder="Doe"/>
+          <input type="text" id="f-surname"/>
           <div class="form-error" id="err-surname">Please enter your last name.</div>
         </div>
       </div>
@@ -253,8 +259,16 @@
         <div class="form-error" id="err-message">Please enter your message (minimum 10 characters).</div>
       </div>
 
+
+      <div class="recaptcha-wrap">
+        <div class="g-recaptcha-holder" ">
+          <div class="g-recaptcha" id="recaptcha-contact"></div>
+        </div>
+        <div class="form-error" id="err-recaptcha-contact">Please confirm you are not a robot.</div>
+      </div>
+
       <p class="form-notice">
-        <i class="fas fa-lock" style="color:var(--green)"></i>
+        <i class="fas fa-lock" style="color:var(--green); padding-top:10px;"></i>
         Your information is protected and will never be shared with third parties.
       </p>
 
@@ -290,7 +304,6 @@
         <p>Thank you for joining. Watch your inbox for our next edition.</p>
       </div>
 
-   
       <div id="nl-form">
         <div class="newsletter-email-row" id="nl-email-row">
           <input
@@ -305,6 +318,14 @@
           </button>
         </div>
         <div class="newsletter-err" id="nl-err">Please enter a valid email address.</div>
+
+    
+        <div class="recaptcha-wrap" style="padding: 1px; margin-top: -8px; ">
+          <div class="g-recaptcha-holder">
+            <div class="g-recaptcha" id="recaptcha-newsletter"></div>
+          </div>
+          <div class="newsletter-err" id="nl-err-recaptcha" >Please confirm you are not a robot.</div>
+        </div>
 
         <p class="newsletter-privacy">
           <i class="fas fa-shield-alt"></i>
@@ -323,12 +344,26 @@
     .then(r => r.text())
     .then(html => document.getElementById('footer-placeholder').innerHTML = html)
     .catch(err => console.error('Failed to load footer:', err));
-  var EMAILJS_SERVICE_ID        = 'service_o232uzj';
-  var EMAILJS_CONTACT_TEMPLATE  = 'template_i2gbink';
-  var EMAILJS_NL_NOTIFY_TEMPLATE  = 'template_nl_notify';   
-  var EMAILJS_NL_CONFIRM_TEMPLATE = 'template_nl_confirm';  
 
-  // ─── Office Maps ─────────────────────────────────────────────────
+  var EMAILJS_SERVICE_ID          = 'service_o232uzj';
+  var EMAILJS_CONTACT_TEMPLATE    = 'template_i2gbink';
+  var EMAILJS_NL_NOTIFY_TEMPLATE  = 'template_nl_notify';
+  var EMAILJS_NL_CONFIRM_TEMPLATE = 'template_nl_confirm';
+  var RECAPTCHA_SITE_KEY          = '6LcFZfMrAAAAAN83GfWDGh3yVZPqqIVrN3Gkup97';
+
+  var recaptchaContactWidget;
+  var recaptchaNewsletterWidget;
+
+  window.onRecaptchaLoad = function() {
+    recaptchaContactWidget = grecaptcha.render('recaptcha-contact', {
+      sitekey: RECAPTCHA_SITE_KEY
+    });
+    recaptchaNewsletterWidget = grecaptcha.render('recaptcha-newsletter', {
+      sitekey: RECAPTCHA_SITE_KEY
+    });
+  };
+
+  // ─── Office Maps ───
   const officeMaps = {
     0: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.7296428936937!2d3.4278!3d6.4488!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf53b3b4e4f41%3A0x0!2sIkoyi%2C%20Lagos%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1700000000000",
     1: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5!2d7.48!3d9.07!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0a0b0b0b0b0b%3A0x0!2sWuse%202%2C%20Abuja!5e0!3m2!1sen!2sng!4v1700000000000",
@@ -344,9 +379,11 @@
     });
     const iframe = document.getElementById('office-map');
     if (iframe && officeMaps[index]) iframe.src = officeMaps[index];
+    const officeNames = ['Lagos', 'Abuja', 'London', 'Mauritius'];
+    gtag('event', 'office_tab_click', { office_name: officeNames[index] });
   }
 
-  // ─── Contact Form ─
+  // ─── Contact Form ───────────
   function submitForm() {
     var fields = [
       { id: 'f-name',    err: 'err-name',    check: function(v) { return v.trim().length > 0; } },
@@ -365,13 +402,23 @@
       err.classList.toggle('show', !ok);
       if (!ok) valid = false;
     });
+
+  
+    var recaptchaResponse = grecaptcha.getResponse(recaptchaContactWidget);
+    var recaptchaErr = document.getElementById('err-recaptcha-contact');
+    if (!recaptchaResponse) {
+      recaptchaErr.classList.add('show');
+      valid = false;
+    } else {
+      recaptchaErr.classList.remove('show');
+    }
+
     if (!valid) return;
 
     var btn = document.getElementById('submit-btn');
     btn.disabled = true;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
 
-    
     var templateParams = {
       from_name:    document.getElementById('f-name').value.trim() + ' ' + document.getElementById('f-surname').value.trim(),
       from_email:   document.getElementById('f-email').value.trim(),
@@ -383,29 +430,40 @@
 
     emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CONTACT_TEMPLATE, templateParams)
       .then(function() {
-        document.getElementById('contact-form').style.display = 'none';
-        document.getElementById('form-success').style.display = 'block';
+        var successEl = document.getElementById('form-success');
+        successEl.style.display = 'block';
+        setTimeout(function() { successEl.style.display = 'none'; }, 5000);
+
+        document.getElementById('f-name').value    = '';
+        document.getElementById('f-surname').value = '';
+        document.getElementById('f-email').value   = '';
+        document.getElementById('f-phone').value   = '';
+        document.getElementById('f-company').value = '';
+        document.getElementById('f-subject').selectedIndex = 0;
+        document.getElementById('f-message').value = '';
+
+
+        fields.forEach(function(f) {
+          document.getElementById(f.id).classList.remove('invalid');
+          document.getElementById(f.err).classList.remove('show');
+        });
+
+        grecaptcha.reset(recaptchaContactWidget);
         btn.disabled = false;
         btn.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
+        gtag('event', 'contact_form_submit', { subject: templateParams.subject });
       })
       .catch(function(error) {
         console.error('EmailJS contact error:', error);
         btn.disabled = false;
         btn.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
+        grecaptcha.reset(recaptchaContactWidget);
         alert('Something went wrong. Please try again or email us at info@leveneenergies.com');
+        gtag('event', 'contact_form_error', { error_message: error.text || 'unknown' });
       });
   }
 
-
-  document.querySelectorAll('#contact-form input, #contact-form select, #contact-form textarea').forEach(function(el) {
-    el.addEventListener('input', function() {
-      el.classList.remove('invalid');
-      var errEl = document.getElementById('err-' + el.id.replace('f-', ''));
-      if (errEl) errEl.classList.remove('show');
-    });
-  });
-
-  // ─── Newsletter Subscription ─
+  // ─── Newsletter ─────
   function subscribeNewsletter() {
     var emailInput = document.getElementById('nl-email');
     var emailRow   = document.getElementById('nl-email-row');
@@ -416,6 +474,16 @@
 
     emailRow.classList.toggle('invalid', !valid);
     errEl.classList.toggle('show', !valid);
+
+    var nlRecaptchaResponse = grecaptcha.getResponse(recaptchaNewsletterWidget);
+    var nlRecaptchaErr = document.getElementById('nl-err-recaptcha');
+    if (!nlRecaptchaResponse) {
+      nlRecaptchaErr.classList.add('show');
+      valid = false;
+    } else {
+      nlRecaptchaErr.classList.remove('show');
+    }
+
     if (!valid) return;
 
     emailRow.classList.remove('invalid');
@@ -425,7 +493,6 @@
 
     var now = new Date().toLocaleString('en-GB', { dateStyle: 'long', timeStyle: 'short' });
 
-    // Send admin notification + subscriber confirmation in parallel
     Promise.all([
       emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_NL_NOTIFY_TEMPLATE, {
         subscriber_email: email,
@@ -436,22 +503,23 @@
       })
     ])
     .then(function() {
-      document.getElementById('nl-form').style.display = 'none';
       document.getElementById('nl-success').style.display = 'block';
+      grecaptcha.reset(recaptchaNewsletterWidget);
+      gtag('event', 'newsletter_subscribe', { source: 'contact_page' });
     })
     .catch(function(error) {
       console.error('Newsletter EmailJS error:', error);
       submitBtn.disabled = false;
       submitBtn.innerHTML = 'Subscribe <i class="fas fa-arrow-right"></i>';
+      grecaptcha.reset(recaptchaNewsletterWidget);
       alert('Something went wrong. Please try again.');
+      gtag('event', 'newsletter_subscribe_error', { error_message: error.text || 'unknown' });
     });
   }
-
-  document.getElementById('nl-email').addEventListener('input', function() {
-    document.getElementById('nl-email-row').classList.remove('invalid');
-    document.getElementById('nl-err').classList.remove('show');
-  });
 </script>
+
+->
+<script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
 
 </body>
 </html>
