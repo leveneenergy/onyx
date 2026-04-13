@@ -134,9 +134,9 @@ a.sub-row:hover .sub-row-name {
 }
 
 .sub-row-desc {
-  font-size: 0.92rem;
+  font-size: 1.15rem;
   color: var(--muted);
-  line-height: 1.85;
+  line-height: 1.72;
   margin-bottom: 1.75rem;
   display: -webkit-box;
   -webkit-line-clamp: 4;

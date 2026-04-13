@@ -26,13 +26,6 @@ export default defineType({
     }),
 
     defineField({
-      name: 'logo',
-      title: 'Company Logo',
-      type: 'image',
-      options: { hotspot: true },
-      description: 'Square or horizontal logo for listings and previews',
-    }),
-    defineField({
       name: 'coverImage',
       title: 'Hero Cover Image',
       type: 'image',
@@ -54,13 +47,19 @@ export default defineType({
       description: 'Image used in the second split section ("Our Commitment" area)',
     }),
 
-
     defineField({
-      name: 'description',
-      title: 'Full Description',
+      name: 'excerpt',
+      title: 'Excerpt',
+      type: 'string',
+      description: 'Short summary shown in subsidiary listings and cards (plain text, ~1–2 sentences)',
+      validation: Rule => Rule.max(800).warning('Keep the excerpt under 800 characters for best display'),
+    }),
+    defineField({
+      name: 'fullContent',
+      title: 'Full Content',
       type: 'array',
       of: [{ type: 'block' }],
-      description: 'Rich text content for the main body',
+      description: 'Rich text content for the main body of the subsidiary detail page',
     }),
 
     defineField({
@@ -101,7 +100,7 @@ export default defineType({
     select: {
       title: 'name',
       subtitle: 'sector',
-      media: 'logo',
+      media: 'coverImage',
     },
   },
 })
