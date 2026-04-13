@@ -184,7 +184,7 @@ const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>
 (async()=>{
   const rows=document.getElementById('subs-rows'),filters=document.getElementById('subs-filters');
   const BASE='https://ilajnehi.apicdn.sanity.io/v2025-06-01/data/query/production';
-  const q=`*[_type=="subsidiary"]|order(order asc){"slug":slug.current,name,tagline,sector,"desc":pt::text(description),"imgUrl":coverImage.asset->url}`;
+  const q=`*[_type=="subsidiary"]|order(order asc){"slug":slug.current,name,tagline,sector,"desc":excerpt,"imgUrl":coverImage.asset->url}`;
   let all=[];
 
   const render=list=>{
