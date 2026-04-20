@@ -12,6 +12,27 @@
   <link rel="shortcut icon" href="./image/levene-energies.png" type="image/x-icon">
 <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/management.css"/>
+  <style>
+    .team-row--two-col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      max-width: 720px;
+      margin: 0 auto 2rem;
+    }
+    @media (max-width: 600px) {
+      .team-row--two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+    .team-section-divider {
+      margin: 3rem 0 2rem;
+      text-align: center;
+    }
+    .team-row--centered {
+      justify-content: center;
+    }
+  </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
   
@@ -113,7 +134,7 @@
   <div class="team-wrap">
     <div class="team-intro">
       <div class="section-label">The People Behind Levene</div>
-      <h2 class="section-title">Meet the <em>Team</em></h2>
+      <h2 class="section-title">Board of <em>Directors</em></h2>
       <p>Click any profile to read their full biography, career background and areas of expertise.</p>
     </div>
 
@@ -194,21 +215,39 @@ function render(people) {
     return;
   }
 
-  const topThree  = people.slice(0, 2);
-  const remaining = people.slice(2);
+  // Find Yemi Oshindero to split board vs executive team
+  const yemiIndex = people.findIndex(p =>
+    (p.name || '').toLowerCase().includes('yemi oshindero')
+  );
+  const boardCutoff = yemiIndex !== -1 ? yemiIndex + 1 : people.length;
 
-  const topHtml = `
-  <div class="team-row--top">
-    ${topThree.map((p, i) => cardHtml(p, i)).join('')}
-  </div>`;
+  const boardMembers = people.slice(0, boardCutoff);
+  const execMembers  = people.slice(boardCutoff);
 
-  const restHtml = remaining.length
-    ? `<div class="team-row--rest">
-        ${remaining.map((p, i) => cardHtml(p, i + 3)).join('')}
-       </div>`
+  // Board: first 2 in a 2-col row, rest in 3-col rows
+  const boardFirst2 = boardMembers.slice(0, 2);
+  const boardRest   = boardMembers.slice(2);
+
+  const boardHtml =
+    '<div class="team-row--two-col">' +
+      boardFirst2.map((p, i) => cardHtml(p, i)).join('') +
+    '</div>' +
+    (boardRest.length
+      ? '<div class="team-row--rest">' +
+          boardRest.map((p, i) => cardHtml(p, i + 2)).join('') +
+        '</div>'
+      : '');
+
+  const execHtml = execMembers.length
+    ? '<div class="team-section-divider">' +
+        '<h2 class="section-title">Executive <em>Team</em></h2>' +
+      '</div>' +
+      '<div class="team-row--rest team-row--centered">' +
+        execMembers.map((p, i) => cardHtml(p, i + boardCutoff)).join('') +
+      '</div>'
     : '';
 
-  grid.innerHTML = topHtml + restHtml;
+  grid.innerHTML = boardHtml + execHtml;
 }
 
 (async () => {

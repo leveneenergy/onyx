@@ -176,6 +176,21 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
+.team-row--two-col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      max-width: 720px;
+      margin: 0 auto 2rem;
+    }
+    @media (max-width: 600px) {
+      .team-row--two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+    .team-section-divider {
+      margin: 3rem 0 2rem;
+    }
 
 @media (max-width: 900px) {
   .team-row--top .team-card {

@@ -10,7 +10,67 @@
   <link rel="stylesheet" href="./css/subsidiary.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
+  <style>
+    /* ── Corner-bracket image wrapper ── */
+    .img-bracket-wrap {
+      position: relative;
+      display: block;
+      width: 100%;
+      padding: 10px; /* room for brackets to overflow */
+    }
 
+    .img-bracket-wrap img,
+    .img-bracket-wrap .img-placeholder {
+      display: block;
+      width: 100%;
+      border-radius: 4px;
+    }
+
+    /* top-left gold bracket */
+    .img-bracket-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 38px;
+      height: 38px;
+      border-top: 3px solid #c9a227;
+      border-left: 3px solid #c9a227;
+      border-radius: 2px 0 0 0;
+      pointer-events: none;
+    }
+
+    /* bottom-right navy bracket */
+    .img-bracket-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 38px;
+      height: 38px;
+      border-bottom: 3px solid #174caa;
+      border-right: 3px solid #174caa;
+      border-radius: 0 0 2px 0;
+      pointer-events: none;
+    }
+
+    /* ── Back / Website button row ── */
+    .sub-back-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.8rem;
+      flex-wrap: wrap;
+    }
+
+    .website-btn {
+      font-size: 0.82rem;
+      padding: 0.5rem 1.1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+  </style>
 </head>
 
 <body>
@@ -41,43 +101,32 @@
           document.body.style.overflow = 'hidden';
         });
       }
-
       if (navClose) {
         navClose.addEventListener('click', function() {
           navList.classList.remove('open');
           document.body.style.overflow = '';
-          document.querySelectorAll('.nav-list .dropdown').forEach(function(d) {
-            d.classList.remove('mob-open');
-          });
+          document.querySelectorAll('.nav-list .dropdown').forEach(function(d) { d.classList.remove('mob-open'); });
         });
       }
-
       document.addEventListener('click', function(e) {
         if (navList && navList.classList.contains('open')) {
           if (!navList.contains(e.target) && e.target !== hamburger) {
             navList.classList.remove('open');
             document.body.style.overflow = '';
-            document.querySelectorAll('.nav-list .dropdown').forEach(function(d) {
-              d.classList.remove('mob-open');
-            });
+            document.querySelectorAll('.nav-list .dropdown').forEach(function(d) { d.classList.remove('mob-open'); });
           }
         }
       });
-
       document.querySelectorAll('.nav-list .dropdown > a').forEach(function(link) {
         link.addEventListener('click', function(e) {
           if (window.innerWidth > 768) return;
-          e.preventDefault();
-          e.stopPropagation();
+          e.preventDefault(); e.stopPropagation();
           var dropdown = link.closest('.dropdown');
-          var isOpen   = dropdown.classList.contains('mob-open');
-          document.querySelectorAll('.nav-list .dropdown').forEach(function(d) {
-            d.classList.remove('mob-open');
-          });
+          var isOpen = dropdown.classList.contains('mob-open');
+          document.querySelectorAll('.nav-list .dropdown').forEach(function(d) { d.classList.remove('mob-open'); });
           if (!isOpen) dropdown.classList.add('mob-open');
         });
       });
-
       document.querySelectorAll('.nav-list > li:not(.dropdown) > a').forEach(function(link) {
         link.addEventListener('click', function() {
           if (window.innerWidth > 768) return;
@@ -108,7 +157,6 @@
       const hb = document.getElementById("hamburger");
       const nl = document.getElementById("nav-list");
       const nc = document.getElementById("nav-close");
-
       if (hb && nl) hb.addEventListener("click", e => { e.stopPropagation(); nl.classList.add("open"); });
       if (nc) nc.addEventListener("click", () => {
         nl.classList.remove("open");
@@ -117,9 +165,8 @@
     });
   </script>
 
-  <!-- Main Script -->
   <script>
-    const esc = s => String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    const esc = s => String(s || "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 
     function ptToHtml(blocks) {
       if (!blocks?.length) return "<p>Detailed content coming soon.</p>";
@@ -140,222 +187,138 @@
     }
 
     function imgOrPlaceholder(url, alt) {
-      if (url) return `<img src="${esc(url)}" alt="${esc(alt)}" loading="lazy" />`;
-      return `<div class="img-placeholder"><i class="fas fa-image"></i></div>`;
+      const inner = url
+        ? `<img src="${esc(url)}" alt="${esc(alt)}" loading="lazy" />`
+        : `<div class="img-placeholder"><i class="fas fa-image"></i></div>`;
+      return `<div class="img-bracket-wrap">${inner}</div>`;
     }
 
     function tradingStatBand() {
       return `
         <div style="margin: 0 0 3rem;">
-
-          <!-- stat band -->
-      <div class="stats-band">
-
-        <div class="stat-number" style="font-size:11px; letter-spacing:0.12em; margin-bottom:0.5rem; text-transform:uppercase; color:#b8a96a; display:flex; align-items:center; gap:10px;">
-          <span style="display:block; width:28px; height:2px; background:#b8a96a; flex-shrink:0;"></span>
-          Trading at Scale
-        </div>
-
-        <div class="stats-grid" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0; margin-bottom:2rem;">
-
-          <div class="stat-item">
-            <div class="stat-number">
-              64.5<span>M+</span>
+          <div class="stats-band">
+            <div class="stat-number" style="font-size:11px; letter-spacing:0.12em; margin-bottom:0.5rem; text-transform:uppercase; color:#b8a96a; display:flex; align-items:center; gap:10px;">
+              <span style="display:block; width:28px; height:2px; background:#b8a96a; flex-shrink:0;"></span>
+              Trading at Scale
             </div>
-            <div style="font-size:0.82rem; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.06em; line-height:1.5;">
-              Barrels<br>Crude Oil Traded
+            <div class="stats-grid" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0; margin-bottom:2rem;">
+              <div class="stat-item">
+                <div class="stat-number">64.5<span>M+</span></div>
+                <div style="font-size:0.82rem; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.06em; line-height:1.5;">Barrels<br>Crude Oil Traded</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">3.6<span>M+</span></div>
+                <div style="font-size:0.82rem; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.06em; line-height:1.5;">Tonnes Refined<br>Products Traded</div>
+              </div>
+              <div class="stat-item">
+                <div style="font-size:1.25rem; font-weight:500; color:#fff; line-height:1.4; margin-bottom:0.4rem;">West Africa · Europe<br>Far East · United States</div>
+                <div style="font-size:0.82rem; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.06em; line-height:1.5;">Multi-Region<br>Presence</div>
+              </div>
+            </div>
+            <div style="font-size:0.83rem; color:rgba(255,255,255,0.4); font-style:italic;">These metrics reflect operational capability, transaction efficiency and long-standing commercial relationships.</div>
+          </div>
+          <div style="background: rgba(10,22,40,0.35); overflow: hidden; position: relative;">
+            <div style="position:absolute; left:0; top:0; height:100%; width:80px; background:linear-gradient(to right, rgba(10,22,40,0.9), transparent); z-index:2; pointer-events:none;"></div>
+            <div style="position:absolute; right:0; top:0; height:100%; width:80px; background:linear-gradient(to left, rgba(10,22,40,0.9), transparent); z-index:2; pointer-events:none;"></div>
+            <div style="padding: 0.9rem 1.4rem 0.2rem; font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:#fff; font-weight:600;">Product Portfolio</div>
+            <div style="overflow:hidden; padding: 0.2rem 0 0.5rem;">
+              <div id="lt-ticker-track" style="display:flex; width:max-content; animation: lt-scroll 18s linear infinite;">
+                <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Crude Oil</div>
+                <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Gasoline</div>
+                <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>LNG</div>
+                <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Naphtha</div>
+                <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Fuel Oil</div>
+                <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Refined Clean Petroleum Products</div>
+                <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Crude Oil</div>
+                <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Gasoline</div>
+                <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>LNG</div>
+                <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Naphtha</div>
+                <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Fuel Oil</div>
+                <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Refined Clean Petroleum Products</div>
+                <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Crude Oil</div>
+                <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Gasoline</div>
+                <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>LNG</div>
+                <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Naphtha</div>
+                <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Fuel Oil</div>
+                <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Refined Clean Petroleum Products</div>
+              </div>
+              <div style="padding: 0 1.4rem 0.55rem; font-size:0.78rem; color:#fff; font-style:italic; line-height:1.5;">Our diversified product portfolio enables flexibility across market cycles and supports a broad range of counterparties.</div>
             </div>
           </div>
-
-          <div class="stat-item">
-            <div class="stat-number">
-              3.6<span>M+</span>
-            </div>
-            <div style="font-size:0.82rem; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.06em; line-height:1.5;">
-              Tonnes Refined<br>Products Traded
-            </div>
+        </div>
+        <div style="padding: 3rem 2.2rem 2.5rem; margin-top: 0;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:0.5rem;">
+            <span style="display:block; width:28px; height:2px; background:#b8a96a; flex-shrink:0;"></span>
+            <span style="font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; color:#c9a227; font-weight:600;">Our Reach</span>
           </div>
-
-          <div class="stat-item">
-            <div style="font-size:1.25rem; font-weight:500; color:#fff; line-height:1.4; margin-bottom:0.4rem;">
-              West Africa · Europe<br>Far East · United States
-            </div>
-            <div style="font-size:0.82rem; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.06em; line-height:1.5;">
-              Multi-Region<br>Presence
-            </div>
+          <div style="font-size:1.9rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#174caa; line-height:1.15; margin-bottom:0.8rem;">Global Network</div>
+          <div style="width:48px; height:1px; background: linear-gradient(to right, #174caa, transparent); margin-bottom:1.2rem;"></div>
+          <p style="font-size:1rem; color:#5a6070; max-width:940px; line-height:1.85; margin:0 0 1.2rem;">We maintain operational and commercial presence in Lagos, Abuja, London and Dubai, allowing us to structure cross-border transactions, manage logistics efficiently and maintain proximity to key supply and demand centres.<br>Every transaction is executed in full compliance with international regulatory standards and industry best practice. We operate structured risk management frameworks designed to ensure operational integrity, counterparty reliability and financial discipline. Trust, transparency and long-term relationships remain central to our trading philosophy.</p>
+          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:2rem;">
+            <span style="font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; border:0.5px solid rgba(184,169,106,0.4); color:#c9a227; padding:4px 10px; border-radius:3px;">Lagos</span>
+            <span style="font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; border:0.5px solid rgba(184,169,106,0.4); color:#c9a227; padding:4px 10px; border-radius:3px;">Abuja</span>
+            <span style="font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; border:0.5px solid rgba(184,169,106,0.4); color:#c9a227; padding:4px 10px; border-radius:3px;">London</span>
+            <span style="font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; border:0.5px solid rgba(184,169,106,0.4); color:#c9a227; padding:4px 10px; border-radius:3px;">Dubai</span>
           </div>
-
-        </div>
-
-        <div style="font-size:0.83rem; color:rgba(255,255,255,0.4); font-style:italic;">
-          These metrics reflect operational capability, transaction efficiency and long-standing commercial relationships.
-        </div>
-
-      </div>
-
-      <!-- Product Portfolio Ticker -->
-      <div style=" background: rgba(10,22,40,0.35); overflow: hidden; position: relative;">
-
-        <!-- Fade masks -->
-        <div style="position:absolute; left:0; top:0; height:100%; width:80px; background:linear-gradient(to right, rgba(10,22,40,0.9), ); z-index:2; pointer-events:none;"></div>
-        <div style="position:absolute; right:0; top:0; height:100%; width:80px; background:linear-gradient(to left, rgba(10,22,40,0.9), ); z-index:2; pointer-events:none;"></div>
-
-        <!-- Intro label pinned left (sits above the ticker) -->
-        <div style="padding: 0.9rem 1.4rem 0.2rem; font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:#fff; font-weight:600;">
-          Product Portfolio
-        </div>
-
-       
-
-        <!-- Ticker track -->
-        <div style="overflow:hidden; padding: 0.2rem 0 0.5rem;  ">
-          <div id="lt-ticker-track" style="display:flex; width:max-content; animation: lt-scroll 18s linear infinite; co">
-
-            <!-- Set 1 -->
-            <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Crude Oil</div>
-            <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Gasoline</div>
-            <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>LNG</div>
-            <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Naphtha</div>
-            <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Fuel Oil</div>
-            <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Refined Clean Petroleum Products</div>
-
-            <!-- Set 2 (seamless duplicate) -->
-            <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Crude Oil</div>
-            <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Gasoline</div>
-            <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>LNG</div>
-            <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Naphtha</div>
-            <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Fuel Oil</div>
-            <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Refined Clean Petroleum Products</div>
-
-             <!-- Set 3 (seamless duplicate) -->
-             <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Crude Oil</div>
-            <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Gasoline</div>
-            <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>LNG</div>
-            <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Naphtha</div>
-            <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Fuel Oil</div>
-            <div class="lt-ticker-item"><span class="lt-ticker-dot"></span>Refined Clean Petroleum Products</div>
-
+          <div style="width:100%; background: rgba(255,255,255,0.03); border: 0.5px solid rgba(184,169,106,0.15); border-radius: 10px; overflow:hidden;">
+            <svg width="100%" viewBox="0 0 680 340" style="display:block;">
+              <rect width="680" height="340" fill="#0d1f3c"/>
+              <polygon points="290,60 320,55 340,58 355,65 358,80 345,90 330,95 310,92 295,85 285,72" fill="#162d52" stroke="#1e3a65" stroke-width="0.5"/>
+              <polygon points="295,58 308,54 312,62 305,68 296,65" fill="#162d52" stroke="#1e3a65" stroke-width="0.5"/>
+              <polygon points="315,45 330,40 338,50 325,58 312,55" fill="#162d52" stroke="#1e3a65" stroke-width="0.5"/>
+              <polygon points="285,110 310,105 330,108 345,120 350,145 345,175 335,200 320,215 305,218 290,210 278,190 272,165 270,140 275,120" fill="#162d52" stroke="#1e3a65" stroke-width="0.5"/>
+              <polygon points="355,100 380,98 398,105 405,118 400,132 388,138 370,135 358,125 352,112" fill="#162d52" stroke="#1e3a65" stroke-width="0.5"/>
+              <polygon points="408,100 435,95 455,102 460,118 450,132 435,138 418,130 408,115" fill="#162d52" stroke="#1e3a65" stroke-width="0.5"/>
+              <polygon points="460,70 510,65 535,75 540,95 525,110 500,115 475,108 460,95 455,80" fill="#162d52" stroke="#1e3a65" stroke-width="0.5"/>
+              <polygon points="490,120 515,115 530,125 525,140 510,145 495,138" fill="#162d52" stroke="#1e3a65" stroke-width="0.5"/>
+              <polygon points="60,70 95,65 115,75 125,100 130,135 120,165 108,185 95,195 80,190 65,175 55,150 52,120 55,90" fill="#162d52" stroke="#1e3a65" stroke-width="0.5"/>
+              <polygon points="108,185 128,180 140,192 142,220 132,248 118,260 104,255 95,238 90,215 95,195" fill="#162d52" stroke="#1e3a65" stroke-width="0.5"/>
+              <polygon points="520,200 558,195 575,205 578,225 565,242 545,248 528,240 518,222" fill="#162d52" stroke="#1e3a65" stroke-width="0.5"/>
+              <style>
+                @keyframes dash-flow { to { stroke-dashoffset: -40; } }
+                @keyframes pulse-dot { 0%,100%{r:5;opacity:1} 50%{r:7;opacity:.7} }
+                .trade-arc { stroke-dasharray:8 6; animation:dash-flow 2.4s linear infinite; fill:none; }
+                .trade-arc-slow { stroke-dasharray:8 6; animation:dash-flow 3.2s linear infinite; fill:none; }
+                .city-pulse { animation:pulse-dot 2s ease-in-out infinite; }
+              </style>
+              <path class="trade-arc" d="M 303,178 Q 295,120 302,72" stroke="#174caa" stroke-width="1.5" opacity="0.85"/>
+              <path class="trade-arc-slow" d="M 307,180 Q 360,155 383,118" stroke="#b8a96a" stroke-width="1.5" opacity="0.75"/>
+              <path class="trade-arc" d="M 308,68 Q 345,60 380,108" stroke="#174caa" stroke-width="1.2" opacity="0.65"/>
+              <path class="trade-arc-slow" d="M 294,168 Q 288,115 302,72" stroke="#b8a96a" stroke-width="1" opacity="0.6"/>
+              <path class="trade-arc" d="M 388,118 Q 430,100 498,88" stroke="#174caa" stroke-width="1" opacity="0.5" stroke-dasharray="5 7"/>
+              <path class="trade-arc-slow" d="M 302,68 Q 200,60 90,85" stroke="#b8a96a" stroke-width="1" opacity="0.45" stroke-dasharray="5 7"/>
+              <circle cx="303" cy="183" r="5" fill="#174caa" opacity="0.3"/>
+              <circle class="city-pulse" cx="303" cy="183" r="5" fill="#174caa"/>
+              <text x="313" y="187" font-family="inherit" font-size="10" font-weight="600" fill="#fff" letter-spacing="0.08em">LAGOS</text>
+              <circle cx="293" cy="170" r="4" fill="#b8a96a" opacity="0.3"/>
+              <circle cx="293" cy="170" r="4" fill="#b8a96a" style="animation:pulse-dot 2.4s ease-in-out infinite .4s;"/>
+              <text x="256" y="168" font-family="inherit" font-size="10" font-weight="600" fill="#fff" letter-spacing="0.08em">ABUJA</text>
+              <circle cx="302" cy="68" r="5" fill="#b8a96a" opacity="0.3"/>
+              <circle class="city-pulse" cx="302" cy="68" r="5" fill="#b8a96a" style="animation-delay:.8s;"/>
+              <text x="312" y="72" font-family="inherit" font-size="10" font-weight="600" fill="#fff" letter-spacing="0.08em">LONDON</text>
+              <circle cx="386" cy="118" r="5" fill="#174caa" opacity="0.3"/>
+              <circle class="city-pulse" cx="386" cy="118" r="5" fill="#174caa" style="animation-delay:1.2s;"/>
+              <text x="396" y="122" font-family="inherit" font-size="10" font-weight="600" fill="#fff" letter-spacing="0.08em">DUBAI</text>
+              <line x1="28" y1="300" x2="60" y2="300" stroke="#174caa" stroke-width="1.5" stroke-dasharray="8 6"/>
+              <text x="66" y="304" font-family="inherit" font-size="10" fill="rgba(255,255,255,0.5)" letter-spacing="0.06em">PRIMARY ROUTES</text>
+              <line x1="200" y1="300" x2="232" y2="300" stroke="#b8a96a" stroke-width="1.5" stroke-dasharray="8 6"/>
+              <text x="238" y="304" font-family="inherit" font-size="10" fill="rgba(255,255,255,0.5)" letter-spacing="0.06em">EXTENDED REACH</text>
+            </svg>
           </div>
-
-           <!-- Scrolling caption -->
-        <div style="padding: 0 1.4rem 0.55rem; font-size:0.78rem; color:#fff; font-style:italic; line-height:1.5;">
-          Our diversified product portfolio enables flexibility across market cycles and supports a broad range of counterparties.
         </div>
-        </div>
-
-      </div>
-
-    </div>
- <!-- Global Network Section -->
-<div style="padding: 3rem 2.2rem 2.5rem; margin-top: 0;">
-
-  <!-- Section label -->
-  <div style="display:flex; align-items:center; gap:10px; margin-bottom:0.5rem;">
-    <span style="display:block; width:28px; height:2px; background:#b8a96a; flex-shrink:0;"></span>
-    <span style="font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; color:#c9a227; font-weight:600;">Our Reach</span>
-  </div>
-
-  <!-- Heading -->
-  <div style="font-size:1.9rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#174caa; line-height:1.15; margin-bottom:0.8rem;">
-    Global Network
-  </div>
-
-  <!-- Divider -->
-  <div style="width:48px; height:1px; background: linear-gradient(to right, #174caa, transparent); margin-bottom:1.2rem;"></div>
-
-  <!-- Body text -->
-  <p style="font-size:1rem; color:#5a6070; max-width:940px; line-height:1.85; margin:0 0 1.2rem;">
-    We maintain operational and commercial presence in Lagos, Abuja, London and Dubai, allowing us to structure cross-border transactions, manage logistics efficiently and maintain proximity to key supply and demand centres.<br>
-    
-Every transaction is executed in full compliance with international regulatory standards and industry best practice.
-We operate structured risk management frameworks designed to ensure operational integrity, counterparty reliability and financial discipline.
-Trust, transparency and long-term relationships remain central to our trading philosophy.
-
-  </p>
-
-  <!-- City tags -->
-  <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:2rem;">
-    <span style="font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; border:0.5px solid rgba(184,169,106,0.4); color:#c9a227; padding:4px 10px; border-radius:3px;">Lagos</span>
-    <span style="font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; border:0.5px solid rgba(184,169,106,0.4); color:#c9a227; padding:4px 10px; border-radius:3px;">Abuja</span>
-    <span style="font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; border:0.5px solid rgba(184,169,106,0.4); color:#c9a227; padding:4px 10px; border-radius:3px;">London</span>
-    <span style="font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; border:0.5px solid rgba(184,169,106,0.4); color:#c9a227; padding:4px 10px; border-radius:3px;">Dubai</span>
-  </div>
-
-  <!-- World Map (full section width) -->
-  <div style="width:100%; background: rgba(255,255,255,0.03); border: 0.5px solid rgba(184,169,106,0.15); border-radius: 10px; overflow:hidden;">
-    <svg width="100%" viewBox="0 0 680 340" style="display:block;">
-
-      <rect width="680" height="340" fill="#0d1f3c"/>
-
-      <polygon points="290,60 320,55 340,58 355,65 358,80 345,90 330,95 310,92 295,85 285,72" fill="#162d52" stroke="#1e3a65" stroke-width="0.5"/>
-      <polygon points="295,58 308,54 312,62 305,68 296,65" fill="#162d52" stroke="#1e3a65" stroke-width="0.5"/>
-      <polygon points="315,45 330,40 338,50 325,58 312,55" fill="#162d52" stroke="#1e3a65" stroke-width="0.5"/>
-      <polygon points="285,110 310,105 330,108 345,120 350,145 345,175 335,200 320,215 305,218 290,210 278,190 272,165 270,140 275,120" fill="#162d52" stroke="#1e3a65" stroke-width="0.5"/>
-      <polygon points="355,100 380,98 398,105 405,118 400,132 388,138 370,135 358,125 352,112" fill="#162d52" stroke="#1e3a65" stroke-width="0.5"/>
-      <polygon points="408,100 435,95 455,102 460,118 450,132 435,138 418,130 408,115" fill="#162d52" stroke="#1e3a65" stroke-width="0.5"/>
-      <polygon points="460,70 510,65 535,75 540,95 525,110 500,115 475,108 460,95 455,80" fill="#162d52" stroke="#1e3a65" stroke-width="0.5"/>
-      <polygon points="490,120 515,115 530,125 525,140 510,145 495,138" fill="#162d52" stroke="#1e3a65" stroke-width="0.5"/>
-      <polygon points="60,70 95,65 115,75 125,100 130,135 120,165 108,185 95,195 80,190 65,175 55,150 52,120 55,90" fill="#162d52" stroke="#1e3a65" stroke-width="0.5"/>
-      <polygon points="108,185 128,180 140,192 142,220 132,248 118,260 104,255 95,238 90,215 95,195" fill="#162d52" stroke="#1e3a65" stroke-width="0.5"/>
-      <polygon points="520,200 558,195 575,205 578,225 565,242 545,248 528,240 518,222" fill="#162d52" stroke="#1e3a65" stroke-width="0.5"/>
-
-      <style>
-        @keyframes dash-flow { to { stroke-dashoffset: -40; } }
-        @keyframes pulse-dot { 0%,100%{r:5;opacity:1} 50%{r:7;opacity:.7} }
-        .trade-arc { stroke-dasharray:8 6; animation:dash-flow 2.4s linear infinite; fill:none; }
-        .trade-arc-slow { stroke-dasharray:8 6; animation:dash-flow 3.2s linear infinite; fill:none; }
-        .city-pulse { animation:pulse-dot 2s ease-in-out infinite; }
-      </style>
-
-      <path class="trade-arc" d="M 303,178 Q 295,120 302,72" stroke="#174caa" stroke-width="1.5" opacity="0.85"/>
-      <path class="trade-arc-slow" d="M 307,180 Q 360,155 383,118" stroke="#b8a96a" stroke-width="1.5" opacity="0.75"/>
-      <path class="trade-arc" d="M 308,68 Q 345,60 380,108" stroke="#174caa" stroke-width="1.2" opacity="0.65"/>
-      <path class="trade-arc-slow" d="M 294,168 Q 288,115 302,72" stroke="#b8a96a" stroke-width="1" opacity="0.6"/>
-      <path class="trade-arc" d="M 388,118 Q 430,100 498,88" stroke="#174caa" stroke-width="1" opacity="0.5" stroke-dasharray="5 7"/>
-      <path class="trade-arc-slow" d="M 302,68 Q 200,60 90,85" stroke="#b8a96a" stroke-width="1" opacity="0.45" stroke-dasharray="5 7"/>
-
-      <circle cx="303" cy="183" r="5" fill="#174caa" opacity="0.3"/>
-      <circle class="city-pulse" cx="303" cy="183" r="5" fill="#174caa"/>
-      <text x="313" y="187" font-family="inherit" font-size="10" font-weight="600" fill="#fff" letter-spacing="0.08em">LAGOS</text>
-
-      <circle cx="293" cy="170" r="4" fill="#b8a96a" opacity="0.3"/>
-      <circle cx="293" cy="170" r="4" fill="#b8a96a" style="animation:pulse-dot 2.4s ease-in-out infinite .4s;"/>
-      <text x="256" y="168" font-family="inherit" font-size="10" font-weight="600" fill="#fff" letter-spacing="0.08em">ABUJA</text>
-
-      <circle cx="302" cy="68" r="5" fill="#b8a96a" opacity="0.3"/>
-      <circle class="city-pulse" cx="302" cy="68" r="5" fill="#b8a96a" style="animation-delay:.8s;"/>
-      <text x="312" y="72" font-family="inherit" font-size="10" font-weight="600" fill="#fff" letter-spacing="0.08em">LONDON</text>
-
-      <circle cx="386" cy="118" r="5" fill="#174caa" opacity="0.3"/>
-      <circle class="city-pulse" cx="386" cy="118" r="5" fill="#174caa" style="animation-delay:1.2s;"/>
-      <text x="396" y="122" font-family="inherit" font-size="10" font-weight="600" fill="#fff" letter-spacing="0.08em">DUBAI</text>
-
-      <line x1="28" y1="300" x2="60" y2="300" stroke="#174caa" stroke-width="1.5" stroke-dasharray="8 6"/>
-      <text x="66" y="304" font-family="inherit" font-size="10" fill="rgba(255,255,255,0.5)" letter-spacing="0.06em">PRIMARY ROUTES</text>
-      <line x1="200" y1="300" x2="232" y2="300" stroke="#b8a96a" stroke-width="1.5" stroke-dasharray="8 6"/>
-      <text x="238" y="304" font-family="inherit" font-size="10" fill="rgba(255,255,255,0.5)" letter-spacing="0.06em">EXTENDED REACH</text>
-
-    </svg>
-  </div>
-
-</div>
       `;
     }
-    
+
     function paint(sub) {
       document.title = `${sub.name} - Levene Energies Limited`;
       document.getElementById("page-desc").content = sub.tagline || sub.sector || "";
 
-      const heroImg      = sub.coverImageUrl     ? `${sub.coverImageUrl}?w=1800&auto=format&q=82` : "";
-      const mainImg      = sub.mainImageUrl      ? `${sub.mainImageUrl}?w=950&auto=format&fit=crop&q=80` : "";
-      const secondaryImg = sub.secondaryImageUrl ? `${sub.secondaryImageUrl}?w=950&auto=format&fit=crop&q=80` : "";
-
+      const heroImg = sub.coverImageUrl ? `${sub.coverImageUrl}?w=1800&auto=format&q=82` : "";
+      const mainImg = sub.mainImageUrl  ? `${sub.mainImageUrl}?w=950&auto=format&fit=crop&q=80` : "";
       const fullHtml = Array.isArray(sub.fullContent) ? ptToHtml(sub.fullContent) : "";
-
       const isTrading = sub.slug === "levene-trading";
 
       document.getElementById("sub-page-root").innerHTML = `
-        <!-- Hero Section -->
         <section class="sub-hero">
           ${heroImg ? `<img class="sub-hero-bg" src="${heroImg}" alt="${esc(sub.name)}" />` : ""}
           <div class="sub-hero-overlay"></div>
@@ -376,21 +339,21 @@ Trust, transparency and long-term relationships remain central to our trading ph
         </section>
 
         <div class="sub-body-wrap">
-
-          <!-- Main Sanity Content: Image Left + Text Right -->
           <div class="sub-main-content">
             <div class="sub-main-grid">
-              <!-- Image LEFT -->
               <div class="sub-main-image">
                 ${imgOrPlaceholder(mainImg, sub.name)}
-                <a href="subsidiaries.html" class="back-link">
-                  <i class="fas fa-arrow-left"></i> Back to All Subsidiaries
-                </a>
+                <div class="sub-back-actions">
+                  <a href="subsidiaries.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i> Back to All Subsidiaries
+                  </a>
+                  ${sub.website ? `
+                  <a href="${esc(sub.website)}" target="_blank" rel="noopener noreferrer" class="btn btn--outline website-btn">
+                    <i class="fas fa-globe"></i> Visit Website
+                  </a>` : ""}
+                </div>
               </div>
-
-              <!-- Text RIGHT -->
               <div class="sub-main-text">
-                ${sub.excerpt ? `<p class="sub-excerpt">${esc(sub.excerpt)}</p>` : ""}
                 <div class="rich-text">
                   ${fullHtml || "<p>Detailed information about this subsidiary is coming soon.</p>"}
                 </div>
@@ -398,47 +361,19 @@ Trust, transparency and long-term relationships remain central to our trading ph
             </div>
           </div>
 
-          <!-- Stat Band - Levene Trading only -->
           ${isTrading ? tradingStatBand() : ""}
 
-          <!-- Commitment Section -->
-          <div class="sub-split-section">
-            <div class="sub-split">
-              <div class="sub-split-text">
-                <div class="section-label">Our Commitment</div>
-                <h2>Value at <em>Every Level</em></h2>
-                <p style="color:var(--muted); line-height:1.88; font-size:0.97rem;">
-                  As part of the Levene Energies group, this subsidiary draws on deep resources and strategic relationships while maintaining agility to respond to market opportunities.
-                </p>
-                <div class="text-highlight-box">
-                  <span class="quote-icon"><i class="fas fa-quote-left"></i></span>
-                  <p>Levene Energies subsidiaries deliver world-class energy solutions tailored to Africa's dynamic markets.</p>
-                </div>
-              </div>
-              <div class="sub-split-img">
-                ${imgOrPlaceholder(secondaryImg, sub.name + " - commitment")}
-              </div>
-            </div>
-          </div>
-
-          <!-- Pull Quote -->
           <div class="sub-pullquote">
             <blockquote>"Delivering energy solutions that <strong>power communities</strong>, drive economies, and shape a more sustainable future - one operation at a time."</blockquote>
-            <cite>Levene Energies Limited - Group Mission</cite>
           </div>
-
         </div>
       `;
 
       const io = new IntersectionObserver(entries => {
         entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add("visible");
-            io.unobserve(e.target);
-          }
+          if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); }
         });
       }, { threshold: 0.12 });
-
       document.querySelectorAll(".sub-main-image, .sub-main-text, .sub-split-img, .sub-split-text").forEach(el => io.observe(el));
     }
 
@@ -454,18 +389,14 @@ Trust, transparency and long-term relationships remain central to our trading ph
 
     (async () => {
       const slug = new URLSearchParams(location.search).get("slug")?.trim();
-      if (!slug) {
-        location.href = "subsidiaries.html";
-        return;
-      }
+      if (!slug) { location.href = "subsidiaries.html"; return; }
 
       const BASE = "https://ilajnehi.apicdn.sanity.io/v2025-06-01/data/query/production";
       const q = `*[_type=="subsidiary" && slug.current=="${slug}"][0]{
-        name, tagline, sector, excerpt, fullContent,
+        name, tagline, sector, excerpt, fullContent, website,
         "slug": slug.current,
         "coverImageUrl": coverImage.asset->url,
-        "mainImageUrl": mainImage.asset->url,
-        "secondaryImageUrl": secondaryImage.asset->url
+        "mainImageUrl": mainImage.asset->url
       }`;
 
       try {

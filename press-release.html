@@ -10,7 +10,16 @@
   <link rel="stylesheet" href="./css/press-release.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
- 
+  <style>
+    .pr-columns {
+      align-items: flex-start;
+    }
+    .pr-img-wrap {
+      position: sticky;
+      top: 100px; /* adjust to match your header height */
+      align-self: flex-start;
+    }
+  </style>
 </head>
 <body class="press-page">
 
@@ -40,7 +49,7 @@
         document.body.style.overflow = 'hidden';
       });
     }
-A
+
     if (navClose) {
       navClose.addEventListener('click', function() {
         navList.classList.remove('open');
@@ -59,8 +68,6 @@ A
       }
     });
 
-
-    
     document.querySelectorAll('.nav-list .dropdown > a').forEach(link => {
       link.addEventListener('click', function(e) {
         if (window.innerWidth > 768) return;
