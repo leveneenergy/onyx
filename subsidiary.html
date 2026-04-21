@@ -170,20 +170,45 @@
 
     function ptToHtml(blocks) {
       if (!blocks?.length) return "<p>Detailed content coming soon.</p>";
-      return blocks.map(block => {
-        if (block._type !== "block") return "";
+      let html = '';
+      let listItems = [];
+      
+      blocks.forEach(block => {
+        // Flush list items if we hit a non-list block
+        if (listItems.length && !block.listItem) {
+          html += '<ul>' + listItems.join('') + '</ul>';
+          listItems = [];
+        }
+        
+        if (block._type !== "block") return;
+        
         const text = (block.children || []).map(child => {
           let t = esc(child.text || "");
           if (child.marks?.includes("strong")) t = `<strong>${t}</strong>`;
           if (child.marks?.includes("em")) t = `<em>${t}</em>`;
-          return t;
+          const linkDef = block.markDefs?.find(d => child.marks?.includes(d._key));
+          return linkDef?.href ? `<a href="${esc(linkDef.href)}" target="_blank">${t}</a>` : t;
         }).join("");
+        
+        // Handle list items
+        if (block.listItem) {
+          listItems.push(`<li>${text}</li>`);
+          return;
+        }
+        
         const s = block.style || "normal";
-        if (s === "h2") return `<h2>${text}</h2>`;
-        if (s === "h3") return `<h3>${text}</h3>`;
-        if (s === "blockquote") return `<blockquote>${text}</blockquote>`;
-        return `<p>${text}</p>`;
-      }).join("");
+        if (s === "h2") html += `<h2>${text}</h2>`;
+        else if (s === "h3") html += `<h3>${text}</h3>`;
+        else if (s === "blockquote") html += `<blockquote>${text}</blockquote>`;
+        else html += `<p>${text}</p>`;
+      });
+      
+      // Flush any remaining list items
+      if (listItems.length) {
+        html += '<ul>' + listItems.join('') + '</ul>';
+      }
+      
+      return html;
     }
 
     function imgOrPlaceholder(url, alt) {
@@ -289,7 +314,7 @@
                     <i class="fas fa-arrow-left"></i> Back to All Subsidiaries
                   </a>
                   ${sub.website ? `
-                  <a href="${esc(sub.website)}" target="_blank" rel="noopener noreferrer" class="btn btn--outline website-btn">
+                  <a href="${esc(sub.website)}" target="_blank" rel="noopener noreferrer" class="back-link">
                     <i class="fas fa-globe"></i> Visit Website
                   </a>` : ""}
                 </div>

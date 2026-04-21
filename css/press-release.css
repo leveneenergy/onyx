@@ -100,10 +100,11 @@
 
 /* Body copy */
 .pr-body p {
-  font-size: 0.97rem;
+  font-size: 5rem;
   line-height: 1.85;
   color: var(--muted);
   margin: 0 0 1rem;
+  text-align: justify;
 }
 
 .pr-body h2,
@@ -114,6 +115,7 @@
   font-weight: 700;
   color: var(--navy);
   margin: 1.6rem 0 0.4rem;
+ 
 }
 
 .pr-body ul {
