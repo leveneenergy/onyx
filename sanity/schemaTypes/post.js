@@ -27,7 +27,7 @@ export default defineType({
       name: 'content',
       title: 'Content',
       type: 'array',
-      of: [{ type: 'block' }],  // Portable Text – rich text editor
+      of: [{ type: 'block' }],  
     }),
     defineField({
       name: 'mainImage',
