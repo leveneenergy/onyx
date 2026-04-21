@@ -296,41 +296,44 @@
       <h3>Get the latest from Levene</h3>
       <p>Join investors, partners and energy professionals already subscribed.</p>
 
-      <div class="newsletter-success" id="nl-success">
-        <div class="newsletter-success-icon">
-          <i class="fas fa-check"></i>
-        </div>
-        <h4>You're subscribed!</h4>
-        <p>Thank you for joining. Watch your inbox for our next edition.</p>
-      </div>
-
       <div id="nl-form">
-        <div class="newsletter-email-row" id="nl-email-row">
-          <input
-            type="email"
-            id="nl-email"
-            placeholder="Enter your email address"
-            autocomplete="email"
-            onkeydown="if(event.key==='Enter') subscribeNewsletter()"
-          />
-          <button class="newsletter-submit-btn" id="nl-submit-btn" onclick="subscribeNewsletter()">
-            Subscribe <i class="fas fa-arrow-right"></i>
-          </button>
-        </div>
-        <div class="newsletter-err" id="nl-err">Please enter a valid email address.</div>
-
-    
-        <div class="recaptcha-wrap" style="padding: 1px; margin-top: -8px; ">
-          <div class="g-recaptcha-holder">
-            <div class="g-recaptcha" id="recaptcha-newsletter"></div>
+        <form
+          id="mailchimp-form"
+          action="https://leveneenergy.us21.list-manage.com/subscribe/post?u=a2d642d24877529e9a24d2570&id=9ebe6f0542&f_id=00598ee6f0"
+          method="post"
+          target="_blank"
+          novalidate
+        >
+          <div class="newsletter-email-row" id="nl-email-row">
+            <input
+              type="email"
+              name="EMAIL"
+              id="nl-email"
+              placeholder="Enter your email address"
+              autocomplete="email"
+            />
+        
+            <div style="position:absolute;left:-5000px;" aria-hidden="true">
+              <input type="text" name="b_a2d642d24877529e9a24d2570_9ebe6f0542" tabindex="-1" value="">
+            </div>
+            <button type="submit" class="newsletter-submit-btn" id="nl-submit-btn">
+              Subscribe <i class="fas fa-arrow-right"></i>
+            </button>
           </div>
-          <div class="newsletter-err" id="nl-err-recaptcha" >Please confirm you are not a robot.</div>
-        </div>
+          <div class="newsletter-err" id="nl-err" style="display:none;">Please enter a valid email address.</div>
 
-        <p class="newsletter-privacy">
-          <i class="fas fa-shield-alt"></i>
-          Your email is safe with us. We never sell or share your data with third parties.
-        </p>
+          <div class="recaptcha-wrap" style="padding: 1px; margin-top: 8px;">
+            <div class="g-recaptcha-holder">
+              <div class="g-recaptcha" id="recaptcha-newsletter"></div>
+            </div>
+            <div class="newsletter-err" id="nl-err-recaptcha" style="display:none;">Please confirm you are not a robot.</div>
+          </div>
+
+          <p class="newsletter-privacy">
+            <i class="fas fa-shield-alt"></i>
+            Your email is safe with us. We never sell or share your data with third parties.
+          </p>
+        </form>
       </div>
     </div>
 
@@ -347,8 +350,6 @@
 
   var EMAILJS_SERVICE_ID          = 'service_o232uzj';
   var EMAILJS_CONTACT_TEMPLATE    = 'template_i2gbink';
-  var EMAILJS_NL_NOTIFY_TEMPLATE  = 'template_nl_notify';
-  var EMAILJS_NL_CONFIRM_TEMPLATE = 'template_nl_confirm';
   var RECAPTCHA_SITE_KEY          = '6LcFZfMrAAAAAN83GfWDGh3yVZPqqIVrN3Gkup97';
 
   var recaptchaContactWidget;
@@ -363,7 +364,6 @@
     });
   };
 
-  // ─── Office Maps ───
   const officeMaps = {
     0: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.7296428936937!2d3.4278!3d6.4488!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf53b3b4e4f41%3A0x0!2sIkoyi%2C%20Lagos%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1700000000000",
     1: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5!2d7.48!3d9.07!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0a0b0b0b0b0b%3A0x0!2sWuse%202%2C%20Abuja!5e0!3m2!1sen!2sng!4v1700000000000",
@@ -462,60 +462,29 @@
         gtag('event', 'contact_form_error', { error_message: error.text || 'unknown' });
       });
   }
+  // ─── Newsletter ───
+document.getElementById('mailchimp-form').addEventListener('submit', function(e) {
+  var emailInput     = document.getElementById('nl-email');
+  var emailRow       = document.getElementById('nl-email-row');
+  var errEl          = document.getElementById('nl-err');
+  var recaptchaErrEl = document.getElementById('nl-err-recaptcha');
+  var email          = emailInput.value.trim();
+  var emailValid     = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  var recaptchaResp  = grecaptcha.getResponse(recaptchaNewsletterWidget);
+  var recaptchaValid = recaptchaResp.length > 0;
 
-  // ─── Newsletter ─────
-  function subscribeNewsletter() {
-    var emailInput = document.getElementById('nl-email');
-    var emailRow   = document.getElementById('nl-email-row');
-    var errEl      = document.getElementById('nl-err');
-    var submitBtn  = document.getElementById('nl-submit-btn');
-    var email      = emailInput.value.trim();
-    var valid      = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  emailRow.classList.toggle('invalid', !emailValid);
+  errEl.style.display          = emailValid    ? 'none'  : 'block';
+  recaptchaErrEl.style.display = recaptchaValid ? 'none' : 'block';
 
-    emailRow.classList.toggle('invalid', !valid);
-    errEl.classList.toggle('show', !valid);
-
-    var nlRecaptchaResponse = grecaptcha.getResponse(recaptchaNewsletterWidget);
-    var nlRecaptchaErr = document.getElementById('nl-err-recaptcha');
-    if (!nlRecaptchaResponse) {
-      nlRecaptchaErr.classList.add('show');
-      valid = false;
-    } else {
-      nlRecaptchaErr.classList.remove('show');
-    }
-
-    if (!valid) return;
-
-    emailRow.classList.remove('invalid');
-    errEl.classList.remove('show');
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-
-    var now = new Date().toLocaleString('en-GB', { dateStyle: 'long', timeStyle: 'short' });
-
-    Promise.all([
-      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_NL_NOTIFY_TEMPLATE, {
-        subscriber_email: email,
-        subscribed_at:    now
-      }),
-      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_NL_CONFIRM_TEMPLATE, {
-        subscriber_email: email
-      })
-    ])
-    .then(function() {
-      document.getElementById('nl-success').style.display = 'block';
-      grecaptcha.reset(recaptchaNewsletterWidget);
-      gtag('event', 'newsletter_subscribe', { source: 'contact_page' });
-    })
-    .catch(function(error) {
-      console.error('Newsletter EmailJS error:', error);
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = 'Subscribe <i class="fas fa-arrow-right"></i>';
-      grecaptcha.reset(recaptchaNewsletterWidget);
-      alert('Something went wrong. Please try again.');
-      gtag('event', 'newsletter_subscribe_error', { error_message: error.text || 'unknown' });
-    });
+  if (!emailValid || !recaptchaValid) {
+    e.preventDefault();
+    return;
   }
+
+  gtag('event', 'newsletter_subscribe', { source: 'contact_page' });
+
+});
 </script>
 
 ->
