@@ -5,21 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title id="page-title">Press Release — Levene Energies Limited</title>
   <meta id="page-desc" name="description" content="Press release — Levene Energies Limited." />
+  <meta name="keywords" content="press release, news, Levene Energies"/>
+  <meta name="author" content="Levene Energies Limited"/>
+  <meta name="robots" content="index, follow"/>
+  <meta name="language" content="English"/>
+  <meta property="og:type" id="og-type" content="article"/>
+  <meta property="og:title" id="og-title" content="Press Release"/>
+  <meta property="og:description" id="og-description" content=""/>
+  <meta property="og:image" id="og-image" content=""/>
+  <meta property="og:url" id="og-url" content=""/>
+  <meta property="og:site_name" content="Levene Energies Limited"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" id="twitter-title" content="Press Release"/>
+  <meta name="twitter:description" id="twitter-description" content=""/>
+  <meta name="twitter:image" id="twitter-image" content=""/>
+  <link rel="canonical" id="canonical-url" href=""/>
   <link rel="shortcut icon" href="./image/levene-energies.png" type="image/x-icon">
   <link rel="stylesheet" href="./css/style.css" />
   <link rel="stylesheet" href="./css/press-release.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
-  <style>
-    .pr-columns {
-      align-items: flex-start;
-    }
-    .pr-img-wrap {
-      position: sticky;
-      top: 100px; /* adjust to match your header height */
-      align-self: flex-start;
-    }
-  </style>
 </head>
 <body class="press-page">
 
@@ -134,12 +138,28 @@ function ptToHtml(blocks) {
   }).join('');
 }
 
+/* ── Scroll-reveal: observe all body elements and add .revealed on entry ── */
+function initScrollReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document
+    .querySelectorAll('.pr-body p, .pr-body h2, .pr-body h3, .pr-body h4, .pr-body ul, .pr-body blockquote')
+    .forEach(el => observer.observe(el));
+}
+
 function paint(pr) {
   document.title = `${pr.title} — Levene Energies Limited`;
   document.getElementById('page-desc').content = pr.excerpt || pr.title;
 
   const imgUrl = pr.imgUrl ? `${pr.imgUrl}?w=900&auto=format&fit=crop&q=85` : '';
-  const bodyHtml = pr.description ? ptToHtml(pr.description) : 
+  const bodyHtml = pr.description ? ptToHtml(pr.description) :
                    pr.excerpt ? `<p>${esc(pr.excerpt)}</p>` : '<p>Content coming soon.</p>';
 
   document.getElementById('pr-wrap').innerHTML = `
@@ -164,8 +184,8 @@ function paint(pr) {
       <div class="pr-columns">
         <!-- Image -->
         <div class="pr-img-wrap">
-          ${imgUrl 
-            ? `<img src="${imgUrl}" alt="${esc(pr.title)}" />` 
+          ${imgUrl
+            ? `<img src="${imgUrl}" alt="${esc(pr.title)}" />`
             : `<div class="pr-img-placeholder"><i class="fas fa-newspaper"></i></div>`}
         </div>
 
@@ -174,7 +194,7 @@ function paint(pr) {
           <p class="pr-panel-label"></p>
           <hr class="pr-panel-rule" />
           <p class="pr-panel-title">${esc(pr.title)}</p>
-          
+
           <div class="pr-meta">
             ${pr.publishedAt ? `<span><i class="fas fa-calendar-alt"></i> ${fmt(pr.publishedAt)}</span>` : ''}
             ${pr.source ? `<span><i class="fas fa-building"></i> ${esc(pr.source)}</span>` : ''}
@@ -190,6 +210,9 @@ function paint(pr) {
         </div>
       </div>
     </div>`;
+
+  /* Kick off scroll-reveal after DOM is painted */
+  requestAnimationFrame(() => initScrollReveal());
 }
 
 (async () => {

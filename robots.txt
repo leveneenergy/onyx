@@ -1,0 +1,33 @@
+# Robots.txt for Levene Energies Limited
+# Allows search engines to crawl and index content
+
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /contact.html
+Allow: /management.html
+Allow: /executive-directors.html
+Allow: /board-of-directors.html
+Allow: /media.html
+Allow: /subsidiaries.html
+Disallow: /image/
+Disallow: /css/
+Disallow: /js/
+
+# Specific rules for search engine bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Block bad bots
+User-agent: AhrefsBot
+User-agent: SemrushBot
+User-agent: MJ12bot
+Disallow: /
+
+# Sitemap location
+Sitemap: https://levenener.com/sitemap.xml

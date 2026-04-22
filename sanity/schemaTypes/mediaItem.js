@@ -64,13 +64,6 @@ export default defineType({
       type: 'datetime',
     }),
     defineField({
-      name: 'tags',
-      title: 'Tags',
-      type: 'array',
-      of: [{type: 'string'}],
-      options: {layout: 'tags'},
-    }),
-    defineField({
   name: 'folder',
   title: 'Folder / Album',
   type: 'reference',

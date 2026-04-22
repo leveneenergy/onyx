@@ -13,7 +13,7 @@
 
 .sub-main-image {
   position: sticky;
-  top: 6rem;      
+  top: 6rem;
   align-self: start;
 }
 
@@ -70,7 +70,6 @@
   right: 0;
   height: 4px;
   z-index: 4;
-
   background-size: 300% 100%;
   animation: barSlide 5s linear infinite;
 }
@@ -278,12 +277,12 @@
   );
 }
 
-/* Rich text */
+/* ── Rich text ── */
 .rich-text p {
   color: var(--muted);
   line-height: 1.7;
   font-size: 1.04rem;
-  margin-bottom: .1rem;
+  margin-bottom: 0.1rem;
   text-align: justify;
 }
 
@@ -302,7 +301,7 @@
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--green);
-  margin: 0.2rem 0 .1rem;
+  margin: 0.2rem 0 0.1rem;
 }
 
 .rich-text ul {
@@ -329,6 +328,27 @@
   background: var(--green);
   flex-shrink: 0;
   margin-top: 0.58rem;
+}
+
+/* ── Scroll-reveal: rich-text elements start hidden ── */
+.rich-text p,
+.rich-text h2,
+.rich-text h3,
+.rich-text ul,
+.rich-text blockquote {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+/* Revealed state */
+.rich-text p.revealed,
+.rich-text h2.revealed,
+.rich-text h3.revealed,
+.rich-text ul.revealed,
+.rich-text blockquote.revealed {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Highlight box */
@@ -813,7 +833,7 @@
   color: var(--green);
 }
 
-/* Scroll reveal */
+/* Scroll reveal (legacy .reveal classes kept for any other uses) */
 .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -841,18 +861,10 @@
   opacity: 1;
   transform: none;
 }
-.d1 {
-  transition-delay: 0.1s;
-}
-.d2 {
-  transition-delay: 0.2s;
-}
-.d3 {
-  transition-delay: 0.3s;
-}
-.d4 {
-  transition-delay: 0.4s;
-}
+.d1 { transition-delay: 0.1s; }
+.d2 { transition-delay: 0.2s; }
+.d3 { transition-delay: 0.3s; }
+.d4 { transition-delay: 0.4s; }
 
 /* Loading */
 .sub-loading-state {
@@ -910,7 +922,7 @@
   box-shadow: 0 4px 12px rgba(23, 76, 170, 0.25);
   transition: all 0.3s ease;
   width: fit-content;
-  margin-top: .5px;
+  margin-top: 0.5px;
 }
 
 .back-link:hover {
@@ -923,15 +935,6 @@
 .sub-split-section {
   background: var(--off-white);
   padding: 6rem 5%;
-}
-
-.sub-split {
-  max-width: 1280px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
-  align-items: center;
 }
 
 .sub-split-img img {
@@ -948,13 +951,21 @@
   border-left: 4px solid var(--green);
   padding: 0.85rem 0 0.85rem 1.4rem;
   margin-bottom: 1.8rem;
-  background: linear-gradient(90deg, rgba(30,138,46,0.05) 0%, transparent 60%);
+  background: linear-gradient(
+    90deg,
+    rgba(30, 138, 46, 0.05) 0%,
+    transparent 60%
+  );
   border-radius: 0 6px 6px 0;
 }
 
 @keyframes lt-scroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 .lt-ticker-item {
   display: flex;
@@ -971,6 +982,19 @@
 }
 .lt-ticker-item:last-child {
   border-right: none;
+}
+
+/* Reduced motion: skip all reveal animations */
+@media (prefers-reduced-motion: reduce) {
+  .rich-text p,
+  .rich-text h2,
+  .rich-text h3,
+  .rich-text ul,
+  .rich-text blockquote {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 /* ── Responsive ── */
@@ -1031,7 +1055,7 @@
   }
   .stat-item {
     border-right: none !important;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding: 0 0 1.5rem !important;
     margin-right: 0 !important;
   }

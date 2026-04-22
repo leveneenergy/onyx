@@ -39,14 +39,7 @@ export default defineType({
       options: { hotspot: true },
       description: 'Primary image shown on the LEFT side of the main content section',
     }),
-    defineField({
-      name: 'secondaryImage',
-      title: 'Secondary Image',
-      type: 'image',
-      options: { hotspot: true },
-      description: 'Image used in the second split section ("Our Commitment" area)',
-    }),
-
+  
     defineField({
       name: 'excerpt',
       title: 'Excerpt',

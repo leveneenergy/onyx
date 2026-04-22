@@ -4,24 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Media Centre — Levene Energies Limited</title>
-  <meta name="description" content="Explore Levene Energies Limited' media centre — gallery, press releases and newsletters."/>
+  <meta name="description" content="Explore Levene Energies Limited media centre — gallery, press releases, blog and newsletters."/>
+  <meta name="keywords" content="media, press releases, blog, gallery, news, Levene Energies"/>
+  <meta name="author" content="Levene Energies Limited"/>
+  <meta name="robots" content="index, follow"/>
+  <meta name="language" content="English"/>
   <meta property="og:title" content="Media Centre — Levene Energies Limited"/>
-  <meta property="og:description" content="Gallery, press releases, newsletters and latest updates from Levene Energy."/>
+  <meta property="og:description" content="Gallery, press releases, blog articles and latest updates from Levene Energies."/>
   <meta property="og:type" content="website"/>
   <meta property="og:image" content="./image/levenelogo.png"/>
+  <meta property="og:url" content=""/>
+  <meta property="og:site_name" content="Levene Energies Limited"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Media Centre"/>
+  <meta name="twitter:description" content="Latest updates, press releases and blog articles"/>
+  <meta name="twitter:image" content="./image/levenelogo.png"/>
+  <link rel="canonical" href=""/>
   <link rel="shortcut icon" href="./image/levene-energies.png" type="image/x-icon">
 
   <link rel="stylesheet" href="./css/style.css" />
   <link rel="stylesheet" href="./css/media.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-
-  
 </head>
 <body class="media-page">
 
   <div id="header-placeholder"></div>
 <script>
-
   fetch('header.html')
     .then(r => {
       if (!r.ok) throw new Error('Header file not found');
@@ -29,7 +37,7 @@
     })
     .then(html => {
       document.getElementById('header-placeholder').innerHTML = html;
-      initNav(); 
+      initNav();
     })
     .catch(err => console.error('Failed to load header:', err));
 
@@ -42,7 +50,7 @@
       hamburger.addEventListener('click', function(e) {
         e.stopPropagation();
         navList.classList.add('open');
-        document.body.style.overflow = 'hidden'; 
+        document.body.style.overflow = 'hidden';
       });
     }
 
@@ -56,7 +64,6 @@
       });
     }
 
-   
     document.addEventListener('click', function(e) {
       if (navList && navList.classList.contains('open')) {
         if (!navList.contains(e.target) && e.target !== hamburger) {
@@ -68,7 +75,6 @@
         }
       }
     });
-
 
     document.querySelectorAll('.nav-list .dropdown > a').forEach(function(link) {
       link.addEventListener('click', function(e) {
@@ -84,7 +90,6 @@
       });
     });
 
-    
     document.querySelectorAll('.nav-list > li:not(.dropdown) > a').forEach(function(link) {
       link.addEventListener('click', function() {
         if (window.innerWidth > 768) return;
@@ -100,7 +105,7 @@
   <div class="page-hero-inner">
     <div class="section-label">Media Centre</div>
     <h1>MEDIA</h1>
-    <p>Stay up to date with Levene Energies Limited — images from our operations, upcoming events, and official communications.</p>
+    <p>Stay up to date with Levene Energies Limited - images from our operations, upcoming events, and official communications.</p>
     <div class="breadcrumb">
       <a href="index.html">Home</a><span>/</span><span>Media</span>
     </div>
@@ -202,8 +207,6 @@
   </div>
 </section>
 
-
-
 <!-- LIGHTBOX -->
 <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
   <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox"><i class="fas fa-times"></i></button>
@@ -235,7 +238,8 @@
   <p>Subscribe to our newsletter and be the first to receive updates, press releases, and event announcements from Levene Energies Limited.</p>
   <a href="contact.html" class="btn btn--green">Get In Touch</a>
 </section>
-<!-- Footer -->
+
+
 <div id="footer-placeholder"></div>
 <script>
   fetch('footer.html')
@@ -246,8 +250,6 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-
-
   const hamburger = document.getElementById('hamburger');
   const navList   = document.getElementById('nav-list');
   const navClose  = document.getElementById('nav-close');
@@ -272,7 +274,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
- 
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
@@ -358,7 +359,6 @@ function showVideoFallback() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  
   const lb = document.getElementById('lightbox');
   document.getElementById('lightbox-close').addEventListener('click', () => lb.classList.remove('open'));
   lb.addEventListener('click', e => { if (e.target === lb) lb.classList.remove('open'); });
@@ -402,6 +402,7 @@ async function sq(q) {
 }
 
 
+// GALLERY
 ;(async () => {
   const folderGrid   = document.getElementById('gallery-folder-grid');
   const folderView   = document.getElementById('gallery-folder-view');
@@ -411,7 +412,6 @@ async function sq(q) {
   const detailCount  = document.getElementById('gallery-detail-count');
   const backBtn      = document.getElementById('gallery-back-btn');
 
- 
   backBtn.addEventListener('click', () => {
     folderDetail.classList.remove('active');
     folderView.classList.remove('hidden');
@@ -428,7 +428,6 @@ async function sq(q) {
     }`
   );
 
-
   const unfoldered = await sq(
     `*[_type=="mediaItem" && type=="photo" && !defined(folder)]|order(publishedAt desc)[0...50]{
       title, "url": image.asset->url, caption
@@ -444,9 +443,7 @@ async function sq(q) {
     return;
   }
 
- 
   window._gallerySections = sections;
-
 
   folderGrid.innerHTML = sections.map((section, si) => {
     const cover = section.items[0]?.url
@@ -466,7 +463,6 @@ async function sq(q) {
       </div>`;
   }).join('');
 
-
   folderGrid.querySelectorAll('.folder-card').forEach(card => {
     card.addEventListener('click', () => {
       const si      = parseInt(card.dataset.section);
@@ -475,14 +471,12 @@ async function sq(q) {
       detailTitle.textContent = section.name;
       detailCount.textContent = `${section.items.length} photo${section.items.length !== 1 ? 's' : ''}`;
 
-      // Build lightbox items for this section
       window[`_lbItems_${si}`] = section.items.map(it => ({
         src:     `${it.url}?w=1400&auto=format`,
         alt:     it.title || '',
         caption: it.caption || '',
       }));
 
-      // Render photo grid
       detailGrid.innerHTML = section.items.map((it, ii) => {
         const thumb = `${it.url}?w=600&h=450&fit=crop&q=80`;
         return `
@@ -500,9 +494,8 @@ async function sq(q) {
 })();
 
 
-// ══════════════════════════════════════════
-// VIDEOS — folder cards → click → videos
-// ══════════════════════════════════════════
+// VIDEOS
+
 ;(async () => {
   const folderGrid   = document.getElementById('video-folder-grid');
   const folderView   = document.getElementById('video-folder-view');
@@ -512,14 +505,12 @@ async function sq(q) {
   const detailCount  = document.getElementById('video-detail-count');
   const backBtn      = document.getElementById('video-back-btn');
 
-  // Back button
   backBtn.addEventListener('click', () => {
     folderDetail.classList.remove('active');
     folderView.classList.remove('hidden');
     document.getElementById('video-modal-iframe').src = '';
   });
 
-  // Helper: parse YouTube / Vimeo URL into embed + thumb
   function parseVideo(url) {
     url = url || '';
     const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
@@ -534,7 +525,6 @@ async function sq(q) {
     return { embedUrl: url, thumbUrl: '', rawUrl: url };
   }
 
-  // Fetch video folders with nested items
   const folders = await sq(
     `*[_type=="mediaFolder"]|order(order asc){
       name,
@@ -545,7 +535,6 @@ async function sq(q) {
     }`
   );
 
-  // Fetch unfoldered videos
   const unfoldered = await sq(
     `*[_type=="mediaItem" && type=="video" && !defined(folder)]|order(publishedAt desc)[0...50]{
       title, caption, videoUrl, publishedAt
@@ -561,10 +550,8 @@ async function sq(q) {
     return;
   }
 
-  // Store sections globally
   window._videoSections = sections;
 
-  // Build folder cards — first video's YouTube thumb as cover
   folderGrid.innerHTML = sections.map((section, si) => {
     const firstParsed = parseVideo(section.items[0]?.videoUrl);
     const cover = firstParsed.thumbUrl
@@ -584,7 +571,6 @@ async function sq(q) {
       </div>`;
   }).join('');
 
-  // Folder card click → open detail view
   folderGrid.querySelectorAll('.folder-card').forEach(card => {
     card.addEventListener('click', () => {
       const si      = parseInt(card.dataset.section);
@@ -593,13 +579,11 @@ async function sq(q) {
       detailTitle.textContent = section.name;
       detailCount.textContent = `${section.items.length} video${section.items.length !== 1 ? 's' : ''}`;
 
-      // Populate global _videoItems for this folder so openVideoModal works
       window._videoItems = section.items.map(it => {
         const p = parseVideo(it.videoUrl);
         return { title: it.title, caption: it.caption, embedUrl: p.embedUrl, thumbUrl: p.thumbUrl, rawUrl: p.rawUrl };
       });
 
-      // Render video cards
       detailGrid.innerHTML = section.items.map((it, i) => {
         const parsed = parseVideo(it.videoUrl);
         return `
@@ -625,9 +609,7 @@ async function sq(q) {
 })();
 
 
-// ══════════════════════════════════════════
 // PRESS RELEASES
-// ══════════════════════════════════════════
 ;(async () => {
   const items = await sq(
     `*[_type=="pressRelease"]|order(publishedAt desc){"slug":slug.current,_id,title,excerpt,publishedAt,"imgUrl":coverImage.asset->url}`
@@ -643,7 +625,7 @@ async function sq(q) {
       ? `<img class="press-thumb" src="${esc(it.imgUrl)}?w=400&h=300&fit=crop&auto=format&q=80" alt="${esc(it.title)}" loading="lazy"/>`
       : `<div class="press-thumb-placeholder"><i class="fas fa-newspaper"></i></div>`;
     return `
-      <div class="press-item" onclick="location.href='${href}'">
+      <div class="press-item">
         ${thumbHtml}
         <div class="press-text">
           <div class="press-tag">Press Release</div>
@@ -651,17 +633,15 @@ async function sq(q) {
           ${it.excerpt ? `<p>${esc(it.excerpt)}</p>` : ''}
         </div>
         <div class="press-date">${fmt(it.publishedAt)}</div>
-        <a href="${href}" class="btn btn--outline-dark" style="padding:.5rem 1rem;font-size:.75rem;flex-shrink:0" onclick="event.stopPropagation()">
+        <a href="${href}" class="btn btn--outline-dark" style="padding:.5rem 1rem;font-size:.75rem;flex-shrink:0">
           Read More <i class="fas fa-arrow-right"></i>
         </a>
       </div>`;
   }).join('');
 })();
 
-
-// ══════════════════════════════════════════
 // NEWSLETTERS
-// ══════════════════════════════════════════
+
 ;(async () => {
   const items = await sq(
     `*[_type=="mediaItem"&&type=="newsletter"]|order(publishedAt desc){title,caption,publishedAt,"fileUrl":file.asset->url}`
@@ -672,7 +652,7 @@ async function sq(q) {
     return;
   }
   el.innerHTML = items.map(it => `
-    <div class="press-item" ${it.fileUrl ? `onclick="window.open('${esc(it.fileUrl)}','_blank')"` : ''}>
+    <div class="press-item">
       <div style="flex-shrink:0;font-size:1.6rem;color:var(--green)"><i class="fas fa-envelope-open-text"></i></div>
       <div style="flex:1">
         <div class="press-tag" style="color:var(--green)">Newsletter</div>
@@ -680,14 +660,16 @@ async function sq(q) {
         ${it.caption ? `<p style="font-size:.85rem;color:var(--muted);margin-top:.3rem">${esc(it.caption)}</p>` : ''}
       </div>
       <div class="press-date">${fmt(it.publishedAt)}</div>
-      ${it.fileUrl ? `<a href="${esc(it.fileUrl)}" target="_blank" onclick="event.stopPropagation()" class="btn btn--outline-dark" style="padding:.5rem 1rem;font-size:.75rem;flex-shrink:0"><i class="fas fa-download"></i> PDF</a>` : ''}
+      ${it.fileUrl
+        ? `<a href="${esc(it.fileUrl)}" target="_blank" rel="noopener" class="btn btn--outline-dark" style="padding:.5rem 1rem;font-size:.75rem;flex-shrink:0"><i class="fas fa-download"></i> PDF</a>`
+        : ''}
     </div>`).join('');
 })();
 
 
-// ══════════════════════════════════════════
+
 // BLOG
-// ══════════════════════════════════════════
+
 ;(async () => {
   const items = await sq(
     `*[_type=="post"]|order(publishedAt desc)[0...30]{

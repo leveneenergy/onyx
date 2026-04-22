@@ -5,6 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title id="page-title">Subsidiary - Levene Energies Limited</title>
   <meta name="description" id="page-desc" content="Learn more about this Levene Energies Limited subsidiary." />
+  <meta name="keywords" content="subsidiary, portfolio, energy, Levene Energies"/>
+  <meta name="author" content="Levene Energies Limited"/>
+  <meta name="robots" content="index, follow"/>
+  <meta name="language" content="English"/>
+  <meta property="og:title" id="og-title" content="Subsidiary"/>
+  <meta property="og:description" id="og-description" content=""/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" id="og-image" content=""/>
+  <meta property="og:url" id="og-url" content=""/>
+  <meta property="og:site_name" content="Levene Energies Limited"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" id="twitter-title" content="Subsidiary"/>
+  <meta name="twitter:description" id="twitter-description" content=""/>
+  <meta name="twitter:image" id="twitter-image" content=""/>
+  <link rel="canonical" id="canonical-url" href=""/>
   <link rel="shortcut icon" href="./image/levene-energies.png" type="image/x-icon" />
   <link rel="stylesheet" href="./css/style.css" />
   <link rel="stylesheet" href="./css/subsidiary.css" />
@@ -16,7 +31,7 @@
       position: relative;
       display: block;
       width: 100%;
-      padding: 10px; /* room for brackets to overflow */
+      padding: 10px;
     }
 
     .img-bracket-wrap img,
@@ -172,16 +187,16 @@
       if (!blocks?.length) return "<p>Detailed content coming soon.</p>";
       let html = '';
       let listItems = [];
-      
+
       blocks.forEach(block => {
         // Flush list items if we hit a non-list block
         if (listItems.length && !block.listItem) {
           html += '<ul>' + listItems.join('') + '</ul>';
           listItems = [];
         }
-        
+
         if (block._type !== "block") return;
-        
+
         const text = (block.children || []).map(child => {
           let t = esc(child.text || "");
           if (child.marks?.includes("strong")) t = `<strong>${t}</strong>`;
@@ -189,25 +204,25 @@
           const linkDef = block.markDefs?.find(d => child.marks?.includes(d._key));
           return linkDef?.href ? `<a href="${esc(linkDef.href)}" target="_blank">${t}</a>` : t;
         }).join("");
-        
+
         // Handle list items
         if (block.listItem) {
           listItems.push(`<li>${text}</li>`);
           return;
         }
-        
+
         const s = block.style || "normal";
         if (s === "h2") html += `<h2>${text}</h2>`;
         else if (s === "h3") html += `<h3>${text}</h3>`;
         else if (s === "blockquote") html += `<blockquote>${text}</blockquote>`;
         else html += `<p>${text}</p>`;
       });
-      
+
       // Flush any remaining list items
       if (listItems.length) {
         html += '<ul>' + listItems.join('') + '</ul>';
       }
-      
+
       return html;
     }
 
@@ -243,8 +258,8 @@
             <div style="font-size:0.83rem; color:rgba(255,255,255,0.4); font-style:italic;">These metrics reflect operational capability, transaction efficiency and long-standing commercial relationships.</div>
           </div>
           <div style="background: rgba(10,22,40,0.35); overflow: hidden; position: relative;">
-            <div style="position:absolute; left:0; top:0; height:100%; width:80px;  transparent); z-index:2; pointer-events:none;"></div>
-            <div style="position:absolute; right:0; top:0; height:100%; width:80px;  transparent); z-index:2; pointer-events:none;"></div>
+            <div style="position:absolute; left:0; top:0; height:100%; width:80px; z-index:2; pointer-events:none;"></div>
+            <div style="position:absolute; right:0; top:0; height:100%; width:80px; z-index:2; pointer-events:none;"></div>
             <div style="padding: 0.9rem 1.4rem 0.2rem; font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:#fff; font-weight:600;">Product Portfolio</div>
             <div style="overflow:hidden; padding: 0.2rem 0 0.5rem;">
               <div id="lt-ticker-track" style="display:flex; width:max-content; animation: lt-scroll 18s linear infinite;">
@@ -271,8 +286,23 @@
             </div>
           </div>
         </div>
-       
       `;
+    }
+
+    /* ── Scroll-reveal: observe all rich-text elements and add .revealed on entry ── */
+    function initScrollReveal() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document
+        .querySelectorAll('.rich-text p, .rich-text h2, .rich-text h3, .rich-text ul, .rich-text blockquote')
+        .forEach(el => observer.observe(el));
     }
 
     function paint(sub) {
@@ -297,8 +327,8 @@
               <a href="subsidiaries.html" class="btn btn--outline">All Subsidiaries</a>
             </div>
             <div class="sub-hero-breadcrumb">
-              <a href="index.html">Home</a> / 
-              <a href="subsidiaries.html">Subsidiaries</a> / 
+              <a href="index.html">Home</a> /
+              <a href="subsidiaries.html">Subsidiaries</a> /
               <span class="current">${esc(sub.name)}</span>
             </div>
           </div>
@@ -335,12 +365,16 @@
         </div>
       `;
 
+      /* Section reveal for image + text columns */
       const io = new IntersectionObserver(entries => {
         entries.forEach(e => {
           if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); }
         });
       }, { threshold: 0.12 });
       document.querySelectorAll(".sub-main-image, .sub-main-text, .sub-split-img, .sub-split-text").forEach(el => io.observe(el));
+
+      /* Kick off rich-text scroll-reveal after DOM is painted */
+      requestAnimationFrame(() => initScrollReveal());
     }
 
     function showError() {
