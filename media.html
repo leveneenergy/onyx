@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Media Centre — Levene Energies Limited</title>
+  <title>Media Centre-Levene Energies Limited</title>
   <meta name="description" content="Explore Levene Energies Limited media centre — gallery, press releases, blog and newsletters."/>
   <meta name="keywords" content="media, press releases, blog, gallery, news, Levene Energies"/>
   <meta name="author" content="Levene Energies Limited"/>
@@ -13,13 +13,15 @@
   <meta property="og:description" content="Gallery, press releases, blog articles and latest updates from Levene Energies."/>
   <meta property="og:type" content="website"/>
   <meta property="og:image" content="./image/levenelogo.png"/>
-  <meta property="og:url" content=""/>
+  <meta property="og:url" content="https://leveneenergies.com/media.html"/>
   <meta property="og:site_name" content="Levene Energies Limited"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Media Centre"/>
   <meta name="twitter:description" content="Latest updates, press releases and blog articles"/>
   <meta name="twitter:image" content="./image/levenelogo.png"/>
-  <link rel="canonical" href=""/>
+  <link rel="canonical" href="https://leveneenergies.com/media.html"/>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <link rel="shortcut icon" href="./image/levene-energies.png" type="image/x-icon">
 
   <link rel="stylesheet" href="./css/style.css" />
@@ -644,7 +646,9 @@ async function sq(q) {
 
 ;(async () => {
   const items = await sq(
-    `*[_type=="mediaItem"&&type=="newsletter"]|order(publishedAt desc){title,caption,publishedAt,"fileUrl":file.asset->url}`
+   `*[_type=="mediaItem"&&type=="newsletter"]|order(order asc, publishedAt desc){
+  title, caption, publishedAt, order, "fileUrl": file.asset->url
+}`
   );
   const el = document.getElementById('newsletter-list');
   if (!items.length) {
@@ -661,7 +665,7 @@ async function sq(q) {
       </div>
       <div class="press-date">${fmt(it.publishedAt)}</div>
       ${it.fileUrl
-        ? `<a href="${esc(it.fileUrl)}" target="_blank" rel="noopener" class="btn btn--outline-dark" style="padding:.5rem 1rem;font-size:.75rem;flex-shrink:0"><i class="fas fa-download"></i> PDF</a>`
+        ? `<a href="${esc(it.fileUrl)}" target="_blank" rel="noopener" class="btn btn--outline-dark" style="padding:.5rem 1rem;font-size:.75rem;flex-shrink:0"><i class="fas fa-download"></i> Read More</a>`
         : ''}
     </div>`).join('');
 })();

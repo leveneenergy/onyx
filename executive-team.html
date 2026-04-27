@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Board of Directors - Levene Energies Limited</title>
-    <meta name="description" content="Meet the Board of Directors of Levene Energies Limited — experienced leaders guiding the company's strategic vision and governance." />
-    <meta name="keywords" content="board of directors, leadership, governance, Levene Energies" />
+    <title>Executive Team - Levene Energies Limited</title>
+    <meta name="description" content="Meet the Executive Team of Levene Energies Limited — operational leaders driving growth across energy, trading, and renewables." />
+    <meta name="keywords" content="executive team, management, leadership, Levene Energies" />
     <meta name="author" content="Levene Energies Limited" />
     <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="Board of Directors - Levene Energies Limited" />
-    <meta property="og:description" content="Meet the Board of Directors of Levene Energies Limited." />
+    <meta property="og:title" content="Executive Team - Levene Energies Limited" />
+    <meta property="og:description" content="Meet the Executive Team of Levene Energies Limited." />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Levene Energies Limited" />
     <link rel="shortcut icon" href="./image/levene-energies.png" type="image/x-icon" />
@@ -17,6 +17,11 @@
     <link rel="stylesheet" href="./css/management.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
+    <style>
+     
+
+     
+    </style>
   </head>
 
   <body class="mgt-page">
@@ -77,31 +82,32 @@
       }
     </script>
 
-    
-    <!-- Page Hero -->
+   
+        <!-- Page Hero -->
 <section class="page-hero">
   <div class="page-hero-inner">
     <div class="section-label">Management Team</div>
-    <h1>Board of Directors</h1>
-    <p>Seasoned leaders providing strategic oversight, governance, and direction to Levene Energies Limited.</p>
+    <h1>Executive Team</h1>
+    <p>Operational leaders driving performance, innovation, and sustainable growth across Levene Energies' business units.</p>
     <div class="breadcrumb">
-      <a href="index.html">Home</a><span>/</span><span>Directors</span>
+      <a href="index.html">Home</a><span>/</span><span>Executive Team</span>
     </div>
   </div>
 </section>
 
-    <!-- ── Members grid (populated from Sanity) ── -->
+    <!-- ── Members grid ── -->
     <section class="team-section">
       <div class="team-section-inner">
-        <div class="section-label">The People Behind Levene</div>
+        <div class="section-label">Meet The Executive Team</div>
         <div id="members-root">
           <div class="team-loading">
             <i class="fas fa-spinner fa-spin" style="color:var(--navy);opacity:0.4;"></i>
-            <p>Loading Board of Directors…</p>
+            <p>Loading Executive Team…</p>
           </div>
         </div>
       </div>
     </section>
+  
 
     <div id="footer-placeholder"></div>
     <script>
@@ -124,7 +130,7 @@
           root.innerHTML = `
             <div class="team-loading">
               <i class="fas fa-users" style="color:var(--navy);opacity:0.25;"></i>
-              <p>Board member profiles coming soon.</p>
+              <p>Executive team profiles coming soon.</p>
             </div>`;
           return;
         }
@@ -164,7 +170,7 @@
           grid.appendChild(card);
         });
 
-        // Scroll-reveal cards
+        // Scroll-reveal
         const io = new IntersectionObserver(entries => {
           entries.forEach(e => {
             if (e.isIntersecting) { e.target.classList.add("revealed"); io.unobserve(e.target); }
@@ -176,7 +182,7 @@
       // ── Fetch from Sanity ─────────────────────────────────────
       (async () => {
         const BASE = "https://ilajnehi.apicdn.sanity.io/v2025-06-01/data/query/production";
-        const q = `*[_type=="teamMember" && category=="board-of-directors"] | order(order asc) {
+        const q = `*[_type=="teamMember" && category=="executive-team"] | order(order asc) {
           _id, name, title, department, excerpt, linkedin,
           "slug": slug.current,
           "photoUrl": photo.asset->url
@@ -192,7 +198,7 @@
           document.getElementById("members-root").innerHTML = `
             <div class="team-loading">
               <i class="fas fa-exclamation-circle" style="color:var(--navy);opacity:0.3;font-size:2.8rem;"></i>
-              <p>Unable to load board members. Please try again later.</p>
+              <p>Unable to load executive team. Please try again later.</p>
             </div>`;
         }
       })();

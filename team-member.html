@@ -1,278 +1,276 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title id="page-title">Team Member — Levene Energies Limited</title>
-  <meta id="page-desc" name="description" content="Team member profile — Levene Energies Limited."/>
-  <meta name="keywords" content="team member, profile, employee, Levene Energies"/>
-  <meta name="author" content="Levene Energies Limited"/>
-  <meta name="robots" content="index, follow"/>
-  <meta name="language" content="English"/>
-  <meta property="og:title" id="og-title" content="Team Member"/>
-  <meta property="og:description" id="og-description" content=""/>
-  <meta property="og:type" content="profile"/>
-  <meta property="og:image" id="og-image" content=""/>
-  <meta property="og:url" id="og-url" content=""/>
-  <meta property="og:site_name" content="Levene Energies Limited"/>
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" id="twitter-title" content="Team Member"/>
-  <meta name="twitter:description" id="twitter-description" content=""/>
-  <meta name="twitter:image" id="twitter-image" content=""/>
-  <link rel="canonical" id="canonical-url" href=""/>
-  <link rel="shortcut icon" href="./image/levene-energies.png" type="image/x-icon">
-  <link rel="stylesheet" href="./css/style.css"/>
-  <link rel="stylesheet" href="./css/team-member.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-</head>
-<body>
-<div id="header-placeholder"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="page-title">Team Member - Levene Energies Limited</title>
+    <meta name="description" id="page-desc" content="Leadership profile - Levene Energies Limited." />
+    <meta name="author" content="Levene Energies Limited" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" id="og-title" content="Team Member" />
+    <meta property="og:description" id="og-description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" id="og-image" content="" />
+    <meta property="og:site_name" content="Levene Energies Limited" />
+    <link rel="shortcut icon" href="./image/levene-energies.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/team-member.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  </head>
 
-<script>
+  <body>
+    <div id="header-placeholder"></div>
+    <script>
+      fetch("header.html")
+        .then(r => { if (!r.ok) throw new Error("Header not found"); return r.text(); })
+        .then(html => {
+          document.getElementById("header-placeholder").innerHTML = html;
+          initNav();
+        })
+        .catch(err => console.error("Failed to load header:", err));
 
-  fetch('header.html')
-    .then(r => {
-      if (!r.ok) throw new Error('Header file not found');
-      return r.text();
-    })
-    .then(html => {
-      document.getElementById('header-placeholder').innerHTML = html;
-      initNav(); 
-    })
-    .catch(err => console.error('Failed to load header:', err));
-
-  function initNav() {
-    const hamburger = document.getElementById('hamburger');
-    const navList   = document.getElementById('nav-list');
-    const navClose  = document.getElementById('nav-close');
-
-    if (hamburger && navList) {
-      hamburger.addEventListener('click', function(e) {
-        e.stopPropagation();
-        navList.classList.add('open');
-        document.body.style.overflow = 'hidden'; 
-      });
-    }
-
-    if (navClose) {
-      navClose.addEventListener('click', function() {
-        navList.classList.remove('open');
-        document.body.style.overflow = '';
-        document.querySelectorAll('.nav-list .dropdown').forEach(function(d) {
-          d.classList.remove('mob-open');
-        });
-      });
-    }
-
-   
-    document.addEventListener('click', function(e) {
-      if (navList && navList.classList.contains('open')) {
-        if (!navList.contains(e.target) && e.target !== hamburger) {
-          navList.classList.remove('open');
-          document.body.style.overflow = '';
-          document.querySelectorAll('.nav-list .dropdown').forEach(function(d) {
-            d.classList.remove('mob-open');
+      function initNav() {
+        const hamburger = document.getElementById("hamburger");
+        const navList   = document.getElementById("nav-list");
+        const navClose  = document.getElementById("nav-close");
+        if (hamburger && navList) {
+          hamburger.addEventListener("click", function(e) {
+            e.stopPropagation();
+            navList.classList.add("open");
+            document.body.style.overflow = "hidden";
           });
         }
-      }
-    });
-
-
-    document.querySelectorAll('.nav-list .dropdown > a').forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        if (window.innerWidth > 768) return;
-        e.preventDefault();
-        e.stopPropagation();
-        var dropdown = link.closest('.dropdown');
-        var isOpen   = dropdown.classList.contains('mob-open');
-        document.querySelectorAll('.nav-list .dropdown').forEach(function(d) {
-          d.classList.remove('mob-open');
+        if (navClose) {
+          navClose.addEventListener("click", function() {
+            navList.classList.remove("open");
+            document.body.style.overflow = "";
+            document.querySelectorAll(".nav-list .dropdown").forEach(d => d.classList.remove("mob-open"));
+          });
+        }
+        document.addEventListener("click", function(e) {
+          if (navList && navList.classList.contains("open")) {
+            if (!navList.contains(e.target) && e.target !== hamburger) {
+              navList.classList.remove("open");
+              document.body.style.overflow = "";
+              document.querySelectorAll(".nav-list .dropdown").forEach(d => d.classList.remove("mob-open"));
+            }
+          }
         });
-        if (!isOpen) dropdown.classList.add('mob-open');
-      });
-    });
+        document.querySelectorAll(".nav-list .dropdown > a").forEach(function(link) {
+          link.addEventListener("click", function(e) {
+            if (window.innerWidth > 768) return;
+            e.preventDefault(); e.stopPropagation();
+            var dropdown = link.closest(".dropdown");
+            var isOpen = dropdown.classList.contains("mob-open");
+            document.querySelectorAll(".nav-list .dropdown").forEach(d => d.classList.remove("mob-open"));
+            if (!isOpen) dropdown.classList.add("mob-open");
+          });
+        });
+        document.querySelectorAll(".nav-list > li:not(.dropdown) > a").forEach(function(link) {
+          link.addEventListener("click", function() {
+            if (window.innerWidth > 768) return;
+            navList.classList.remove("open");
+            document.body.style.overflow = "";
+          });
+        });
+      }
+    </script>
 
-    
-    document.querySelectorAll('.nav-list > li:not(.dropdown) > a').forEach(function(link) {
-      link.addEventListener('click', function() {
-        if (window.innerWidth > 768) return;
-        navList.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    });
-  }
-</script>
-
-
-<!-- Profile Content -->
-<div id="page-wrap">
-  <div class="profile-loading">
-    <i class="fas fa-spinner fa-spin"></i>
-    <p>Loading profile...</p>
-  </div>
-</div>
-
-<!-- CTA Band -->
-<section class="cta-band">
-  <h2>Get in touch</h2>
-  <p>Interested in working with the Levene Energies Limited leadership team?</p>
-  <a href="contact.html" class="btn btn--green">Contact Us <i class="fas fa-arrow-right"></i></a>
-  <a href="management.html" class="btn btn--outline">Full Team</a>
-</section>
-
-<div id="footer-placeholder"></div>
-
-<script>
-  fetch('footer.html')
-    .then(r => r.text())
-    .then(html => document.getElementById('footer-placeholder').innerHTML = html)
-    .catch(err => console.error('Failed to load footer:', err));
-</script>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const hamburger = document.getElementById('hamburger');
-  const navList   = document.getElementById('nav-list');
-  const navClose  = document.getElementById('nav-close');
-
-  if (hamburger && navList) {
-    hamburger.addEventListener('click', e => {
-      e.stopPropagation();
-      navList.classList.add('open');
-    });
-  }
-
-  if (navClose) {
-    navClose.addEventListener('click', () => {
-      navList.classList.remove('open');
-      document.querySelectorAll('.nav-list .dropdown').forEach(d => d.classList.remove('mob-open'));
-    });
-  }
-
-  document.querySelectorAll('.nav-list .dropdown > a').forEach(link => {
-    link.addEventListener('click', e => {
-      if (window.innerWidth > 768) return;
-      e.preventDefault();
-      e.stopPropagation();
-      const dropdown = link.closest('.dropdown');
-      const isOpen = dropdown.classList.contains('mob-open');
-      document.querySelectorAll('.nav-list .dropdown').forEach(d => d.classList.remove('mob-open'));
-      if (!isOpen) dropdown.classList.add('mob-open');
-    });
-  });
-});
-</script>
-
-
-<script>
-function esc(s) {
-  return String(s || '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-}
-
-function ptToHtml(blocks) {
-  if (!blocks?.length) return '<p>Biography coming soon.</p>';
-  return blocks
-    .map(b => {
-      if (b._type !== 'block') return '';
-      const text = (b.children || [])
-        .map(c => {
-          let t = esc(c.text || '');
-          if (c.marks?.includes('strong')) t = `<strong>${t}</strong>`;
-          if (c.marks?.includes('em')) t = `<em>${t}</em>`;
-          const link = b.markDefs?.find(d => c.marks?.includes(d._key));
-          return link?.href ? `<a href="${esc(link.href)}" target="_blank" rel="noopener">${t}</a>` : t;
-        })
-        .join('');
-      const s = b.style || 'normal';
-      if (['h2','h3','h4'].includes(s)) return `<${s}>${text}</${s}>`;
-      if (s === 'blockquote') return `<blockquote>${text}</blockquote>`;
-      return `<p>${text}</p>`;
-    })
-    .join('');
-}
-
-function paint(p) {
-  document.title = `${p.name} — Levene Energies Limited`;
-  document.getElementById('page-desc').content = `${p.designation || ''} — Levene Energies Limited Leadership`;
-
-  const photoSrc = p.photoUrl ? `${p.photoUrl}?w=680&auto=format&fit=crop&q=85` : null;
-  const bioHtml = p.biography
-    ? ptToHtml(p.biography)
-    : p.bio
-      ? p.bio.split('\n\n').map(t => `<p>${esc(t)}</p>`).join('')
-      : '<p>Biography coming soon.</p>';
-
-  document.getElementById('page-wrap').innerHTML = `
-  <div style="background:var(--off-white);padding:1rem 5%;">
-    <div style="max-width:1100px;margin:0 auto;">
-      <div class="breadcrumb">
-        <a href="index.html">Home</a><span>/</span>
-        <a href="management.html">Management</a><span>/</span>
-        <span>${esc(p.name)}</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="profile-wrap">
-    <div class="profile-photo-col">
-      <div class="profile-photo">
-        ${photoSrc
-          ? `<img src="${photoSrc}" alt="${esc(p.name)}"/>`
-          : `<div class="profile-photo-placeholder" style="background:linear-gradient(135deg,var(--navy),var(--navy-mid))"><i class="fas fa-user"></i></div>`}
-      </div>
-      <div class="profile-social">
-        ${p.linkedin ? `<a href="${esc(p.linkedin)}" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>` : ''}
-        ${p.email ? `<a href="mailto:${esc(p.email)}"><i class="fas fa-envelope"></i> Email</a>` : ''}
+    <!-- ── Profile body (populated from Sanity) ── -->
+    <div id="profile-root">
+      <div class="profile-loading">
+        <i class="fas fa-spinner fa-spin" style="color:var(--navy);opacity:0.4;"></i>
+        <p>Loading profile…</p>
       </div>
     </div>
 
-    <div class="profile-content-col">
-      <a href="management.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Team</a>
-      <div class="profile-role">${esc(p.designation || '')}</div>
-      <h1 class="profile-name">${esc(p.name)}</h1>
-      <div class="profile-divider"></div>
-      <div class="profile-bio rich-text">${bioHtml}</div>
-    </div>
-  </div>`;
-}
+    <div id="footer-placeholder"></div>
+    <script>
+      fetch("footer.html")
+        .then(r => r.ok ? r.text() : "")
+        .then(html => { document.getElementById("footer-placeholder").innerHTML = html; })
+        .catch(() => {});
+    </script>
 
-(async () => {
-  const slug = new URLSearchParams(location.search).get('slug')?.trim();
-  if (!slug) { location.href = 'management.html'; return; }
+    <script>
+      // ── Helpers ──────────────────────────────────────────────
+      function esc(s) {
+        return String(s || "")
+          .replace(/&/g,"&amp;")
+          .replace(/</g,"&lt;")
+          .replace(/>/g,"&gt;")
+          .replace(/"/g,"&quot;");
+      }
 
-  const BASE = 'https://ilajnehi.apicdn.sanity.io/v2025-06-01/data/query/production';
-  const q = `*[_type=="management" && (slug.current=="${slug}" || _id=="${slug}")][0]{
-    name,
-    designation,
-    "photoUrl": photo.asset->url,
-    biography,
-    linkedin,
-    email
-  }`;
+      function ptToHtml(blocks) {
+        if (!blocks?.length) return "<p>Detailed content coming soon.</p>";
+        let html = "";
+        let listItems = [];
 
-  try {
-    const res = await fetch(`${BASE}?query=${encodeURIComponent(q)}`);
-    if (!res.ok) throw new Error('Sanity fetch failed');
-    const data = await res.json();
-    if (data.result) { paint(data.result); return; }
-  } catch (err) {
-    console.error('Profile fetch error:', err);
-  }
+        blocks.forEach((block) => {
+          if (listItems.length && !block.listItem) {
+            html += "<ul>" + listItems.join("") + "</ul>";
+            listItems = [];
+          }
+          if (block._type !== "block") return;
+          const text = (block.children || []).map((child) => {
+            let t = esc(child.text || "");
+            if (child.marks?.includes("strong")) t = `<strong>${t}</strong>`;
+            if (child.marks?.includes("em")) t = `<em>${t}</em>`;
+            const linkDef = block.markDefs?.find(d => child.marks?.includes(d._key));
+            return linkDef?.href ? `<a href="${esc(linkDef.href)}" target="_blank">${t}</a>` : t;
+          }).join("");
+          if (block.listItem) { listItems.push(`<li>${text}</li>`); return; }
+          const s = block.style || "normal";
+          if (s === "h2")         html += `<h2>${text}</h2>`;
+          else if (s === "h3")    html += `<h3>${text}</h3>`;
+          else if (s === "h4")    html += `<h4>${text}</h4>`;
+          else if (s === "blockquote") html += `<blockquote>${text}</blockquote>`;
+          else html += `<p>${text}</p>`;
+        });
+        if (listItems.length) html += "<ul>" + listItems.join("") + "</ul>";
+        return html;
+      }
 
-  document.getElementById('page-wrap').innerHTML = `
-    <div style="text-align:center;padding:8rem 5%;color:var(--muted);">
-      <i class="fas fa-user-times" style="font-size:4rem;margin-bottom:1.5rem;"></i>
-      <h2>Profile Not Found</h2>
-      <p style="margin:1.5rem 0;">The requested team member profile could not be found.</p>
-      <a href="management.html" class="btn btn--primary">View Full Team</a>
-    </div>`;
-})();
-</script>
+      // ── Category → back-link mapping ─────────────────────────
+      const CATEGORY_META = {
+        "board-of-directors": {
+          label: "Board of Directors",
+          href:  "board-of-directors.html",
+        },
+        "executive-team": {
+          label: "Executive Team",
+          href:  "executive-team.html",
+        },
+      };
 
-</body>
+      // ── Scroll-reveal for rich-text ──────────────────────────
+      function initScrollReveal() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("revealed");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        document.querySelectorAll(
+          ".rich-text p, .rich-text h2, .rich-text h3, .rich-text h4, .rich-text ul, .rich-text blockquote"
+        ).forEach(el => observer.observe(el));
+      }
+
+      // ── Paint profile ─────────────────────────────────────────
+      function paint(m) {
+        // Update <title> and meta
+        document.title = `${m.name} - Levene Energies Limited`;
+        document.getElementById("page-desc").content      = m.excerpt || m.title || "";
+        document.getElementById("og-title").content       = m.name;
+        document.getElementById("og-description").content = m.excerpt || "";
+        if (m.photoUrl) document.getElementById("og-image").content = m.photoUrl;
+
+        const cat = CATEGORY_META[m.category] || { label: "Management Team", href: "#" };
+
+        // Photo
+        const photoInner = m.photoUrl
+          ? `<img src="${esc(m.photoUrl)}?w=800&auto=format&fit=crop&q=82" alt="${esc(m.name)}" loading="lazy" />`
+          : `<div class="img-placeholder"><i class="fas fa-user"></i></div>`;
+
+        // Social links
+        const socialLinks = [
+          m.linkedin ? `<a href="${esc(m.linkedin)}" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a>` : "",
+          m.email    ? `<a href="mailto:${esc(m.email)}"><i class="fas fa-envelope"></i> Email</a>` : "",
+        ].filter(Boolean).join("");
+
+        // Full bio
+        const bioHtml = Array.isArray(m.fullBio) && m.fullBio.length
+          ? ptToHtml(m.fullBio)
+          : m.excerpt
+            ? `<p>${esc(m.excerpt)}</p>`
+            : "<p>Full biography coming soon.</p>";
+
+        // Excerpt pull strip (only if both exist)
+        const excerptHtml = (m.excerpt && Array.isArray(m.fullBio) && m.fullBio.length)
+          ? `<div class="profile-excerpt">${esc(m.excerpt)}</div>`
+          : "";
+
+        document.getElementById("profile-root").innerHTML = `
+          <div class="sub-body-wrap">
+            <div class="sub-main-content">
+              <div class="sub-main-grid">
+
+                <!-- Left: sticky photo column -->
+                <div class="sub-main-image">
+                  <div class="img-bracket-wrap">${photoInner}</div>
+                  <div class="sub-back-actions">
+                    <a href="${esc(cat.href)}" class="back-link">
+                      <i class="fas fa-arrow-left"></i> Back to ${esc(cat.label)}
+                    </a>
+                  </div>
+                  ${socialLinks ? `<div class="profile-social">${socialLinks}</div>` : ""}
+                </div>
+
+                <!-- Right: bio column -->
+                <div class="sub-main-text">
+                  <div class="profile-role">${esc(m.title || "")}</div>
+                  <h1 class="profile-name">${esc(m.name)}</h1>
+                  <div class="profile-divider"></div>
+                  ${excerptHtml}
+                  <div class="rich-text">${bioHtml}</div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Pullquote band -->
+            <div class="sub-pullquote">
+              <blockquote>"Delivering energy solutions that <strong>power communities</strong>, drive economies, and shape a more sustainable future — one operation at a time."</blockquote>
+            </div>
+          </div>`;
+
+        // Scroll-reveal columns
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.12 });
+        document.querySelectorAll(".sub-main-image, .sub-main-text").forEach(el => io.observe(el));
+
+        requestAnimationFrame(() => initScrollReveal());
+      }
+
+      function showError() {
+        document.getElementById("profile-root").innerHTML = `
+          <div class="profile-loading">
+            <i class="fas fa-exclamation-circle" style="color:var(--navy);opacity:0.3;font-size:3rem;"></i>
+            <h2 style="font-family:var(--font-display);color:var(--navy);margin:1rem 0;">Profile Not Found</h2>
+            <p>This team member's profile hasn't been added yet.</p>
+            <a href="index.html" class="btn btn--primary" style="margin-top:2rem;">Back to Home</a>
+          </div>`;
+      }
+
+      // ── Fetch from Sanity ─────────────────────────────────────
+      (async () => {
+        const slug = new URLSearchParams(location.search).get("slug")?.trim();
+        if (!slug) { location.href = "index.html"; return; }
+
+        const BASE = "https://ilajnehi.apicdn.sanity.io/v2025-06-01/data/query/production";
+        const q = `*[_type=="teamMember" && slug.current=="${slug}"][0]{
+          name, title, category, excerpt, fullBio, linkedin, email,
+          "slug": slug.current,
+          "photoUrl": photo.asset->url
+        }`;
+
+        try {
+          const res = await fetch(`${BASE}?query=${encodeURIComponent(q)}`);
+          if (!res.ok) throw new Error("Fetch failed");
+          const { result } = await res.json();
+          if (result) paint(result);
+          else showError();
+        } catch (err) {
+          console.error(err);
+          showError();
+        }
+      })();
+    </script>
+  </body>
 </html>

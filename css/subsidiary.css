@@ -301,8 +301,15 @@
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--green);
-  margin: 0.2rem 0 0.1rem;
+  margin: 0.8rem 0 0.1rem;
 }
+.rich-text h4 {
+  color: var(--muted);
+ margin: .8rem 0 0.1rem;
+  font-size: 1.04rem;
+  text-align: justify;
+}
+
 
 .rich-text ul {
   list-style: none;
@@ -334,6 +341,7 @@
 .rich-text p,
 .rich-text h2,
 .rich-text h3,
+.rich-text h4,
 .rich-text ul,
 .rich-text blockquote {
   opacity: 0;
@@ -345,6 +353,7 @@
 .rich-text p.revealed,
 .rich-text h2.revealed,
 .rich-text h3.revealed,
+.rich-text h4.revealed,
 .rich-text ul.revealed,
 .rich-text blockquote.revealed {
   opacity: 1;

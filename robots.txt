@@ -1,33 +1,52 @@
-# Robots.txt for Levene Energies Limited
-# Allows search engines to crawl and index content
-
 User-agent: *
 Allow: /
-Allow: /index.html
-Allow: /contact.html
-Allow: /management.html
-Allow: /executive-directors.html
-Allow: /board-of-directors.html
-Allow: /media.html
-Allow: /subsidiaries.html
-Disallow: /image/
-Disallow: /css/
-Disallow: /js/
+Allow: *.html
+Allow: *.css
+Allow: *.js
+Allow: /image/
+Allow: /css/
+Disallow: /sanity/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+Disallow: /search?
+Crawl-delay: 1
 
-# Specific rules for search engine bots
+# Google-specific rules
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 0
+Request-rate: 30/1m
 
+# Bing-specific rules
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
+Request-rate: 30/1m
 
-# Block bad bots
+# Meta (Facebook) crawler
+User-agent: facebookexternalhit
+Allow: /
+
+# Twitter/X crawler
+User-agent: Twitterbot
+Allow: /
+
+# LinkedIn crawler
+User-agent: LinkedInBot
+Allow: /
+
+# Block aggressive/bad bots
 User-agent: AhrefsBot
 User-agent: SemrushBot
 User-agent: MJ12bot
+User-agent: DotBot
+Disallow: /
+
+# Block old/deprecated crawlers
+User-agent: Googlebot-Image
 Disallow: /
 
 # Sitemap location
-Sitemap: https://levenener.com/sitemap.xml
+Sitemap: https://leveneenergies.com/sitemap.xml

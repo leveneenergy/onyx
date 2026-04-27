@@ -23,18 +23,16 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://ilajnehi.apicdn.sanity.io">
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-  <link rel="shortcut icon" href="./image/levene-energies.png" type="image/x-icon">
-  <link rel="stylesheet" href="./css/style.css"/>
-  <link rel="stylesheet" href="./css/post.css"/>
+  <link rel="shortcut icon" href="../image/levene-energies.png" type="image/x-icon">
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="stylesheet" href="../css/post.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-
-  
 </head>
 <body>
 <div id="header-placeholder"></div>
 
 <script>
-  fetch('header.html')
+  fetch('../header.html')
     .then(r => { if (!r.ok) throw new Error('Header file not found'); return r.text(); })
     .then(html => { document.getElementById('header-placeholder').innerHTML = html; initNav(); })
     .catch(err => console.error('Failed to load header:', err));
@@ -87,7 +85,7 @@
 
 <div id="footer-placeholder"></div>
 <script>
-  fetch('footer.html').then(r => r.text()).then(html => document.getElementById('footer-placeholder').innerHTML = html).catch(err => console.error('Failed to load footer:', err));
+  fetch('../footer.html').then(r => r.text()).then(html => document.getElementById('footer-placeholder').innerHTML = html).catch(err => console.error('Failed to load footer:', err));
 </script>
 
 <script>
@@ -150,7 +148,7 @@ function initScrollReveal() {
 
 function paint(post) {
   const pageTitle = `${post.title} — Levene Energies Limited`;
-  const baseUrl = window.location.origin + window.location.pathname;
+  const baseUrl = window.location.origin + '/content/post.html';
   const slug = new URLSearchParams(location.search).get('slug')?.trim();
   const postUrl = slug ? `${baseUrl}?slug=${encodeURIComponent(slug)}` : baseUrl;
 
@@ -193,91 +191,32 @@ function paint(post) {
 
   const imgQ = post.imageUrl ? improveImageUrl(post.imageUrl, 1400) : '';
 
-  document.getElementById('pr-hero-wrap').innerHTML = `
-  <section class="pr-hero">
-    ${imgQ ? `<img class="pr-hero-bg" alt="${esc(post.title)}"/>` : ''}
-    <div class="pr-hero-overlay"></div>
-    <div class="pr-hero-content">
-      <span class="pr-label"><i class="fas fa-feather-alt"></i> Article</span>
-      <h1>${esc(post.title)}</h1>
-      <div class="pr-hero-meta">
-        ${post.publishedAt ? `<span><i class="fas fa-calendar"></i> ${fmt(post.publishedAt)}</span>` : ''}
-      </div>
-      <div class="breadcrumb" style="margin-top:2rem;">
-        <a href="index.html">Home</a><span>/</span>
-        <a href="media.html#blog">Blog</a><span>/</span>
-        <span class="current">${esc(post.title)}</span>
-      </div>
-    </div>
-  </section>`;
+  document.getElementById('pr-hero-wrap').innerHTML = `<section class="pr-hero">${imgQ ? `<img class="pr-hero-bg" src="${imgQ}" alt="${esc(post.title)}" />` : ''}<div class="pr-hero-overlay"></div><div class="pr-hero-content"><div class="section-label">Latest Updates</div><h1>${esc(post.title)}</h1><p>${esc(post.excerpt || post.title)}</p></div></section>`;
 
-  if (imgQ) {
-    const heroBg = document.querySelector('.pr-hero-bg');
-    if (heroBg) { const tmp = new Image(); tmp.onload = () => { heroBg.src = imgQ; heroBg.classList.add('loaded'); }; tmp.src = imgQ; }
-  }
+  const contentHtml = post.content ? ptToHtml(post.content) : '<p>Content coming soon.</p>';
+  document.getElementById('pr-body-wrap').innerHTML = `<div class="page-body"><div class="pr-body">${contentHtml}</div></div>`;
 
-  const bodyHtml = post.content?.length
-    ? ptToHtml(post.content)
-    : post.excerpt ? `<p>${esc(post.excerpt)}</p>`
-    : '<p style="font-style:italic;">No content available for this article.</p>';
-
-  const imgSrc = post.imageUrl ? improveImageUrl(post.imageUrl, 900) : '';
-  const imgColHtml = imgSrc
-    ? `<div class="pr-img-wrap"><img alt="${esc(post.title)}" loading="lazy"/></div>`
-    : `<div class="pr-img-wrap"><div class="pr-img-placeholder"><i class="fas fa-image"></i></div></div>`;
-
-  document.getElementById('pr-body-wrap').innerHTML = `
-  <div class="pr-outer">
-    <a href="media.html#blog" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog</a>
-    <div class="pr-columns">
-      ${imgColHtml}
-      <div class="pr-panel">
-        <p class="pr-panel-label">Latest Article</p>
-        <hr class="pr-panel-rule"/>
-        <h1 class="pr-panel-title">${esc(post.title)}</h1>
-        <div class="pr-meta">
-          ${post.publishedAt ? `<span><i class="fas fa-calendar-day"></i> ${fmt(post.publishedAt)}</span>` : ''}
-        </div>
-        <div class="pr-body">${bodyHtml}</div>
-        <div class="pr-actions">
-          <a href="media.html#blog" class="btn btn--outline-dark">All Articles</a>
-        </div>
-      </div>
-    </div>
-  </div>`;
-
-  if (imgSrc) {
-    const colImg = document.querySelector('.pr-img-wrap img');
-    if (colImg) { const tmp2 = new Image(); tmp2.onload = () => { colImg.src = imgSrc; colImg.classList.add('loaded'); }; tmp2.src = imgSrc; }
-  }
-
-  requestAnimationFrame(initScrollReveal);
+  requestAnimationFrame(() => initScrollReveal());
 }
 
 (async () => {
   const slug = new URLSearchParams(location.search).get('slug')?.trim();
-  if (!slug) {
-    document.getElementById('pr-hero-wrap').innerHTML = '';
-    document.getElementById('pr-body-wrap').innerHTML = `<div class="pr-loading"><i class="fas fa-exclamation-circle"></i><h2 style="color:var(--navy);margin-bottom:1rem;">No article selected</h2><p>Please choose a post from the <a href="blog.html">blog</a>.</p></div>`;
-    return;
-  }
+  if (!slug) { location.href = '../media.html#blog'; return; }
 
   const BASE = 'https://ilajnehi.apicdn.sanity.io/v2025-06-01/data/query/production';
   const q = `*[_type=="post" && slug.current=="${slug}"][0]{ title, excerpt, publishedAt, "imageUrl": mainImage.asset->url, content }`;
 
   try {
     const res = await fetch(`${BASE}?query=${encodeURIComponent(q)}`);
-    if (!res.ok) throw new Error('Sanity fetch failed');
+    if (!res.ok) throw new Error('Fetch failed');
     const data = await res.json();
-    if (!data.result) throw new Error('Post not found');
-    paint(data.result);
+    if (data.result) paint(data.result);
+    else document.getElementById('pr-hero-wrap').innerHTML = '<div class="pr-loading"><i class="fas fa-exclamation-circle"></i><p>Post not found</p></div>';
   } catch (err) {
-    console.error('Post load error:', err);
-    document.getElementById('pr-hero-wrap').innerHTML = '';
-    document.getElementById('pr-body-wrap').innerHTML = `<div class="pr-loading"><i class="fas fa-exclamation-triangle"></i><h2 style="color:var(--navy);margin-bottom:1rem;">Article Not Found</h2><p style="margin-bottom:2rem;">This post may have been removed or is not available.</p><a href="blog.html" class="btn btn--primary">Back to Blog</a></div>`;
+    console.error(err);
+    document.getElementById('pr-hero-wrap').innerHTML = '<div class="pr-loading"><i class="fas fa-exclamation-circle"></i><p>Error loading post</p></div>';
   }
 })();
 </script>
-
 </body>
 </html>

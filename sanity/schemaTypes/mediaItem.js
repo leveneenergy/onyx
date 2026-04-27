@@ -63,15 +63,28 @@ export default defineType({
       title: 'Date',
       type: 'datetime',
     }),
+    // ✅ NEW: Manual display order field
     defineField({
-  name: 'folder',
-  title: 'Folder / Album',
-  type: 'reference',
-  to: [{type: 'mediaFolder'}],
-  description: 'Assign this item to a folder or album',
-}),
+      name: 'order',
+      title: 'Display Order',
+      type: 'number',
+      description: 'Lower numbers appear first (e.g. 1 = top, 2 = second). Leave blank to fall back to date.',
+      initialValue: 0,
+    }),
+    defineField({
+      name: 'folder',
+      title: 'Folder / Album',
+      type: 'reference',
+      to: [{type: 'mediaFolder'}],
+      description: 'Assign this item to a folder or album',
+    }),
   ],
   orderings: [
+    {
+      title: 'Display Order',
+      name: 'orderAsc',
+      by: [{field: 'order', direction: 'asc'}],
+    },
     {
       title: 'Date (Newest First)',
       name: 'publishedAtDesc',
