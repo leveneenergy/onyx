@@ -1037,7 +1037,7 @@ button {
   color: rgba(255, 255, 255, 0.5);
 }
 
-/* ===== PAGE HERO (inner pages) ===== */
+/* ===== PAGE HERO  ===== */
 .page-hero {
   position: relative;
   min-height: 380px;
@@ -1131,9 +1131,10 @@ button {
 .page-hero p {
   color: rgba(255, 255, 255, 0.88);
   font-size: 1.1rem;
-  max-width: 580px;
+  max-width: 726px;
   margin-top: 1.2rem;
-  line-height: 1.7;
+  line-height: 1.5;
+ 
 }
 
 .breadcrumb {
