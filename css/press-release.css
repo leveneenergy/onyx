@@ -26,7 +26,7 @@
   align-content: start;
 }
 
-/* Image Side */
+
 .pr-img-wrap {
   margin-top: 2rem;
   position: sticky;
@@ -99,12 +99,12 @@
   color: var(--green);
 }
 
-/* Body Content */
+
 .pr-body {
   line-height: 1.85;
 }
 
-/* ── Scroll-reveal: all body elements start hidden ── */
+
 .pr-body p,
 .pr-body h2,
 .pr-body h3,

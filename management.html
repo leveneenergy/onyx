@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Executive Team - Levene Energies Limited</title>
-    <meta name="description" content="Meet the Executive Team of Levene Energies Limited — operational leaders driving growth across energy, trading, and renewables." />
-    <meta name="keywords" content="executive team, management, leadership, Levene Energies" />
+    <title>Management - Levene Energies Limited</title>
+    <meta name="description" content="Meet the Board of Directors and Executive Team of Levene Energies Limited — experienced leaders guiding strategy, governance, and operational growth." />
+    <meta name="keywords" content="board of directors, executive team, management, leadership, governance, Levene Energies" />
     <meta name="author" content="Levene Energies Limited" />
     <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="Executive Team - Levene Energies Limited" />
-    <meta property="og:description" content="Meet the Executive Team of Levene Energies Limited." />
+    <meta property="og:title" content="Management - Levene Energies Limited" />
+    <meta property="og:description" content="Meet the Board of Directors and Executive Team of Levene Energies Limited." />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Levene Energies Limited" />
     <link rel="shortcut icon" href="./image/levene-energies.png" type="image/x-icon" />
@@ -79,24 +79,45 @@
     <!-- Page Hero -->
     <section class="page-hero">
       <div class="page-hero-inner">
-        <div class="section-label">Management Team</div>
-        <h1>Executive Team</h1>
-        <p>Operational leaders driving performance, innovation, and sustainable growth across Levene Energies' business units.</p>
+        <div class="section-label">Leadership</div>
+        <h1>Management</h1>
+        <p>The people driving strategy, governance, and growth across Levene Energies Limited.</p>
         <div class="breadcrumb">
-          <a href="management.html">Our Management</a><span>/</span><span>Executive Team</span>
+          <a href="index.html">Home</a><span>/</span><span>Management</span>
         </div>
       </div>
     </section>
 
+  
     <section class="team-section">
       <div class="team-section-inner">
-        <div class="section-label">Meet The Executive Team</div>
-        <div id="members-root">
-          <div class="team-loading">
-            <i class="fas fa-spinner fa-spin" style="color:var(--navy);opacity:0.4;"></i>
-            <p>Loading Executive Team…</p>
+        <div class="mgt-tabs" id="mgt-tabs">
+          <button class="mgt-tab-btn active" data-tab="board">Board of Directors</button>
+          <button class="mgt-tab-btn" data-tab="executive">Executive Team</button>
+        </div>
+
+        
+        <div class="mgt-panel active" id="panel-board">
+          <div class="panel-label">The People Behind Levene</div>
+          <div id="board-root">
+            <div class="team-loading">
+              <i class="fas fa-spinner fa-spin" style="color:var(--navy);opacity:0.4;"></i>
+              <p>Loading Board of Directors…</p>
+            </div>
           </div>
         </div>
+
+   
+        <div class="mgt-panel" id="panel-executive">
+          <div class="panel-label">Meet The Executive Team</div>
+          <div id="exec-root">
+            <div class="team-loading">
+              <i class="fas fa-spinner fa-spin" style="color:var(--navy);opacity:0.4;"></i>
+              <p>Loading Executive Team…</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -113,19 +134,39 @@
         return String(s || "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
       }
 
-      function renderCards(members) {
-        const root = document.getElementById("members-root");
+     
+      document.getElementById("mgt-tabs").addEventListener("click", function(e) {
+        const btn = e.target.closest(".mgt-tab-btn");
+        if (!btn) return;
+        document.querySelectorAll(".mgt-tab-btn").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".mgt-panel").forEach(p => p.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById("panel-" + btn.dataset.tab).classList.add("active");
+        history.replaceState(null, "", "#" + btn.dataset.tab);
+      });
+
+     
+      (function() {
+        const hash = location.hash.replace("#", "");
+        if (hash === "executive") {
+          document.querySelector('[data-tab="executive"]').click();
+        }
+      })();
+
+
+      function renderCards(members, rootId) {
+        const root = document.getElementById(rootId);
         if (!members || members.length === 0) {
           root.innerHTML = `
             <div class="team-loading">
               <i class="fas fa-users" style="color:var(--navy);opacity:0.25;"></i>
-              <p>Executive team profiles coming soon.</p>
+              <p>Profiles coming soon.</p>
             </div>`;
           return;
         }
 
-        root.innerHTML = `<div class="members-grid" id="members-grid"></div>`;
-        const grid = document.getElementById("members-grid");
+        root.innerHTML = `<div class="members-grid" id="grid-${rootId}"></div>`;
+        const grid = document.getElementById("grid-" + rootId);
 
         members.forEach((m, i) => {
           const photoHtml = m.photoUrl
@@ -151,7 +192,6 @@
               ${linkedinHtml}
             </div>`;
 
-          // ── Updated: points to content/team-member.html ──
           card.addEventListener("click", () => {
             if (m.slug) window.location.href = `content/team-member.html?slug=${encodeURIComponent(m.slug)}`;
           });
@@ -164,25 +204,44 @@
             if (e.isIntersecting) { e.target.classList.add("revealed"); io.unobserve(e.target); }
           });
         }, { threshold: 0.1 });
-        document.querySelectorAll(".member-card").forEach(c => io.observe(c));
+        document.querySelectorAll(`#grid-${rootId} .member-card`).forEach(c => io.observe(c));
       }
 
-      (async () => {
-        const BASE = "https://ilajnehi.apicdn.sanity.io/v2025-06-01/data/query/production";
-        const q = `*[_type=="teamMember" && category=="executive-team"] | order(order asc) {
+      const BASE = "https://ilajnehi.apicdn.sanity.io/v2025-06-01/data/query/production";
+
+      async function fetchMembers(category) {
+        const q = `*[_type=="teamMember" && category=="${category}"] | order(order asc) {
           _id, name, title, department, excerpt, linkedin,
           "slug": slug.current,
           "photoUrl": photo.asset->url
         }`;
+        const res = await fetch(`${BASE}?query=${encodeURIComponent(q)}`);
+        if (!res.ok) throw new Error("Fetch failed");
+        const { result } = await res.json();
+        return result || [];
+      }
 
+      (async () => {
+        /* Board */
         try {
-          const res = await fetch(`${BASE}?query=${encodeURIComponent(q)}`);
-          if (!res.ok) throw new Error("Fetch failed");
-          const { result } = await res.json();
-          renderCards(result || []);
+          const board = await fetchMembers("board-of-directors");
+          renderCards(board, "board-root");
         } catch (err) {
           console.error(err);
-          document.getElementById("members-root").innerHTML = `
+          document.getElementById("board-root").innerHTML = `
+            <div class="team-loading">
+              <i class="fas fa-exclamation-circle" style="color:var(--navy);opacity:0.3;font-size:2.8rem;"></i>
+              <p>Unable to load board members. Please try again later.</p>
+            </div>`;
+        }
+
+  
+        try {
+          const exec = await fetchMembers("executive-team");
+          renderCards(exec, "exec-root");
+        } catch (err) {
+          console.error(err);
+          document.getElementById("exec-root").innerHTML = `
             <div class="team-loading">
               <i class="fas fa-exclamation-circle" style="color:var(--navy);opacity:0.3;font-size:2.8rem;"></i>
               <p>Unable to load executive team. Please try again later.</p>

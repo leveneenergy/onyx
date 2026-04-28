@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/management.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
   </head>
 
   <body class="mgt-page">
@@ -77,20 +76,18 @@
       }
     </script>
 
-    
     <!-- Page Hero -->
-<section class="page-hero">
-  <div class="page-hero-inner">
-    <div class="section-label">Management Team</div>
-    <h1>Board of Directors</h1>
-    <p>Seasoned leaders providing strategic oversight, governance, and direction to Levene Energies Limited.</p>
-    <div class="breadcrumb">
-      <a href="index.html">Home</a><span>/</span><span>Directors</span>
-    </div>
-  </div>
-</section>
+    <section class="page-hero">
+      <div class="page-hero-inner">
+        <div class="section-label">Management Team</div>
+        <h1>Board of Directors</h1>
+        <p>Seasoned leaders providing strategic oversight, governance, and direction to Levene Energies Limited.</p>
+        <div class="breadcrumb">
+          <a href="management.html">Our Management</a><span>/</span><span>Board of Directors</span>
+        </div>
+      </div>
+    </section>
 
-    <!-- ── Members grid (populated from Sanity) ── -->
     <section class="team-section">
       <div class="team-section-inner">
         <div class="section-label">The People Behind Levene</div>
@@ -112,12 +109,10 @@
     </script>
 
     <script>
-      // ── Helpers ──────────────────────────────────────────────
       function esc(s) {
         return String(s || "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
       }
 
-      // ── Render cards ─────────────────────────────────────────
       function renderCards(members) {
         const root = document.getElementById("members-root");
         if (!members || members.length === 0) {
@@ -156,15 +151,13 @@
               ${linkedinHtml}
             </div>`;
 
-          // Navigate to team-member page
           card.addEventListener("click", () => {
-            if (m.slug) window.location.href = `team-member.html?slug=${encodeURIComponent(m.slug)}`;
+            if (m.slug) window.location.href = `content/team-member.html?slug=${encodeURIComponent(m.slug)}`;
           });
           card.style.cursor = "pointer";
           grid.appendChild(card);
         });
 
-        // Scroll-reveal cards
         const io = new IntersectionObserver(entries => {
           entries.forEach(e => {
             if (e.isIntersecting) { e.target.classList.add("revealed"); io.unobserve(e.target); }
@@ -173,7 +166,6 @@
         document.querySelectorAll(".member-card").forEach(c => io.observe(c));
       }
 
-      // ── Fetch from Sanity ─────────────────────────────────────
       (async () => {
         const BASE = "https://ilajnehi.apicdn.sanity.io/v2025-06-01/data/query/production";
         const q = `*[_type=="teamMember" && category=="board-of-directors"] | order(order asc) {

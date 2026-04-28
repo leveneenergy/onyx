@@ -20,8 +20,6 @@
   <meta name="twitter:description" id="twitter-description" content=""/>
   <meta name="twitter:image" id="twitter-image" content=""/>
   <link rel="canonical" id="canonical-url" href=""/>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <link rel="shortcut icon" href="../image/levene-energies.png" type="image/x-icon">
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/press-release.css" />
@@ -96,6 +94,7 @@
   }
 </script>
 
+<!-- Dynamic Content -->
 <div id="pr-wrap">
   <div class="pr-loading">
     <i class="fas fa-spinner fa-spin"></i>
@@ -103,6 +102,7 @@
   </div>
 </div>
 
+<!-- Footer -->
 <div id="footer-placeholder"></div>
 <script>
   fetch('../footer.html')
@@ -111,6 +111,7 @@
     .catch(err => console.error('Failed to load footer:', err));
 </script>
 
+<!-- Press Release Renderer -->
 <script>
 function esc(s) {
   return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -137,6 +138,7 @@ function ptToHtml(blocks) {
   }).join('');
 }
 
+/* ── Scroll-reveal ── */
 function initScrollReveal() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -153,24 +155,12 @@ function initScrollReveal() {
 }
 
 function paint(pr) {
-  const pageTitle = `${pr.title} — Levene Energies Limited`;
-  const baseUrl = window.location.origin + '/content/press-release.html';
-  const slug = new URLSearchParams(location.search).get('slug')?.trim();
-  const prUrl = slug ? `${baseUrl}?slug=${encodeURIComponent(slug)}` : baseUrl;
-
-  document.title = pageTitle;
+  document.title = `${pr.title} — Levene Energies Limited`;
   document.getElementById('page-desc').content = pr.excerpt || pr.title;
-  document.getElementById('og-title').content = pageTitle;
-  document.getElementById('og-description').content = pr.excerpt || pr.title;
-  document.getElementById('og-url').content = prUrl;
-  if (pr.imgUrl) { document.getElementById('og-image').content = `${pr.imgUrl}?w=1200&auto=format&q=85`; }
-  document.getElementById('twitter-title').content = pageTitle;
-  document.getElementById('twitter-description').content = pr.excerpt || pr.title;
-  if (pr.imgUrl) { document.getElementById('twitter-image').content = `${pr.imgUrl}?w=1200&auto=format&q=85`; }
-  document.getElementById('canonical-url').href = prUrl;
 
   const imgUrl = pr.imgUrl ? `${pr.imgUrl}?w=900&auto=format&fit=crop&q=85` : '';
-  const bodyHtml = pr.description ? ptToHtml(pr.description) : pr.excerpt ? `<p>${esc(pr.excerpt)}</p>` : '<p>Content coming soon.</p>';
+  const bodyHtml = pr.description ? ptToHtml(pr.description) :
+                   pr.excerpt ? `<p>${esc(pr.excerpt)}</p>` : '<p>Content coming soon.</p>';
 
   document.getElementById('pr-wrap').innerHTML = `
     <section class="page-hero">
@@ -192,10 +182,14 @@ function paint(pr) {
       </a>
 
       <div class="pr-columns">
+        <!-- Image -->
         <div class="pr-img-wrap">
-          ${imgUrl ? `<img src="${imgUrl}" alt="${esc(pr.title)}" />` : `<div class="pr-img-placeholder"><i class="fas fa-newspaper"></i></div>`}
+          ${imgUrl
+            ? `<img src="${imgUrl}" alt="${esc(pr.title)}" />`
+            : `<div class="pr-img-placeholder"><i class="fas fa-newspaper"></i></div>`}
         </div>
 
+        <!-- Content -->
         <div class="pr-panel">
           <p class="pr-panel-label"></p>
           <hr class="pr-panel-rule" />
@@ -222,17 +216,27 @@ function paint(pr) {
 
 (async () => {
   const slug = new URLSearchParams(location.search).get('slug')?.trim();
-  if (!slug) { location.href = '../media.html#press'; return; }
+  if (!slug) {
+    location.href = '../media.html#press';
+    return;
+  }
 
   const BASE = 'https://ilajnehi.apicdn.sanity.io/v2025-06-01/data/query/production';
-  const q = `*[_type=="pressRelease" && slug.current=="${slug}"][0]{ title, excerpt, publishedAt, source, externalUrl, description, "imgUrl": coverImage.asset->url, "fileUrl": file.asset->url }`;
+  const q = `*[_type=="pressRelease" && (slug.current=="${slug}" || _id=="${slug}")][0]{
+    title, excerpt, publishedAt, source, externalUrl, description,
+    "imgUrl": coverImage.asset->url,
+    "fileUrl": file.asset->url
+  }`;
 
   try {
     const res = await fetch(`${BASE}?query=${encodeURIComponent(q)}`);
     if (!res.ok) throw new Error('Fetch failed');
     const data = await res.json();
-    if (data.result) paint(data.result);
-    else showError();
+    if (data.result) {
+      paint(data.result);
+    } else {
+      showError();
+    }
   } catch (err) {
     console.error(err);
     showError();
@@ -243,7 +247,7 @@ function showError() {
   document.getElementById('pr-wrap').innerHTML = `
     <div class="pr-loading">
       <i class="fas fa-exclamation-circle"></i>
-      <h2 style="margin:1.5rem 0 0.5rem;">Not Found</h2>
+      <h2 style="margin:1.5rem 0 0.5rem; color:var(--navy);">Not Found</h2>
       <p>This press release could not be found.</p>
       <a href="../media.html#press" class="btn btn--primary" style="margin-top:2rem;">View All Press Releases</a>
     </div>`;

@@ -8,7 +8,7 @@
         margin: 0 auto;
       }
 
-      /* ── Loading / error ── */
+      /* ── Load error ── */
       .team-loading {
         text-align: center;
         padding: 8rem 5%;
@@ -26,7 +26,8 @@
 
       /* ── Card ── */
       .member-card {
-        background: #fff;
+         background: linear-gradient(var(--white), var(--muted));
+
         border-radius: 12px;
         overflow: hidden;
         box-shadow: 0 2px 18px rgba(23,76,170,0.09);
@@ -50,7 +51,8 @@
         position: absolute;
         top: 0; left: 0; right: 0;
         height: 3px;
-        background: linear-gradient(90deg, var(--green), var(--navy));
+          background: linear-gradient(var(--white), var(--muted));
+
         transform: scaleX(0);
         transform-origin: left;
         transition: transform 0.35s ease;
@@ -120,118 +122,7 @@
       }
       .member-linkedin:hover { color: var(--green); }
 
-      /* ── Bio modal ── */
-      .bio-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(4,24,68,0.72);
-        z-index: 9000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 2rem;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s ease;
-        backdrop-filter: blur(4px);
-      }
-      .bio-overlay.open {
-        opacity: 1;
-        pointer-events: all;
-      }
-      .bio-modal {
-        background: #fff;
-        border-radius: 14px;
-        max-width: 740px;
-        width: 100%;
-        max-height: 88vh;
-        overflow-y: auto;
-        position: relative;
-        box-shadow: 0 30px 80px rgba(4,24,68,0.35);
-        transform: translateY(20px);
-        transition: transform 0.35s ease;
-      }
-      .bio-overlay.open .bio-modal { transform: translateY(0); }
-
-      .bio-modal-header {
-        display: flex;
-        gap: 1.8rem;
-        align-items: flex-start;
-        padding: 2.2rem 2.4rem 1.6rem;
-        border-bottom: 1px solid #eef1f6;
-        position: sticky;
-        top: 0;
-        background: #fff;
-        z-index: 1;
-      }
-      .bio-modal-photo {
-        width: 90px; height: 90px;
-        border-radius: 50%;
-        object-fit: cover;
-        object-position: top;
-        flex-shrink: 0;
-        border: 3px solid #eef1f6;
-      }
-      .bio-modal-photo-placeholder {
-        width: 90px; height: 90px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, var(--green), var(--navy));
-        display: flex; align-items: center; justify-content: center;
-        color: rgba(255,255,255,0.4);
-        font-size: 2.2rem;
-        flex-shrink: 0;
-      }
-      .bio-modal-meta { flex: 1; }
-      .bio-modal-name {
-        font-family: var(--font-display);
-        font-size: 1.35rem;
-        font-weight: 700;
-        color: var(--navy);
-        margin-bottom: 0.3rem;
-      }
-      .bio-modal-title {
-        font-size: 0.8rem;
-        font-weight: 600;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--green);
-        margin-bottom: 0.7rem;
-      }
-      .bio-modal-links { display: flex; gap: 0.8rem; flex-wrap: wrap; }
-      .bio-modal-links a {
-        font-size: 0.78rem;
-        font-weight: 600;
-        color: var(--navy);
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        transition: color 0.2s;
-      }
-      .bio-modal-links a:hover { color: var(--green); }
-
-      .bio-modal-close {
-        position: absolute;
-        top: 1.4rem; right: 1.6rem;
-        background: none; border: none;
-        font-size: 1.2rem; color: #9aa3b2;
-        cursor: pointer; padding: 0.4rem;
-        transition: color 0.2s;
-        line-height: 1;
-      }
-      .bio-modal-close:hover { color: var(--navy); }
-
-      .bio-modal-body {
-        padding: 1.8rem 2.4rem 2.4rem;
-      }
-      .bio-modal-body p {
-        font-size: 0.97rem;
-        color: var(--muted);
-        line-height: 1.82;
-        margin-bottom: 1rem;
-      }
-
-      
+     
       /* ── board of directors section ── */
       .team-section {
         background: var(--white);
@@ -242,7 +133,7 @@
         margin: 0 auto;
       }
 
-      /* ── Loading / error states (reuse sub- pattern) ── */
+      /* ── Load error ── */
       .team-loading {
         text-align: center;
         padding: 8rem 5%;
@@ -297,7 +188,8 @@
         width: 100%;
         aspect-ratio: 3 / 3.2;
         overflow: hidden;
-        background: #e8edf4;
+          background: linear-gradient(var(--white), var(--muted));
+
       }
       .member-photo-wrap img {
         width: 100%; height: 100%;
@@ -307,11 +199,12 @@
       }
       .member-card:hover .member-photo-wrap img { transform: scale(1.05); }
 
-      /* Placeholder when no photo */
+     
       .member-photo-placeholder {
         width: 100%; height: 100%;
         display: flex; align-items: center; justify-content: center;
-        background: linear-gradient(135deg, #1a3a6e 0%, #0a5e28 100%);
+          background: linear-gradient(var(--white), var(--muted));
+
         font-size: 3.5rem;
         color: rgba(255,255,255,0.25);
       }
@@ -357,133 +250,67 @@
       }
       .member-linkedin:hover { color: var(--green); }
 
-      /* ── Bio modal overlay ── */
-      .bio-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(4,24,68,0.72);
-        z-index: 9000;
+     .mgt-tabs {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 2rem;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s ease;
-        backdrop-filter: blur(4px);
+        gap: 0;
+        border-bottom: 2px solid #e5e7eb;
+        margin-bottom: 3rem;
       }
-      .bio-overlay.open {
-        opacity: 1;
-        pointer-events: all;
-      }
-      .bio-modal {
-        background: #fff;
-        border-radius: 14px;
-        max-width: 740px;
-        width: 100%;
-        max-height: 88vh;
-        overflow-y: auto;
+      .mgt-tab-btn {
         position: relative;
-        box-shadow: 0 30px 80px rgba(4,24,68,0.35);
-        transform: translateY(20px);
-        transition: transform 0.35s ease;
-      }
-      .bio-overlay.open .bio-modal { transform: translateY(0); }
-
-      .bio-modal-header {
-        display: flex;
-        gap: 1.8rem;
-        align-items: flex-start;
-        padding: 2.2rem 2.4rem 1.6rem;
-        border-bottom: 1px solid #eef1f6;
-        position: sticky;
-        top: 0;
-        background: #fff;
-        z-index: 1;
-      }
-      .bio-modal-photo {
-        width: 90px; height: 90px;
-        border-radius: 50%;
-        object-fit: cover;
-        object-position: top;
-        flex-shrink: 0;
-        border: 3px solid #eef1f6;
-      }
-      .bio-modal-photo-placeholder {
-        width: 90px; height: 90px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, var(--navy), var(--green));
-        display: flex; align-items: center; justify-content: center;
-        color: rgba(255,255,255,0.4);
-        font-size: 2.2rem;
-        flex-shrink: 0;
-      }
-      .bio-modal-meta { flex: 1; }
-      .bio-modal-name {
-        font-family: var(--font-display);
-        font-size: 1.35rem;
-        font-weight: 700;
-        color: var(--navy);
-        margin-bottom: 0.3rem;
-      }
-      .bio-modal-title {
-        font-size: 0.8rem;
+        padding: .85rem 2rem;
+        font-size: .95rem;
         font-weight: 600;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--green);
-        margin-bottom: 0.7rem;
+        letter-spacing: .03em;
+        color: var(--muted, #6b7280);
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition: color .2s;
       }
-      .bio-modal-links { display: flex; gap: 0.8rem; flex-wrap: wrap; }
-      .bio-modal-links a {
-        font-size: 0.78rem;
-        font-weight: 600;
-        color: var(--navy);
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        transition: color 0.2s;
-      }
-      .bio-modal-links a:hover { color: var(--green); }
-
-      .bio-modal-close {
+      .mgt-tab-btn::after {
+        content: '';
         position: absolute;
-        top: 1.4rem; right: 1.6rem;
-        background: none; border: none;
-        font-size: 1.2rem; color: #9aa3b2;
-        cursor: pointer; padding: 0.4rem;
-        transition: color 0.2s;
-        line-height: 1;
+        bottom: -2px;
+        left: 0; right: 0;
+        height: 2px;
+        background: var(--navy, #0a2460);
+        transform: scaleX(0);
+        transition: transform .25s ease;
       }
-      .bio-modal-close:hover { color: var(--navy); }
-
-      .bio-modal-body {
-        padding: 1.8rem 2.4rem 2.4rem;
+      .mgt-tab-btn.active {
+        color: var(--navy, #0a2460);
       }
-      .bio-modal-body p {
-        font-size: 0.97rem;
-        color: var(--muted);
-        line-height: 1.82;
-        margin-bottom: 1rem;
+      .mgt-tab-btn.active::after {
+        transform: scaleX(1);
+      }
+      .mgt-tab-btn:hover {
+        color: var(--navy, #0a2460);
       }
 
-      /* ── Pullquote (reuse sub-pullquote) ── */
+      /* ── Panel visibility ── */
+      .mgt-panel { display: none; }
+      .mgt-panel.active { display: block; }
 
+      /* ── Section label above each panel ── */
+      .panel-label {
+        font-size: .7rem;
+        font-weight: 700;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--green, #1e8a2e);
+        margin-bottom: 1.5rem;
+      }
       @media (max-width: 640px) {
         .members-grid { grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-        .bio-modal-header { flex-direction: column; align-items: center; text-align: center; }
-        .bio-modal-links { justify-content: center; }
-        .bio-modal-body { padding: 1.4rem 1.6rem 2rem; }
+        
       }
       @media (max-width: 420px) {
         .members-grid { grid-template-columns: 1fr; }
       }
       @media (max-width: 640px) {
         .members-grid { grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-        .bio-modal-header { flex-direction: column; align-items: center; text-align: center; }
-        .bio-modal-links { justify-content: center; }
-        .bio-modal-body { padding: 1.4rem 1.6rem 2rem; }
+        
       }
       @media (max-width: 420px) {
         .members-grid { grid-template-columns: 1fr; }

@@ -312,7 +312,7 @@
   margin-top: 0.3rem;
 }
 
-/* ── Folder detail view ── */
+
 .folder-detail {
   display: none;
 }
@@ -454,7 +454,7 @@
   color: var(--gold, #c9a84c);
 }
 
-/* ── Video grid & cards ── */
+
 .video-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -526,9 +526,7 @@
   opacity: 0.65;
 }
 
-/* ══════════════════════════════════════════
-   PRESS & NEWSLETTER ITEMS
-   ══════════════════════════════════════════ */
+/* ── press── */
 #press-list {
   display: flex;
   flex-direction: column;
@@ -544,7 +542,7 @@
   margin: 0 auto;
 }
 
-/* Desktop layout: image left, text middle, date + button right */
+
 .press-item {
   display: flex;
   align-items: center;
@@ -625,11 +623,9 @@
   transition: all 0.25s ease;
 }
 
-/* ══════════════════════════════════════════
-   RESPONSIVE BREAKPOINTS
-   ══════════════════════════════════════════ */
 
-/* Tablet: hide date, shrink image */
+
+
 @media (max-width: 900px) {
   .press-date { display: none; }
   .press-thumb,
@@ -639,12 +635,12 @@
   }
 }
 
-/* press-item-top: transparent on desktop, becomes the row on mobile */
+
 .press-item-top {
-  display: contents; /* children behave as direct flex children on desktop */
+  display: contents; 
 }
 
-/* Mobile: image left, text right (same as desktop), button full-width below */
+
 @media (max-width: 640px) {
   .press-item {
     flex-wrap: wrap;
@@ -737,9 +733,6 @@
   }
 }
 
-@media (max-width: 480px) {
-  .folder-detail-header { margin-bottom: 1rem; }
-}
 
 @media (max-width: 768px) {
   .folder-grid {
@@ -769,6 +762,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 0.75rem;
   }
+
   .folder-card-body {
     padding: 0.5rem 0.6rem;
   }
@@ -788,6 +782,7 @@
   .tab-panel-inner {
     padding: 1rem 0.75rem !important;
   }
+  .folder-detail-header { margin-bottom: 1rem; }
 }
 
 @media (max-width: 360px) {

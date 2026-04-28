@@ -1,52 +1,36 @@
 User-agent: *
 Allow: /
-Allow: *.html
-Allow: *.css
-Allow: *.js
-Allow: /image/
-Allow: /css/
+
+# Block private/admin areas
 Disallow: /sanity/
 Disallow: /admin/
 Disallow: /private/
+Disallow: /search?
+
+# Optional parameter control
 Disallow: /*?*sort=
 Disallow: /*?*filter=
-Disallow: /search?
-Crawl-delay: 1
 
-# Google-specific rules
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 0
-Request-rate: 30/1m
-
-# Bing-specific rules
+# Bing crawler settings
 User-agent: Bingbot
-Allow: /
 Crawl-delay: 1
-Request-rate: 30/1m
 
-# Meta (Facebook) crawler
-User-agent: facebookexternalhit
-Allow: /
 
-# Twitter/X crawler
-User-agent: Twitterbot
-Allow: /
-
-# LinkedIn crawler
 User-agent: LinkedInBot
 Allow: /
 
-# Block aggressive/bad bots
+# Block aggressive SEO bots
 User-agent: AhrefsBot
+Disallow: /
+
 User-agent: SemrushBot
+Disallow: /
+
 User-agent: MJ12bot
+Disallow: /
+
 User-agent: DotBot
 Disallow: /
 
-# Block old/deprecated crawlers
-User-agent: Googlebot-Image
-Disallow: /
-
-# Sitemap location
+# Sitemap
 Sitemap: https://leveneenergies.com/sitemap.xml

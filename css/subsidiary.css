@@ -204,6 +204,64 @@
   }
 }
 
+.img-bracket-wrap {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 10px;
+}
+
+.img-bracket-wrap img,
+.img-bracket-wrap .img-placeholder {
+  display: block;
+  width: 100%;
+  border-radius: 4px;
+}
+
+/* top-left gold bracket */
+.img-bracket-wrap::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 38px;
+  height: 38px;
+  border-top: 3px solid #c9a227;
+  border-left: 3px solid #c9a227;
+  border-radius: 2px 0 0 0;
+  pointer-events: none;
+}
+
+/* bottom-right navy bracket */
+.img-bracket-wrap::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 38px;
+  height: 38px;
+  border-bottom: 3px solid #174caa;
+  border-right: 3px solid #174caa;
+  border-radius: 0 0 2px 0;
+  pointer-events: none;
+}
+
+/* ── Back / Website button row ── */
+.sub-back-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: .5rem;
+  flex-wrap: wrap;
+}
+
+.website-btn {
+  font-size: 0.82rem;
+  padding: 0.5rem 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
 /* Stats strip */
 .sub-stats-strip {
   background: var(--navy);
@@ -305,11 +363,10 @@
 }
 .rich-text h4 {
   color: var(--muted);
- margin: .8rem 0 0.1rem;
+  margin: 0.8rem 0 0.1rem;
   font-size: 1.04rem;
   text-align: justify;
 }
-
 
 .rich-text ul {
   list-style: none;
@@ -346,7 +403,9 @@
 .rich-text blockquote {
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s ease;
 }
 
 /* Revealed state */
@@ -870,10 +929,18 @@
   opacity: 1;
   transform: none;
 }
-.d1 { transition-delay: 0.1s; }
-.d2 { transition-delay: 0.2s; }
-.d3 { transition-delay: 0.3s; }
-.d4 { transition-delay: 0.4s; }
+.d1 {
+  transition-delay: 0.1s;
+}
+.d2 {
+  transition-delay: 0.2s;
+}
+.d3 {
+  transition-delay: 0.3s;
+}
+.d4 {
+  transition-delay: 0.4s;
+}
 
 /* Loading */
 .sub-loading-state {
@@ -1006,7 +1073,7 @@
   }
 }
 
-/* ── Responsive ── */
+
 
 @media (max-width: 900px) {
   .sub-stats-inner {
@@ -1032,7 +1099,7 @@
     padding: 4rem 5%;
   }
 
-  /* Remove sticky on tablets and below */
+
   .sub-main-image {
     position: static;
     top: auto;
