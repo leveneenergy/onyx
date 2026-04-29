@@ -12,16 +12,16 @@
     <meta property="og:type" content="website" />
     <meta property="og:image" id="og-image" content="" />
     <meta property="og:site_name" content="Levene Energies Limited" />
-    <link rel="shortcut icon" href="../image/levene-energies.png" type="image/x-icon" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/team-member.css" />
+    <link rel="shortcut icon" href="./image/levene-energies.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/team-member.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   </head>
 
   <body>
     <div id="header-placeholder"></div>
     <script>
-      fetch("../header.html")
+      fetch("./header.html")
         .then(r => { if (!r.ok) throw new Error("Header not found"); return r.text(); })
         .then(html => {
           document.getElementById("header-placeholder").innerHTML = html;
@@ -87,7 +87,7 @@
 
     <div id="footer-placeholder"></div>
     <script>
-      fetch("../footer.html")
+      fetch("./footer.html")
         .then(r => r.ok ? r.text() : "")
         .then(html => { document.getElementById("footer-placeholder").innerHTML = html; })
         .catch(() => {});
@@ -138,11 +138,11 @@
       const CATEGORY_META = {
         "board-of-directors": {
           label: "Board of Directors",
-          href:  "../management.html#board",
+          href:  "./management.html#board",
         },
         "executive-team": {
           label: "Executive Team",
-          href:  "../management.html#executive",
+          href:  "./management.html#executive",
         },
       };
 
@@ -170,7 +170,7 @@
         document.getElementById("og-description").content = m.excerpt || "";
         if (m.photoUrl) document.getElementById("og-image").content = m.photoUrl;
 
-        const cat = CATEGORY_META[m.category] || { label: "Management Team", href: "../management.html" };
+        const cat = CATEGORY_META[m.category] || { label: "Management Team", href: "./management.html" };
 
         // Photo
         const photoInner = m.photoUrl
@@ -241,14 +241,14 @@
             <i class="fas fa-exclamation-circle" style="color:var(--navy);opacity:0.3;font-size:3rem;"></i>
             <h2 style="font-family:var(--font-display);color:var(--navy);margin:1rem 0;">Profile Not Found</h2>
             <p>This team member's profile hasn't been added yet.</p>
-            <a href="../index.html" class="btn btn--primary" style="margin-top:2rem;">Back to Home</a>
+            <a href="./index.html" class="btn btn--primary" style="margin-top:2rem;">Back to Home</a>
           </div>`;
       }
 
       // ── Fetch from Sanity ─────────────────────────────────────
       (async () => {
         const slug = new URLSearchParams(location.search).get("slug")?.trim();
-        if (!slug) { location.href = "../index.html"; return; }
+        if (!slug) { location.href = "./index.html"; return; }
 
         const BASE = "https://ilajnehi.apicdn.sanity.io/v2025-06-01/data/query/production";
         const q = `*[_type=="teamMember" && slug.current=="${slug}"][0]{

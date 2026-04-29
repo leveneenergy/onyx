@@ -20,9 +20,9 @@
   <meta name="twitter:description" id="twitter-description" content=""/>
   <meta name="twitter:image" id="twitter-image" content=""/>
   <link rel="canonical" id="canonical-url" href=""/>
-  <link rel="shortcut icon" href="../image/levene-energies.png" type="image/x-icon">
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/press-release.css" />
+  <link rel="shortcut icon" href="./image/levene-energies.png" type="image/x-icon">
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/press-release.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body class="press-page">
@@ -30,7 +30,7 @@
 <div id="header-placeholder"></div>
 
 <script>
-  fetch('../header.html')
+  fetch('./header.html')
     .then(r => {
       if (!r.ok) throw new Error('Header file not found');
       return r.text();
@@ -105,7 +105,7 @@
 <!-- Footer -->
 <div id="footer-placeholder"></div>
 <script>
-  fetch('../footer.html')
+  fetch('./footer.html')
     .then(r => r.text())
     .then(html => document.getElementById('footer-placeholder').innerHTML = html)
     .catch(err => console.error('Failed to load footer:', err));
@@ -169,15 +169,15 @@ function paint(pr) {
         <h1>PRESS RELEASE</h1>
         <p>${esc(pr.excerpt || pr.title)}</p>
         <div class="breadcrumb">
-          <a href="../index.html">Home</a><span>/</span>
-          <a href="../media.html#press">Press Releases</a><span>/</span>
+          <a href="./index.html">Home</a><span>/</span>
+          <a href="./media.html#press">Press Releases</a><span>/</span>
           <span>${esc(pr.title)}</span>
         </div>
       </div>
     </section>
 
     <div class="pr-outer">
-      <a href="../media.html#press" class="back-link">
+      <a href="./media.html#press" class="back-link">
         <i class="fas fa-arrow-left"></i> Back to Press Releases
       </a>
 
@@ -205,7 +205,7 @@ function paint(pr) {
           <div class="pr-actions">
             ${pr.externalUrl ? `<a href="${esc(pr.externalUrl)}" target="_blank" class="btn btn--green">View Original</a>` : ''}
             ${pr.fileUrl ? `<a href="${esc(pr.fileUrl)}" target="_blank" class="btn btn--outline-dark">Download PDF</a>` : ''}
-            <a href="../media.html#press" class="btn btn--outline-dark">All Press Releases</a>
+            <a href="./media.html#press" class="btn btn--outline-dark">All Press Releases</a>
           </div>
         </div>
       </div>
@@ -217,7 +217,7 @@ function paint(pr) {
 (async () => {
   const slug = new URLSearchParams(location.search).get('slug')?.trim();
   if (!slug) {
-    location.href = '../media.html#press';
+    location.href = './media.html#press';
     return;
   }
 
@@ -249,7 +249,7 @@ function showError() {
       <i class="fas fa-exclamation-circle"></i>
       <h2 style="margin:1.5rem 0 0.5rem; color:var(--navy);">Not Found</h2>
       <p>This press release could not be found.</p>
-      <a href="../media.html#press" class="btn btn--primary" style="margin-top:2rem;">View All Press Releases</a>
+      <a href="./media.html#press" class="btn btn--primary" style="margin-top:2rem;">View All Press Releases</a>
     </div>`;
 }
 </script>

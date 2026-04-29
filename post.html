@@ -23,16 +23,16 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://ilajnehi.apicdn.sanity.io">
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-  <link rel="shortcut icon" href="../image/levene-energies.png" type="image/x-icon">
-  <link rel="stylesheet" href="../css/style.css"/>
-  <link rel="stylesheet" href="../css/post.css"/>
+  <link rel="shortcut icon" href="./image/levene-energies.png" type="image/x-icon">
+  <link rel="stylesheet" href="./css/style.css"/>
+  <link rel="stylesheet" href="./css/post.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 <body>
 <div id="header-placeholder"></div>
 
 <script>
-  fetch('../header.html')
+  fetch('./header.html')
     .then(r => { if (!r.ok) throw new Error('Header file not found'); return r.text(); })
     .then(html => { document.getElementById('header-placeholder').innerHTML = html; initNav(); })
     .catch(err => console.error('Failed to load header:', err));
@@ -85,7 +85,7 @@
 
 <div id="footer-placeholder"></div>
 <script>
-  fetch('../footer.html').then(r => r.text()).then(html => document.getElementById('footer-placeholder').innerHTML = html).catch(err => console.error('Failed to load footer:', err));
+  fetch('./footer.html').then(r => r.text()).then(html => document.getElementById('footer-placeholder').innerHTML = html).catch(err => console.error('Failed to load footer:', err));
 </script>
 
 <script>
@@ -202,8 +202,8 @@ function paint(post) {
         ${post.publishedAt ? `<span><i class="fas fa-calendar"></i> ${fmt(post.publishedAt)}</span>` : ''}
       </div>
       <div class="breadcrumb" style="margin-top:2rem;">
-        <a href="../index.html">Home</a><span>/</span>
-        <a href="../media.html#blog">Blog</a><span>/</span>
+        <a href="./index.html">Home</a><span>/</span>
+        <a href="./media.html#blog">Blog</a><span>/</span>
         <span class="current">${esc(post.title)}</span>
       </div>
     </div>
@@ -226,7 +226,7 @@ function paint(post) {
 
   document.getElementById('pr-body-wrap').innerHTML = `
   <div class="pr-outer">
-    <a href="../media.html#blog" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+    <a href="./media.html#blog" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog</a>
     <div class="pr-columns">
       ${imgColHtml}
       <div class="pr-panel">
@@ -238,7 +238,7 @@ function paint(post) {
         </div>
         <div class="pr-body">${bodyHtml}</div>
         <div class="pr-actions">
-          <a href="../media.html#blog" class="btn btn--outline-dark">All Articles</a>
+          <a href="./media.html#blog" class="btn btn--outline-dark">All Articles</a>
         </div>
       </div>
     </div>
@@ -256,7 +256,7 @@ function paint(post) {
   const slug = new URLSearchParams(location.search).get('slug')?.trim();
   if (!slug) {
     document.getElementById('pr-hero-wrap').innerHTML = '';
-    document.getElementById('pr-body-wrap').innerHTML = `<div class="pr-loading"><i class="fas fa-exclamation-circle"></i><h2 style="color:var(--navy);margin-bottom:1rem;">No article selected</h2><p>Please choose a post from the <a href="../media.html#blog">blog</a>.</p></div>`;
+    document.getElementById('pr-body-wrap').innerHTML = `<div class="pr-loading"><i class="fas fa-exclamation-circle"></i><h2 style="color:var(--navy);margin-bottom:1rem;">No article selected</h2><p>Please choose a post from the <a href="./media.html#blog">blog</a>.</p></div>`;
     return;
   }
 
@@ -272,7 +272,7 @@ function paint(post) {
   } catch (err) {
     console.error('Post load error:', err);
     document.getElementById('pr-hero-wrap').innerHTML = '';
-    document.getElementById('pr-body-wrap').innerHTML = `<div class="pr-loading"><i class="fas fa-exclamation-triangle"></i><h2 style="color:var(--navy);margin-bottom:1rem;">Article Not Found</h2><p style="margin-bottom:2rem;">This post may have been removed or is not available.</p><a href="../media.html#blog" class="btn btn--primary">Back to Blog</a></div>`;
+    document.getElementById('pr-body-wrap').innerHTML = `<div class="pr-loading"><i class="fas fa-exclamation-triangle"></i><h2 style="color:var(--navy);margin-bottom:1rem;">Article Not Found</h2><p style="margin-bottom:2rem;">This post may have been removed or is not available.</p><a href="./media.html#blog" class="btn btn--primary">Back to Blog</a></div>`;
   }
 })();
 </script>
