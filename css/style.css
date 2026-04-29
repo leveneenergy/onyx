@@ -270,7 +270,7 @@ button {
   font-size: 0.65rem;
 }
 
-/* DROPDOWN */
+
 .dropdown {
   position: relative;
 }
@@ -469,7 +469,7 @@ button {
   right: 24px;
 }
 
-/* Dots */
+
 .nl-dots {
   position: absolute;
   bottom: 22px;
@@ -514,7 +514,7 @@ button {
   }
 }
 
-/* HAMBURGER */
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -596,7 +596,7 @@ button {
 
 .hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
   font-weight: 600;
   line-height: 1.08;
   color: var(--white);
@@ -888,119 +888,6 @@ button {
   line-height: 1.75;
 }
 
-/* ===== NEWS PREVIEW ===== */
-.news-section {
-  padding: 7rem 5%;
-  background: var(--off-white);
-}
-
-.news-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 3.5rem;
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-
-.news-card {
-  background: var(--white);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: var(--shadow-card);
-  transition: var(--transition);
-  display: flex;
-  flex-direction: column;
-}
-.news-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-deep);
-}
-
-.news-card-img {
-  aspect-ratio: 16/10;
-  overflow: hidden;
-  background: var(--smoke);
-}
-.news-card-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s var(--ease);
-}
-.news-card:hover .news-card-img img {
-  transform: scale(1.04);
-}
-
-.news-card-body {
-  padding: 1.5rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.news-card-tag {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--green);
-  margin-bottom: 0.6rem;
-}
-
-.news-card-title {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--navy);
-  line-height: 1.3;
-  margin-bottom: 0.75rem;
-}
-
-.news-card-excerpt {
-  font-size: 0.88rem;
-  color: var(--muted);
-  line-height: 1.7;
-  flex: 1;
-}
-
-.news-card-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1.2rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--smoke);
-  font-size: 0.78rem;
-  color: var(--muted);
-}
-
-.news-read-more {
-  color: var(--navy);
-  font-weight: 600;
-  font-size: 0.78rem;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  transition:
-    gap var(--transition),
-    color var(--transition);
-}
-.news-card:hover .news-read-more {
-  gap: 0.6rem;
-  color: var(--green);
-}
 
 /* ===== CTA BAND ===== */
 .cta-band {
@@ -1087,7 +974,7 @@ button {
   color: var(--green);
 }
 
-/* Social Media Icons - Now under Quick Links */
+
 .social-icons {
   display: flex;
   gap: 10px;
@@ -1150,7 +1037,7 @@ button {
   color: rgba(255, 255, 255, 0.5);
 }
 
-/* ===== PAGE HERO (inner pages) ===== */
+/* ===== PAGE HERO  ===== */
 .page-hero {
   position: relative;
   min-height: 380px;
@@ -1164,7 +1051,7 @@ button {
   border-bottom: 5px solid var(--green);
 }
 
-/* Dark overlay for better text readability */
+/* Dark overlay */
 .page-hero::after {
   content: "";
   position: absolute;
@@ -1176,7 +1063,7 @@ button {
 .media-page .page-hero {
   background-image:
     linear-gradient(rgba(4, 24, 68, 0.72), rgba(4, 24, 68, 0.6)),
-    url("../image/16.-Levene-Hydrocarbon-Webpage-Image.jpg");
+    url("../image/IMLX4392.jpg");
 }
 
 .sub-page .page-hero {
@@ -1244,9 +1131,10 @@ button {
 .page-hero p {
   color: rgba(255, 255, 255, 0.88);
   font-size: 1.1rem;
-  max-width: 580px;
+  max-width: 726px;
   margin-top: 1.2rem;
-  line-height: 1.7;
+  line-height: 1.5;
+ 
 }
 
 .breadcrumb {

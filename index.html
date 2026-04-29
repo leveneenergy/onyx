@@ -5,13 +5,74 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Levene Energies Limited - Innovative Energy Solutions</title>
   <meta name="description" content="Levene Energies Limited is an innovative solutions provider to the global energy sector, operating across upstream, midstream and downstream value chains."/>
-  <meta property="og:title" content="Levene Energies Limited"/>
-  <meta property="og:description" content="Innovative solutions across the energy value chain."/>
+  <meta name="keywords" content="energy, solutions, upstream, midstream, Levene Energies, renewables, energy sector, value chain, gas & power"/>
+  <meta name="author" content="Levene Energies Limited"/>
+  <meta name="robots" content="index, follow"/>
+  <meta name="language" content="English"/>
+  <meta property="og:title" content="Levene Energies Limited - Innovative Energy Solutions"/>
+  <meta property="og:description" content="Levene Energies operates in the energy sector and through its component entities, provides innovative solutions across the value chain from upstream, gas to renewables."/>
   <meta property="og:type" content="website"/>
   <meta property="og:image" content="./image/levenelogo.png"/>
+  <meta property="og:url" content=""/>
+  <meta property="og:site_name" content="Levene Energies Limited"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Levene Energies Limited"/>
+  <meta name="twitter:description" content="Innovative energy solutions provider"/>
+  <meta name="twitter:image" content="./image/levenelogo.png"/>
+  <link rel="canonical" href="https://leveneenergies.com/"/>
   <link rel="shortcut icon" href="./image/levene-energies.png" type="image/x-icon">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <link rel="stylesheet" href="./css/style.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Levene Energies Limited",
+    "url": "https://leveneenergies.com",
+    "logo": "https://leveneenergies.com/image/levenelogo.png",
+    "description": "Levene Energies operates in the energy sector and through its component entities, provides innovative solutions across the value chain from upstream, gas to renewables.",
+    "sameAs": [
+      "https://www.linkedin.com/company/levene-energies-limited",
+      "https://twitter.com/levenenergie",
+      "https://www.facebook.com/levenenergie"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "General Enquiries",
+      "url": "https://leveneenergies.com/contact.html"
+    },
+    "address": [
+      {
+        "@type": "PostalAddress",
+        "streetAddress": "Lagos Office",
+        "addressLocality": "Lagos",
+        "addressCountry": "NG"
+      },
+      {
+        "@type": "PostalAddress",
+        "streetAddress": "Abuja Office",
+        "addressLocality": "Abuja",
+        "addressCountry": "NG"
+      },
+      {
+        "@type": "PostalAddress",
+        "streetAddress": "London Office",
+        "addressLocality": "London",
+        "addressCountry": "GB"
+      },
+      {
+        "@type": "PostalAddress",
+        "streetAddress": "Mauritius Office",
+        "addressLocality": "Port Louis",
+        "addressCountry": "MU"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -122,7 +183,7 @@
   <div class="stats-grid">
     <div class="stat-item"><div class="stat-number">4<span>+</span></div><div class="stat-label">Operating Subsidiaries</div></div>
     <div class="stat-item"><div class="stat-number">10<span>+</span></div><div class="stat-label">Years of Excellence</div></div>
-    <div class="stat-item"><div class="stat-number">5</div><div class="stat-label">Global Office Locations</div></div>
+    <div class="stat-item"><div class="stat-number">4</div><div class="stat-label">Global Office Locations</div></div>
     <div class="stat-item"><div class="stat-number">100<span>%</span></div><div class="stat-label">Indigenous Ownership</div></div>
   </div>
 </div>
@@ -137,7 +198,7 @@
     <p>Through our component entities, we provide innovative, technology-led solutions across the entire value chain by empowering businesses, communities, and the Nigerian energy landscape with a commitment to excellence and sustainability.</p>
     <p>With offices in Abuja, Lagos, London, Mauritius and Dubai, our business is guided by quality, professionalism and a commitment to excellence.</p>
     <div class="intro-actions">
-      <a href="management.html" class="btn btn--outline-dark">Meet the Team</a>
+      <a href="board-of-directors.html" class="btn btn--outline-dark">Meet the Team</a>
     </div>
   </div>
   <div class="intro-visual">
@@ -238,7 +299,7 @@
 
     releases.forEach((pr, i) => {
       const slug   = pr.slug || pr._id;
-      const href   = `press-release.html?slug=${esc(slug)}`;
+      const href   = `content/press-release.html?slug=${esc(slug)}`;
       const imgUrl = pr.imgUrl ? `${pr.imgUrl}?w=1400&auto=format&fit=crop&q=80` : FALLBACKS[i % FALLBACKS.length];
       const date   = fmtDate(pr.publishedAt);
 
@@ -348,7 +409,7 @@
     .catch(err => console.error('Failed to load footer:', err));
 </script>
 
-<!-- Hero slider -->
+
 <script>
   const slides = document.querySelectorAll('.hero-slide');
   const dots   = document.querySelectorAll('.hero-dot');

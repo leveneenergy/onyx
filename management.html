@@ -1,280 +1,253 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Management Team — Levene Energies Limited</title>
-  <meta name="description" content="Meet the experienced leadership team driving Levene Energies Limited."/>
-  <meta property="og:title" content="Management Team — Levene Energies Limited"/>
-  <meta property="og:description" content="Our leaders bring decades of experience across international and Nigerian energy markets."/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:image" content="./image/levenelogo.png"/>
-  <link rel="shortcut icon" href="./image/levene-energies.png" type="image/x-icon">
-<link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/management.css"/>
-  <style>
-    .team-row--two-col {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-      max-width: 720px;
-      margin: 0 auto 2rem;
-    }
-    @media (max-width: 600px) {
-      .team-row--two-col {
-        grid-template-columns: 1fr;
-      }
-    }
-    .team-section-divider {
-      margin: 3rem 0 2rem;
-      text-align: center;
-    }
-    .team-row--centered {
-      justify-content: center;
-    }
-  </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Management - Levene Energies Limited</title>
+    <meta name="description" content="Meet the Board of Directors and Executive Team of Levene Energies Limited — experienced leaders guiding strategy, governance, and operational growth." />
+    <meta name="keywords" content="board of directors, executive team, management, leadership, governance, Levene Energies" />
+    <meta name="author" content="Levene Energies Limited" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Management - Levene Energies Limited" />
+    <meta property="og:description" content="Meet the Board of Directors and Executive Team of Levene Energies Limited." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Levene Energies Limited" />
+    <link rel="shortcut icon" href="./image/levene-energies.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/management.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  </head>
 
-  
-</head>
-<body class="mgt-page">
+  <body class="mgt-page">
+    <div id="header-placeholder"></div>
+    <script>
+      fetch("header.html")
+        .then(r => { if (!r.ok) throw new Error("Header not found"); return r.text(); })
+        .then(html => {
+          document.getElementById("header-placeholder").innerHTML = html;
+          initNav();
+        })
+        .catch(err => console.error("Failed to load header:", err));
 
-<div id="header-placeholder"></div>
-
-<script>
-
-  fetch('header.html')
-    .then(r => {
-      if (!r.ok) throw new Error('Header file not found');
-      return r.text();
-    })
-    .then(html => {
-      document.getElementById('header-placeholder').innerHTML = html;
-      initNav(); 
-    })
-    .catch(err => console.error('Failed to load header:', err));
-
-  function initNav() {
-    const hamburger = document.getElementById('hamburger');
-    const navList   = document.getElementById('nav-list');
-    const navClose  = document.getElementById('nav-close');
-
-    if (hamburger && navList) {
-      hamburger.addEventListener('click', function(e) {
-        e.stopPropagation();
-        navList.classList.add('open');
-        document.body.style.overflow = 'hidden'; 
-      });
-    }
-
-    if (navClose) {
-      navClose.addEventListener('click', function() {
-        navList.classList.remove('open');
-        document.body.style.overflow = '';
-        document.querySelectorAll('.nav-list .dropdown').forEach(function(d) {
-          d.classList.remove('mob-open');
-        });
-      });
-    }
-
-   
-    document.addEventListener('click', function(e) {
-      if (navList && navList.classList.contains('open')) {
-        if (!navList.contains(e.target) && e.target !== hamburger) {
-          navList.classList.remove('open');
-          document.body.style.overflow = '';
-          document.querySelectorAll('.nav-list .dropdown').forEach(function(d) {
-            d.classList.remove('mob-open');
+      function initNav() {
+        const hamburger = document.getElementById("hamburger");
+        const navList   = document.getElementById("nav-list");
+        const navClose  = document.getElementById("nav-close");
+        if (hamburger && navList) {
+          hamburger.addEventListener("click", function(e) {
+            e.stopPropagation();
+            navList.classList.add("open");
+            document.body.style.overflow = "hidden";
           });
         }
-      }
-    });
-
-
-    document.querySelectorAll('.nav-list .dropdown > a').forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        if (window.innerWidth > 768) return;
-        e.preventDefault();
-        e.stopPropagation();
-        var dropdown = link.closest('.dropdown');
-        var isOpen   = dropdown.classList.contains('mob-open');
-        document.querySelectorAll('.nav-list .dropdown').forEach(function(d) {
-          d.classList.remove('mob-open');
+        if (navClose) {
+          navClose.addEventListener("click", function() {
+            navList.classList.remove("open");
+            document.body.style.overflow = "";
+            document.querySelectorAll(".nav-list .dropdown").forEach(d => d.classList.remove("mob-open"));
+          });
+        }
+        document.addEventListener("click", function(e) {
+          if (navList && navList.classList.contains("open")) {
+            if (!navList.contains(e.target) && e.target !== hamburger) {
+              navList.classList.remove("open");
+              document.body.style.overflow = "";
+              document.querySelectorAll(".nav-list .dropdown").forEach(d => d.classList.remove("mob-open"));
+            }
+          }
         });
-        if (!isOpen) dropdown.classList.add('mob-open');
-      });
-    });
+        document.querySelectorAll(".nav-list .dropdown > a").forEach(function(link) {
+          link.addEventListener("click", function(e) {
+            if (window.innerWidth > 768) return;
+            e.preventDefault(); e.stopPropagation();
+            var dropdown = link.closest(".dropdown");
+            var isOpen = dropdown.classList.contains("mob-open");
+            document.querySelectorAll(".nav-list .dropdown").forEach(d => d.classList.remove("mob-open"));
+            if (!isOpen) dropdown.classList.add("mob-open");
+          });
+        });
+        document.querySelectorAll(".nav-list > li:not(.dropdown) > a").forEach(function(link) {
+          link.addEventListener("click", function() {
+            if (window.innerWidth > 768) return;
+            navList.classList.remove("open");
+            document.body.style.overflow = "";
+          });
+        });
+      }
+    </script>
 
-    
-    document.querySelectorAll('.nav-list > li:not(.dropdown) > a').forEach(function(link) {
-      link.addEventListener('click', function() {
-        if (window.innerWidth > 768) return;
-        navList.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    });
-  }
-</script>
-
-
-<!-- Page Hero -->
-<section class="page-hero">
-  <div class="page-hero-inner">
-    <div class="section-label">Leadership</div>
-    <h1>MANAGEMENT <em>TEAM</em></h1>
-    <p>Our leaders bring decades of experience across international and Nigerian energy markets, combining global expertise with local insight.</p>
-    <div class="breadcrumb">
-      <a href="index.html">Home</a><span>/</span><span>Management Team</span>
-    </div>
-  </div>
-</section>
-
-<!-- Team Grid -->
-<section class="team-section">
-  <div class="team-wrap">
-    <div class="team-intro">
-      <div class="section-label">The People Behind Levene</div>
-      <h2 class="section-title">Board of <em>Directors</em></h2>
-      <p>Click any profile to read their full biography, career background and areas of expertise.</p>
-    </div>
-
-    <div class="team-grid" id="mgmt-grid">
-      <div class="team-empty">
-        <i class="fas fa-spinner fa-spin"></i>
-        <p>Loading leadership profiles…</p>
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="page-hero-inner">
+        <div class="section-label">Leadership</div>
+        <h1>Management</h1>
+        <p>The people driving strategy, governance, and growth across Levene Energies Limited.</p>
+        <div class="breadcrumb">
+          <a href="index.html">Home</a><span>/</span><span>Management</span>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- CTA Band -->
-<section class="cta-band">
-  <h2>Work with our team</h2>
-  <p>Interested in exploring career or partnership opportunities with Levene Energies Limited?</p>
-  <a href="contact.html" class="btn btn--green">Get In Touch</a>
-</section>
+  
+    <section class="team-section">
+      <div class="team-section-inner">
+        <div class="mgt-tabs" id="mgt-tabs">
+          <button class="mgt-tab-btn active" data-tab="board">Board of Directors</button>
+          <button class="mgt-tab-btn" data-tab="executive">Executive Team</button>
+        </div>
 
-<div id="footer-placeholder"></div>
-<script>
-  fetch('footer.html')
-    .then(r => r.text())
-    .then(html => document.getElementById('footer-placeholder').innerHTML = html)
-    .catch(err => console.error('Failed to load footer:', err));
-</script>
+        
+        <div class="mgt-panel active" id="panel-board">
+          <div class="panel-label">The People Behind Levene</div>
+          <div id="board-root">
+            <div class="team-loading">
+              <i class="fas fa-spinner fa-spin" style="color:var(--navy);opacity:0.4;"></i>
+              <p>Loading Board of Directors…</p>
+            </div>
+          </div>
+        </div>
 
+   
+        <div class="mgt-panel" id="panel-executive">
+          <div class="panel-label">Meet The Executive Team</div>
+          <div id="exec-root">
+            <div class="team-loading">
+              <i class="fas fa-spinner fa-spin" style="color:var(--navy);opacity:0.4;"></i>
+              <p>Loading Executive Team…</p>
+            </div>
+          </div>
+        </div>
 
-
-
-
-<script>
-const GRADS = [
-  'linear-gradient(135deg,#0a2460,#1e8a2e)',
-  'linear-gradient(135deg,#0a3070,#041844)',
-  'linear-gradient(135deg,#0c4a22,#041844)',
-  'linear-gradient(135deg,#041844,#1e3a6e)',
-];
-
-function esc(s) {
-  return String(s || '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-}
-
-function cardHtml(p, i) {
-  const href     = `team-member.html?slug=${esc(p.slug || p._id)}`;
-  const photoSrc = p.photoUrl ? `${p.photoUrl}?w=480&h=640&fit=crop&q=80` : null;
-
-  return `
-  <article class="team-card" onclick="location.href='${href}'">
-    <div class="team-photo">
-      ${photoSrc
-        ? `<img src="${photoSrc}" alt="${esc(p.name || 'Team Member')}" loading="lazy"/>`
-        : `<div class="team-photo-placeholder" style="background:${GRADS[i % GRADS.length]}"><i class="fas fa-user"></i></div>`}
-      <div class="team-overlay">
-        <span><i class="fas fa-arrow-right"></i> View Profile</span>
       </div>
-    </div>
-    <div class="team-info">
-      <div class="team-name">${esc(p.name || 'Team Member')}</div>
-      <div class="team-role">${esc(p.designation || '')}</div>
-    </div>
-  </article>`;
-}
+    </section>
 
-function render(people) {
-  const grid = document.getElementById('mgmt-grid');
+    <div id="footer-placeholder"></div>
+    <script>
+      fetch("footer.html")
+        .then(r => r.ok ? r.text() : "")
+        .then(html => { document.getElementById("footer-placeholder").innerHTML = html; })
+        .catch(() => {});
+    </script>
 
-  if (!people.length) {
-    grid.innerHTML = `
-      <div class="team-empty">
-        <i class="fas fa-users"></i>
-        <p>No profiles found. Add team members in <a href="https://leveneenergy-studio.sanity.studio" target="_blank">Sanity Studio</a>.</p>
-      </div>`;
-    return;
-  }
+    <script>
+      function esc(s) {
+        return String(s || "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+      }
 
-  // Find Yemi Oshindero to split board vs executive team
-  const yemiIndex = people.findIndex(p =>
-    (p.name || '').toLowerCase().includes('yemi oshindero')
-  );
-  const boardCutoff = yemiIndex !== -1 ? yemiIndex + 1 : people.length;
+     
+      document.getElementById("mgt-tabs").addEventListener("click", function(e) {
+        const btn = e.target.closest(".mgt-tab-btn");
+        if (!btn) return;
+        document.querySelectorAll(".mgt-tab-btn").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".mgt-panel").forEach(p => p.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById("panel-" + btn.dataset.tab).classList.add("active");
+        history.replaceState(null, "", "#" + btn.dataset.tab);
+      });
 
-  const boardMembers = people.slice(0, boardCutoff);
-  const execMembers  = people.slice(boardCutoff);
+     
+      (function() {
+        const hash = location.hash.replace("#", "");
+        if (hash === "executive") {
+          document.querySelector('[data-tab="executive"]').click();
+        }
+      })();
 
-  // Board: first 2 in a 2-col row, rest in 3-col rows
-  const boardFirst2 = boardMembers.slice(0, 2);
-  const boardRest   = boardMembers.slice(2);
 
-  const boardHtml =
-    '<div class="team-row--two-col">' +
-      boardFirst2.map((p, i) => cardHtml(p, i)).join('') +
-    '</div>' +
-    (boardRest.length
-      ? '<div class="team-row--rest">' +
-          boardRest.map((p, i) => cardHtml(p, i + 2)).join('') +
-        '</div>'
-      : '');
+      function renderCards(members, rootId) {
+        const root = document.getElementById(rootId);
+        if (!members || members.length === 0) {
+          root.innerHTML = `
+            <div class="team-loading">
+              <i class="fas fa-users" style="color:var(--navy);opacity:0.25;"></i>
+              <p>Profiles coming soon.</p>
+            </div>`;
+          return;
+        }
 
-  const execHtml = execMembers.length
-    ? '<div class="team-section-divider">' +
-        '<h2 class="section-title">Executive <em>Team</em></h2>' +
-      '</div>' +
-      '<div class="team-row--rest team-row--centered">' +
-        execMembers.map((p, i) => cardHtml(p, i + boardCutoff)).join('') +
-      '</div>'
-    : '';
+        root.innerHTML = `<div class="members-grid" id="grid-${rootId}"></div>`;
+        const grid = document.getElementById("grid-" + rootId);
 
-  grid.innerHTML = boardHtml + execHtml;
-}
+        members.forEach((m, i) => {
+          const photoHtml = m.photoUrl
+            ? `<img src="${esc(m.photoUrl)}?w=600&auto=format&fit=crop&q=80" alt="${esc(m.name)}" loading="lazy" />`
+            : `<div class="member-photo-placeholder"><i class="fas fa-user"></i></div>`;
 
-(async () => {
-  const BASE = 'https://ilajnehi.apicdn.sanity.io/v2025-06-01/data/query/production';
+          const linkedinHtml = m.linkedin
+            ? `<a href="${esc(m.linkedin)}" target="_blank" rel="noopener noreferrer" class="member-linkedin" onclick="event.stopPropagation()">
+                <i class="fab fa-linkedin"></i> LinkedIn
+               </a>`
+            : "";
 
-  const q = `*[_type=="management"]|order(coalesce(order,999) asc){
-    _id,
-    "slug":slug.current,
-    name,
-    designation,
-    order,
-    "photoUrl":photo.asset->url
-  }`;
+          const card = document.createElement("div");
+          card.className = "member-card";
+          card.style.transitionDelay = `${(i % 4) * 0.08}s`;
+          card.dataset.index = i;
+          card.innerHTML = `
+            <div class="member-photo-wrap">${photoHtml}</div>
+            <div class="member-info">
+              <div class="member-name">${esc(m.name)}</div>
+              <div class="member-title">${esc(m.title || "")}</div>
+              ${m.excerpt ? `<p class="member-excerpt">${esc(m.excerpt)}</p>` : ""}
+              ${linkedinHtml}
+            </div>`;
 
-  try {
-    const res = await fetch(`${BASE}?query=${encodeURIComponent(q)}`);
-    if (!res.ok) throw new Error(`Sanity fetch failed: ${res.status}`);
-    const data = await res.json();
-    const people = data.result || [];
+          card.addEventListener("click", () => {
+            if (m.slug) window.location.href = `content/team-member.html?slug=${encodeURIComponent(m.slug)}`;
+          });
+          card.style.cursor = "pointer";
+          grid.appendChild(card);
+        });
 
-    render(people);
-  } catch (err) {
-    console.error('Management team load error:', err);
-    render([]);
-  }
-})();
-</script>
+        const io = new IntersectionObserver(entries => {
+          entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add("revealed"); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.1 });
+        document.querySelectorAll(`#grid-${rootId} .member-card`).forEach(c => io.observe(c));
+      }
 
-</body>
+      const BASE = "https://ilajnehi.apicdn.sanity.io/v2025-06-01/data/query/production";
+
+      async function fetchMembers(category) {
+        const q = `*[_type=="teamMember" && category=="${category}"] | order(order asc) {
+          _id, name, title, department, excerpt, linkedin,
+          "slug": slug.current,
+          "photoUrl": photo.asset->url
+        }`;
+        const res = await fetch(`${BASE}?query=${encodeURIComponent(q)}`);
+        if (!res.ok) throw new Error("Fetch failed");
+        const { result } = await res.json();
+        return result || [];
+      }
+
+      (async () => {
+        /* Board */
+        try {
+          const board = await fetchMembers("board-of-directors");
+          renderCards(board, "board-root");
+        } catch (err) {
+          console.error(err);
+          document.getElementById("board-root").innerHTML = `
+            <div class="team-loading">
+              <i class="fas fa-exclamation-circle" style="color:var(--navy);opacity:0.3;font-size:2.8rem;"></i>
+              <p>Unable to load board members. Please try again later.</p>
+            </div>`;
+        }
+
+  
+        try {
+          const exec = await fetchMembers("executive-team");
+          renderCards(exec, "exec-root");
+        } catch (err) {
+          console.error(err);
+          document.getElementById("exec-root").innerHTML = `
+            <div class="team-loading">
+              <i class="fas fa-exclamation-circle" style="color:var(--navy);opacity:0.3;font-size:2.8rem;"></i>
+              <p>Unable to load executive team. Please try again later.</p>
+            </div>`;
+        }
+      })();
+    </script>
+  </body>
 </html>

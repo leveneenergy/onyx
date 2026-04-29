@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Board of Directors - Levene Energies Limited</title>
-    <meta name="description" content="Meet the Board of Directors of Levene Energies Limited — experienced leaders guiding the company's strategic vision and governance." />
-    <meta name="keywords" content="board of directors, leadership, governance, Levene Energies" />
+    <title>Executive Team - Levene Energies Limited</title>
+    <meta name="description" content="Meet the Executive Team of Levene Energies Limited — operational leaders driving growth across energy, trading, and renewables." />
+    <meta name="keywords" content="executive team, management, leadership, Levene Energies" />
     <meta name="author" content="Levene Energies Limited" />
     <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="Board of Directors - Levene Energies Limited" />
-    <meta property="og:description" content="Meet the Board of Directors of Levene Energies Limited." />
+    <meta property="og:title" content="Executive Team - Levene Energies Limited" />
+    <meta property="og:description" content="Meet the Executive Team of Levene Energies Limited." />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Levene Energies Limited" />
     <link rel="shortcut icon" href="./image/levene-energies.png" type="image/x-icon" />
@@ -80,21 +80,21 @@
     <section class="page-hero">
       <div class="page-hero-inner">
         <div class="section-label">Management Team</div>
-        <h1>Board of Directors</h1>
-        <p>Seasoned leaders providing strategic oversight, governance, and direction to Levene Energies Limited.</p>
+        <h1>Executive Team</h1>
+        <p>Operational leaders driving performance, innovation, and sustainable growth across Levene Energies' business units.</p>
         <div class="breadcrumb">
-          <a href="management.html">Our Management</a><span>/</span><span>Board of Directors</span>
+          <a href="management.html">Our Management</a><span>/</span><span>Executive Team</span>
         </div>
       </div>
     </section>
 
     <section class="team-section">
       <div class="team-section-inner">
-        <div class="section-label">The People Behind Levene</div>
+        <div class="section-label">Meet The Executive Team</div>
         <div id="members-root">
           <div class="team-loading">
             <i class="fas fa-spinner fa-spin" style="color:var(--navy);opacity:0.4;"></i>
-            <p>Loading Board of Directors…</p>
+            <p>Loading Executive Team…</p>
           </div>
         </div>
       </div>
@@ -119,7 +119,7 @@
           root.innerHTML = `
             <div class="team-loading">
               <i class="fas fa-users" style="color:var(--navy);opacity:0.25;"></i>
-              <p>Board member profiles coming soon.</p>
+              <p>Executive team profiles coming soon.</p>
             </div>`;
           return;
         }
@@ -151,6 +151,7 @@
               ${linkedinHtml}
             </div>`;
 
+          // ── Updated: points to content/team-member.html ──
           card.addEventListener("click", () => {
             if (m.slug) window.location.href = `content/team-member.html?slug=${encodeURIComponent(m.slug)}`;
           });
@@ -168,7 +169,7 @@
 
       (async () => {
         const BASE = "https://ilajnehi.apicdn.sanity.io/v2025-06-01/data/query/production";
-        const q = `*[_type=="teamMember" && category=="board-of-directors"] | order(order asc) {
+        const q = `*[_type=="teamMember" && category=="executive-team"] | order(order asc) {
           _id, name, title, department, excerpt, linkedin,
           "slug": slug.current,
           "photoUrl": photo.asset->url
@@ -184,7 +185,7 @@
           document.getElementById("members-root").innerHTML = `
             <div class="team-loading">
               <i class="fas fa-exclamation-circle" style="color:var(--navy);opacity:0.3;font-size:2.8rem;"></i>
-              <p>Unable to load board members. Please try again later.</p>
+              <p>Unable to load executive team. Please try again later.</p>
             </div>`;
         }
       })();
