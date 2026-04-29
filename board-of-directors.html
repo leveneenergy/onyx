@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -83,7 +83,7 @@
         <h1>Board of Directors</h1>
         <p>Seasoned leaders providing strategic oversight, governance, and direction to Levene Energies Limited.</p>
         <div class="breadcrumb">
-          <a href="management.html">Our Management</a><span>/</span><span>Board of Directors</span>
+          <a href="./management.html">Our Management</a><span>/</span><span>Board of Directors</span>
         </div>
       </div>
     </section>
@@ -152,7 +152,7 @@
             </div>`;
 
           card.addEventListener("click", () => {
-            if (m.slug) window.location.href = `content/team-member.html?slug=${encodeURIComponent(m.slug)}`;
+            if (m.slug) window.location.href = `./content/team-member.html?slug=${encodeURIComponent(m.slug)}`;
           });
           card.style.cursor = "pointer";
           grid.appendChild(card);
