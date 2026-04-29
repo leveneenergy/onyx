@@ -606,7 +606,7 @@ async function sq(q) {
   }
  
   el.innerHTML = items.map(it => {
-    const href = `content/press-release.html?slug=${esc(it.slug || it._id)}`;
+    const href = `press-release.html?slug=${esc(it.slug || it._id)}`;
     const thumbHtml = it.imgUrl
       ? `<img class="press-thumb" src="${esc(it.imgUrl)}?w=400&h=300&fit=crop&auto=format&q=80" alt="${esc(it.title)}" loading="lazy"/>`
       : `<div class="press-thumb-placeholder"><i class="fas fa-newspaper"></i></div>`;
@@ -666,7 +666,7 @@ async function sq(q) {
   }
 
   el.innerHTML = items.map(it => {
-    const href  = `content/post.html?slug=${esc(it.slug)}`;
+    const href  = `post.html?slug=${esc(it.slug)}`;
     const thumb = it.imgUrl
       ? `${esc(it.imgUrl)}?w=700&h=460&fit=crop&auto=format&q=80`
       : 'https://via.placeholder.com/700x460/041844/ffffff?text=Blog+Image';

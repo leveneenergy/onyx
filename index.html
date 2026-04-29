@@ -298,7 +298,7 @@
 
     releases.forEach((pr, i) => {
       const slug   = pr.slug || pr._id;
-      const href   = `content/press-release.html?slug=${esc(slug)}`;
+      const href   = `press-release.html?slug=${esc(slug)}`;
       const imgUrl = pr.imgUrl ? `${pr.imgUrl}?w=1400&auto=format&fit=crop&q=80` : FALLBACKS[i % FALLBACKS.length];
       const date   = fmtDate(pr.publishedAt);
 
