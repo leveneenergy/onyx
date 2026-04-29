@@ -190,7 +190,7 @@ const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>
     if(!list.length){rows.innerHTML=`<div class="subs-loading"><i class="fas fa-building" style="opacity:.3;"></i><p>No subsidiaries found.</p></div>`;return;}
     rows.innerHTML=list.map((s,i)=>{
   
-      const href=`content/subsidiary.html?slug=${esc(s.slug)}`;
+      const href=`subsidiary.html?slug=${esc(s.slug)}`;
       const img=s.imgUrl?`${s.imgUrl}?w=900&auto=format&fit=crop&q=80`:null;
       const rev=i%2===1;
       return `<a href="${href}" class="sub-row${rev?' reverse':''}">
