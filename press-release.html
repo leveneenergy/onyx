@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title id="page-title">Press Release — Levene Energies Limited</title>
   <meta id="page-desc" name="description" content="Press release — Levene Energies Limited." />
   <meta name="keywords" content="press release, news, Levene Energies"/>
@@ -28,16 +28,15 @@
 <body class="press-page">
 
 <div id="header-placeholder"></div>
-
 <script>
-  fetch('./header.html')
+  fetch('header.html')
     .then(r => {
       if (!r.ok) throw new Error('Header file not found');
       return r.text();
     })
     .then(html => {
       document.getElementById('header-placeholder').innerHTML = html;
-      initNav();
+      initNav(); 
     })
     .catch(err => console.error('Failed to load header:', err));
 
@@ -50,7 +49,7 @@
       hamburger.addEventListener('click', function(e) {
         e.stopPropagation();
         navList.classList.add('open');
-        document.body.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden'; 
       });
     }
 
@@ -58,33 +57,42 @@
       navClose.addEventListener('click', function() {
         navList.classList.remove('open');
         document.body.style.overflow = '';
-        document.querySelectorAll('.nav-list .dropdown').forEach(d => d.classList.remove('mob-open'));
+        document.querySelectorAll('.nav-list .dropdown').forEach(function(d) {
+          d.classList.remove('mob-open');
+        });
       });
     }
 
+   
     document.addEventListener('click', function(e) {
       if (navList && navList.classList.contains('open')) {
         if (!navList.contains(e.target) && e.target !== hamburger) {
           navList.classList.remove('open');
           document.body.style.overflow = '';
-          document.querySelectorAll('.nav-list .dropdown').forEach(d => d.classList.remove('mob-open'));
+          document.querySelectorAll('.nav-list .dropdown').forEach(function(d) {
+            d.classList.remove('mob-open');
+          });
         }
       }
     });
 
-    document.querySelectorAll('.nav-list .dropdown > a').forEach(link => {
+
+    document.querySelectorAll('.nav-list .dropdown > a').forEach(function(link) {
       link.addEventListener('click', function(e) {
         if (window.innerWidth > 768) return;
         e.preventDefault();
         e.stopPropagation();
-        const dropdown = link.closest('.dropdown');
-        const isOpen = dropdown.classList.contains('mob-open');
-        document.querySelectorAll('.nav-list .dropdown').forEach(d => d.classList.remove('mob-open'));
+        var dropdown = link.closest('.dropdown');
+        var isOpen   = dropdown.classList.contains('mob-open');
+        document.querySelectorAll('.nav-list .dropdown').forEach(function(d) {
+          d.classList.remove('mob-open');
+        });
         if (!isOpen) dropdown.classList.add('mob-open');
       });
     });
 
-    document.querySelectorAll('.nav-list > li:not(.dropdown) > a').forEach(link => {
+    
+    document.querySelectorAll('.nav-list > li:not(.dropdown) > a').forEach(function(link) {
       link.addEventListener('click', function() {
         if (window.innerWidth > 768) return;
         navList.classList.remove('open');
@@ -94,6 +102,7 @@
   }
 </script>
 
+
 <!-- Dynamic Content -->
 <div id="pr-wrap">
   <div class="pr-loading">
@@ -102,14 +111,15 @@
   </div>
 </div>
 
-<!-- Footer -->
 <div id="footer-placeholder"></div>
+
 <script>
-  fetch('./footer.html')
+  fetch('footer.html')
     .then(r => r.text())
     .then(html => document.getElementById('footer-placeholder').innerHTML = html)
     .catch(err => console.error('Failed to load footer:', err));
 </script>
+
 
 <!-- Press Release Renderer -->
 <script>
