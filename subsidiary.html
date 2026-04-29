@@ -20,9 +20,9 @@
   <meta name="twitter:description" id="twitter-description" content="" />
   <meta name="twitter:image" id="twitter-image" content="" />
   <link rel="canonical" id="canonical-url" href="" />
-  <link rel="shortcut icon" href="../image/levene-energies.png" type="image/x-icon" />
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/subsidiary.css" />
+  <link rel="shortcut icon" href="./image/levene-energies.png" type="image/x-icon" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/subsidiary.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
 
@@ -31,7 +31,7 @@
   <div id="header-placeholder"></div>
 
   <script>
-    fetch("../header.html")
+    fetch('header.html')
       .then((r) => {
         if (!r.ok) throw new Error("Header file not found");
         return r.text();
@@ -116,7 +116,7 @@
 
   <div id="footer-placeholder"></div>
   <script>
-    fetch("../footer.html")
+    fetch('footer.html')
       .then((r) => r.text())
       .then(
         (html) =>
@@ -314,12 +314,12 @@
             <h1>${esc(sub.name)}</h1>
             ${sub.tagline ? `<p class="sub-hero-tagline">${esc(sub.tagline)}</p>` : ""}
             <div class="sub-hero-actions">
-              <a href="../contact.html" class="btn btn--green">Make an Enquiry <i class="fas fa-arrow-right"></i></a>
-              <a href="../subsidiaries.html" class="btn btn--outline">All Subsidiaries</a>
+              <a href=./contact.html" class="btn btn--green">Make an Enquiry <i class="fas fa-arrow-right"></i></a>
+              <a href=./subsidiaries.html" class="btn btn--outline">All Subsidiaries</a>
             </div>
             <div class="sub-hero-breadcrumb">
-              <a href="../index.html">Home</a> /
-              <a href="../subsidiaries.html">Subsidiaries</a> /
+              <a href=./index.html">Home</a> /
+              <a href=./subsidiaries.html">Subsidiaries</a> /
               <span class="current">${esc(sub.name)}</span>
             </div>
           </div>
@@ -331,7 +331,7 @@
               <div class="sub-main-image">
                 ${imgOrPlaceholder(mainImg, sub.name)}
                 <div class="sub-back-actions">
-                  <a href="../subsidiaries.html" class="back-link">
+                  <a href=./subsidiaries.html" class="back-link">
                     <i class="fas fa-arrow-left"></i> Back to All Subsidiaries
                   </a>
                   ${sub.website
@@ -386,14 +386,14 @@
           <i class="fas fa-exclamation-circle" style="color:var(--navy); opacity:0.3; font-size:3rem;"></i>
           <h2 style="font-family:var(--font-display); color:var(--navy); margin:1rem 0;">Content Not Available</h2>
           <p>This subsidiary's content hasn't been added yet.</p>
-          <a href="../subsidiaries.html" class="btn btn--primary" style="margin-top:2rem;">View All Subsidiaries</a>
+          <a href=./subsidiaries.html" class="btn btn--primary" style="margin-top:2rem;">View All Subsidiaries</a>
         </div>`;
     }
 
     (async () => {
       const slug = new URLSearchParams(location.search).get("slug")?.trim();
       if (!slug) {
-        location.href = "../subsidiaries.html";
+        location.href = './subsidiaries.html';
         return;
       }
 
