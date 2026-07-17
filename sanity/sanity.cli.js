@@ -2,14 +2,11 @@ import {defineCliConfig} from 'sanity/cli'
 
 export default defineCliConfig({
   api: {
-    projectId: 'ilajnehi',
+    projectId: 'wrtxyfej',
     dataset: 'production'
   },
   deployment: {
-    
-    autoUpdates: true,
-    appId: 'onyskpeeq314hhy7g4wxn29d',
-    
-  
+    appId: 'aewwwid45vu7d267mc1wchtk',
+    autoUpdates: true
   }
 })

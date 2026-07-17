@@ -1,65 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://leveneenergies.com/index.html</loc>
-    <lastmod>2025-04-22</lastmod>
+    <loc>https://shefaengineering.com/</loc>
+    <lastmod>2024-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
-
   <url>
-    <loc>https://leveneenergies.com/contact.html</loc>
-    <lastmod>2025-04-22</lastmod>
+    <loc>https://shefaengineering.com/about.html</loc>
+    <lastmod>2024-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://shefaengineering.com/what-we-do/what-we-do.html</loc>
+    <lastmod>2024-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://shefaengineering.com/what-we-do/deepwater-marine.html</loc>
+    <lastmod>2024-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
   <url>
-    <loc>https://leveneenergies.com/management.html</loc>
-    <lastmod>2025-04-22</lastmod>
-    <changefreq>quarterly</changefreq>
+    <loc>https://shefaengineering.com/what-we-do/engineering-construction.html</loc>
+    <lastmod>2024-06-11</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
   <url>
-    <loc>https://leveneenergies.com/executive-directors.html</loc>
-    <lastmod>2025-04-22</lastmod>
-    <changefreq>quarterly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://leveneenergies.com/board-of-directors.html</loc>
-    <lastmod>2025-04-22</lastmod>
-    <changefreq>quarterly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://leveneenergies.com/media.html</loc>
-    <lastmod>2025-04-22</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://shefaengineering.com/what-we-do/well-optimization.html</loc>
+    <lastmod>2024-06-11</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
   <url>
-    <loc>https://leveneenergies.com/subsidiaries.html</loc>
-    <lastmod>2025-04-22</lastmod>
+    <loc>https://shefaengineering.com/management.html</loc>
+    <lastmod>2024-06-11</lastmod>
     <changefreq>quarterly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://shefaengineering.com/csr.html</loc>
+    <lastmod>2024-06-11</lastmod>
+    <changefreq>quarterly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://shefaengineering.com/contact.html</loc>
+    <lastmod>2024-06-11</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://leveneenergies.com/post.html</loc>
-    <lastmod>2025-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://leveneenergies.com/press-release.html</loc>
-    <lastmod>2025-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
   </url>
 </urlset>

@@ -1,13 +1,12 @@
 class SanityClient {
     constructor(config = {}) {
-        this.projectId = config.projectId || 'ilajnehi';
+        this.projectId = config.projectId || 'wrtxyfej';
         this.dataset = config.dataset || 'production';
         this.apiVersion = config.apiVersion || 'v2025-06-01';
         this.token = config.token || '';
         this.apiUrl = `https://${this.projectId}.apicdn.sanity.io/v${this.apiVersion}`;
     }
 
-  
     async fetch(query, params = {}) {
         try {
             const queryString = this.buildQueryString(query, params);
@@ -40,7 +39,6 @@ class SanityClient {
         }
     }
 
-    
     buildQueryString(query, params) {
         const encodedQuery = encodeURIComponent(query);
         let queryString = `query=${encodedQuery}`;
@@ -54,115 +52,45 @@ class SanityClient {
         return queryString;
     }
 
-    
-    async getPosts(limit = 20, offset = 0) {
+    // Management methods
+    async getManagement(limit = 100) {
         const query = `
-            *[_type == "post"] | order(_createdAt desc) [${offset}...${offset + limit}] {
+            *[_type == "management"] | order(displayOrder asc) [0...${limit}] {
                 _id,
-                title,
-                slug,
-                excerpt,
-                content,
-                category,
+                name,
+                position,
+                bio,
                 image,
-                author,
-                publishedAt,
+                displayOrder,
+                linkedin,
                 _createdAt
             }
         `;
         return this.fetch(query);
     }
 
-   
-    async getPostCount() {
-        const query = `count(*[_type == "post"])`;
-        return this.fetch(query);
-    }
-
-    
-    async getPostBySlug(slug) {
+    async getManagementById(id) {
         const query = `
-            *[_type == "post" && slug.current == $slug] {
+            *[_type == "management" && _id == $id] {
                 _id,
-                title,
-                slug,
-                excerpt,
-                content,
-                category,
+                name,
+                position,
+                bio,
                 image,
-                author,
-                publishedAt,
-                _createdAt
+                displayOrder,
+                linkedin
             }
         `;
-        const result = await this.fetch(query, { slug });
+        const result = await this.fetch(query, { id });
         return result.length > 0 ? result[0] : null;
     }
 
-    
-    async getPostsByCategory(category, limit = 20, offset = 0) {
-        const query = `
-            *[_type == "post" && category == $category] | order(_createdAt desc) [${offset}...${offset + limit}] {
-                _id,
-                title,
-                slug,
-                excerpt,
-                content,
-                category,
-                image,
-                author,
-                publishedAt,
-                _createdAt
-            }
-        `;
-        return this.fetch(query, { category });
-    }
-
-   
-    async searchPosts(searchTerm, limit = 20, offset = 0) {
-        const query = `
-            *[_type == "post" && (title match $search || excerpt match $search)] | order(_createdAt desc) [${offset}...${offset + limit}] {
-                _id,
-                title,
-                slug,
-                excerpt,
-                content,
-                category,
-                image,
-                author,
-                publishedAt,
-                _createdAt
-            }
-        `;
-        return this.fetch(query, { search: searchTerm });
-    }
-
-    
-    async getFeaturedPosts(limit = 3) {
-        const query = `
-            *[_type == "post"] | order(_createdAt desc) [0...${limit}] {
-                _id,
-                title,
-                slug,
-                excerpt,
-                category,
-                image,
-                publishedAt,
-                _createdAt
-            }
-        `;
-        return this.fetch(query);
-    }
-
-    
     getImageUrl(image, width = 800, height = 600) {
         if (!image || !image.asset) {
             return null;
         }
         
         const assetId = image.asset._ref;
-        const [, , dimensions, format] = assetId.split('-');
-        
         return `https://cdn.sanity.io/images/${this.projectId}/${this.dataset}/${assetId}?w=${width}&h=${height}&fit=crop`;
     }
 }
@@ -183,7 +111,6 @@ if (typeof window !== 'undefined') {
         initSanityClient(window.SANITY_CONFIG);
     }
 }
-
 
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { SanityClient, initSanityClient };

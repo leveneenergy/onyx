@@ -1,16 +1,13 @@
 const SANITY_CONFIG = {
-    projectId: 'ilajnehi',
+    projectId: 'wrtxyfej',
     dataset: 'production',
-    apiVersion:'v2025-06-01',
-    
+    apiVersion: 'v2025-06-01',
     token: '',
-    
-   
-    cdnUrl: null 
+    cdnUrl: null
 };
 
 if (!SANITY_CONFIG.cdnUrl) {
-    SANITY_CONFIG.cdnUrl = `https://${SANITY_CONFIG.projectId}.apicdn.sanity.io/v${SANITY_CONFIG.apiVersion}`;
+    SANITY_CONFIG.cdnUrl = `https://${SANITY_CONFIG.projectId}.apicdn.sanity.io/${SANITY_CONFIG.apiVersion}`;
 }
 
 if (typeof module !== 'undefined' && module.exports) {

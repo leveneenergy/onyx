@@ -1,0 +1,49 @@
+.csr-intro {
+  background: var(--offwhite);
+  padding: 4rem 8% 2rem;
+}
+.csr-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  padding: 2rem 8% 4rem;
+}
+.csr-card {
+  background: var(--white);
+  padding: 2.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+.csr-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--blue);
+}
+.csr-card .csr-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(23, 76, 170, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+}
+.csr-card h3 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.8rem;
+}
+.csr-card p {
+  font-size: 0.9rem;
+  color: #4a5e6e;
+  line-height: 1.8;
+}

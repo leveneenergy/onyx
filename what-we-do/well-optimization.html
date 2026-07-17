@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="End-to-end drilling and well optimization services through our LeveneSmart partnership with Wellsmart Drilling — drilling, evaluation, and production services." />
+    <meta name="keywords" content="well optimization, downhole services, drilling and evaluation, production services Nigeria" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Well Optimization and Downhole Services - Shefa Engineering" />
+    <meta property="og:description" content="End-to-end drilling and well optimization services through our LeveneSmart partnership with Wellsmart Drilling — drilling, evaluation, and production services." />
+    <meta property="og:image" content="https://shefaengineering.com/wp-content/uploads/2022/10/Shefa-Engineering-Oil-well.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Well Optimization and Downhole Services - Shefa Engineering" />
+    <meta name="twitter:description" content="End-to-end drilling and well optimization services through our LeveneSmart partnership with Wellsmart Drilling — drilling, evaluation, and production services." />
+    <link rel="canonical" href="https://shefaengineering.com/what-we-do/well-optimization-and-downhole-services.html" />
+    <title>Well Optimization and Downhole Services - Shefa Engineering</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/Shefa-Engineering-Logo-High-Res.png">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      /* ── INTRO / SERVICE BULLETS ── */
+      .wo-intro {
+        padding: 3rem 8% 2rem;
+      }
+      .wo-intro-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+      .wo-intro .section-body {
+        max-width: 480px;
+      }
+      .wo-intro .section-body strong {
+        color: var(--navy);
+      }
+      .wo-intro-img img {
+        width: 80%;
+        height: auto;
+        display: block;
+      }
+      @media (max-width: 900px) {
+        .wo-intro-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .wo-bullets {
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+        margin-top: 2rem;
+      }
+      .wo-bullets span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.9rem;
+        font-family: "Barlow", sans-serif;
+        font-weight: 700;
+        font-size: 0.95rem;
+        letter-spacing: 0.01em;
+        text-transform: uppercase;
+        color: var(--navy);
+      }
+      .wo-bullets span::before {
+        content: "";
+        width: 18px;
+        height: 2px;
+        background: #1db970;
+        flex-shrink: 0;
+      }
+
+      /* ── DRILLING / PRODUCTION SERVICE BLOCKS ── */
+      .wo-block {
+        padding: 3rem 8% 4rem;
+      }
+      .wo-block--light {
+        background: #eef1f5;
+      }
+      .wo-block--dark {
+        background: var(--navy);
+      }
+      .wo-block-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 30px!important;
+        color: var(--navy);
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        margin-bottom: 2.5rem;
+        text-align: center;
+      }
+      .wo-block--dark .wo-block-title {
+        color: #fff;
+      }
+      .wo-grid {
+        display: grid;
+        grid-template-columns: 0.9fr 1.3fr;
+        gap: 3rem;
+        align-items: start;
+      }
+      .wo-img {
+        position: sticky;
+        top: 96px;
+      }
+      .wo-img img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .wo-items {
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ── ACCORDION ITEMS ── */
+      .wo-item {
+        border-bottom: 0.1px solid var(--lgray);
+      }
+      .wo-block--dark .wo-item {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      }
+      .wo-item:first-child .wo-item-toggle {
+        padding-top: 0;
+      }
+      .wo-item:last-child {
+        border-bottom: none;
+      }
+      .wo-item-toggle {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        width: 100%;
+        padding: 0.6rem 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        font: inherit;
+        color: inherit;
+      }
+      .wo-icon {
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 10px;
+        height: 10px;
+        position: relative;
+      }
+      .wo-icon::before,
+      .wo-icon::after {
+        content: "";
+        position: absolute;
+        background: var(--navy);
+        transition: transform 0.3s ease;
+      }
+      .wo-icon::before {
+        width: 100%;
+        height: 2px;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+      }
+      .wo-icon::after {
+        width: 2px;
+        height: 100%;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+      }
+      .wo-block--dark .wo-icon::before,
+      .wo-block--dark .wo-icon::after {
+        background: #1db970;
+      }
+      .wo-item.active .wo-icon::after {
+        transform: translateX(-50%) rotate(90deg);
+        opacity: 0;
+      }
+      .wo-item-toggle h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: var(--navy);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin: 0;
+      }
+      .wo-block--dark .wo-item-toggle h3 {
+        color: #1db970;
+      }
+      .wo-item-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+      }
+      .wo-item.active .wo-item-content {
+        max-height: 500px;
+      }
+      .wo-item-content-inner {
+        padding: 0 0 1.4rem 2rem;
+      }
+      .wo-item-content-inner p {
+        font-size: 0.9rem;
+        color: #4a5e6e;
+        line-height: 1.75;
+      }
+      .wo-block--dark .wo-item-content-inner p {
+        color: #cdd7e0;
+      }
+      .wo-item-content-inner p + p {
+        margin-top: 0.7rem;
+      }
+      @media (max-width: 900px) {
+        .wo-grid {
+          grid-template-columns: 1fr;
+        }
+        .wo-img {
+          position: static;
+        }
+      }
+    </style>
+  
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Shefa Engineering Limited",
+  "url": "https://shefaengineering.com",
+  "logo": "https://shefaengineering.com/logo.png",
+  "description": "Leading indigenous oilfield services company in Nigeria providing drilling, marine solutions, EPC, and facility operations.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "19B Ilabere Street, Ikoyi",
+    "addressLocality": "Lagos",
+    "addressCountry": "NG"
+  },
+  "telephone": "+234-906-289-2870",
+  "email": "info@shefaengineering.com",
+  "sameAs": [
+    "https://www.linkedin.com/company/shefa-engineering",
+    "https://www.facebook.com/shefaengineering"
+  ]
+}
+</script>
+
+  </head>
+  <body>
+    <div id="header-placeholder"></div>
+    <script>
+      fetch("../components/header.html?v=" + Date.now())
+        .then((r) => r.text())
+        .then((h) => {
+          document.getElementById("header-placeholder").innerHTML = h;
+        });
+    </script>
+
+    <main>
+      <div
+        class="page-banner"
+        style="background-image: url('../images/Shefa-Engineering-Oil-well.jpg');"
+      >
+        <div class="page-banner-content">
+          <div class="page-breadcrumb">
+            Home /
+            <a href="what-we-do.html" style="color: var(--blue); text-decoration: none">What We Do</a>
+            / Well Optimization &amp; Downhole Services
+          </div>
+          <h1>Well Optimization &amp; Downhole Services</h1>
+        </div>
+      </div>
+
+      <!-- INTRO -->
+      <div class="wo-intro">
+        <div class="wo-intro-grid">
+          <div>
+            <p class="section-body">
+              To provide a one-stop solutions platform for turnkey drilling
+              and well optimization for our clients, we adopted the vaunted
+              'extended enterprise concept' and went into a strategic
+              partnership with <strong>Wellsmart Drilling</strong> to form
+              <strong>LeveneSmart Limited</strong>, an entity that provides
+              end-to-end drilling and well optimization services.
+            </p>
+            <div class="wo-bullets">
+              <span>Well Optimization</span>
+              <span>Downhole Monitoring Solution</span>
+              <span>Drilling and Evaluation</span>
+              <span>Production Services</span>
+              <span>Well Integrity Testing</span>
+            </div>
+          </div>
+          <div class="wo-intro-img">
+            <img src="../images/Shefa-Engineering-Oil-well.jpg" alt="Drilling rig" />
+          </div>
+        </div>
+      </div>
+
+      <!-- DRILLING AND EVALUATION -->
+      <section class="wo-block wo-block--light">
+        <h2 class="wo-block-title">Drilling and Evaluation</h2>
+        <div class="wo-grid">
+          <div class="wo-img">
+            <img src="../images/Shefa-Engineering-Drilling.jpg" alt="Drilling and Evaluation" />
+          </div>
+          <div class="wo-items">
+            <div class="wo-item">
+              <button class="wo-item-toggle" aria-expanded="false">
+                <span class="wo-icon"></span>
+                <h3>Drilling and Evaluation</h3>
+              </button>
+              <div class="wo-item-content">
+                <div class="wo-item-content-inner">
+                  <p>
+                    Our partners' fleet of rigs range from 750 HP to 3,000 HP
+                    and offer drilling capabilities for all type of wells
+                    with depths up to 30,000 ft.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="wo-item">
+              <button class="wo-item-toggle" aria-expanded="false">
+                <span class="wo-icon"></span>
+                <h3>Fishing</h3>
+              </button>
+              <div class="wo-item-content">
+                <div class="wo-item-content-inner">
+                  <p>
+                    Our comprehensive line of oilfield solutions addresses
+                    fishing requirements for wells, from milling, casing
+                    patches, workover projects, and abandonment and casing
+                    exit to open hole fishing.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="wo-item">
+              <button class="wo-item-toggle" aria-expanded="false">
+                <span class="wo-icon"></span>
+                <h3>Well Testing Services</h3>
+              </button>
+              <div class="wo-item-content">
+                <div class="wo-item-content-inner">
+                  <p>
+                    We offer integrated well testing services in the
+                    exploration, appraisal and development phases of oil and
+                    gas wells. Our aim is to provide newer, faster and more
+                    precise testing results though innovation and superior
+                    service quality.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="wo-item">
+              <button class="wo-item-toggle" aria-expanded="false">
+                <span class="wo-icon"></span>
+                <h3>Wireline Logging</h3>
+              </button>
+              <div class="wo-item-content">
+                <div class="wo-item-content-inner">
+                  <p>
+                    Our partners' large fleet of logging trucks, offshore
+                    units, logging tools and pressure control equipment,
+                    provides a wide variety of open-hole and cased-hole
+                    logging services to our clients.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="wo-item">
+              <button class="wo-item-toggle" aria-expanded="false">
+                <span class="wo-icon"></span>
+                <h3>Drilling Fluid Systems</h3>
+              </button>
+              <div class="wo-item-content">
+                <div class="wo-item-content-inner">
+                  <p>
+                    We provide drilling fluid systems and related
+                    technologies to the oil and gas industry in accordance
+                    with international standards and regulations for both
+                    onshore and offshore projects.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="wo-item">
+              <button class="wo-item-toggle" aria-expanded="false">
+                <span class="wo-icon"></span>
+                <h3>Slickline Services</h3>
+              </button>
+              <div class="wo-item-content">
+                <div class="wo-item-content-inner">
+                  <p>
+                    Our slickline services cover: basic removal of scale, wax
+                    and sand build-up, setting plugs, changing out gas lift
+                    valves, fishing and other complex well applications. From
+                    basic to most complex slickline applications.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="wo-item">
+              <button class="wo-item-toggle" aria-expanded="false">
+                <span class="wo-icon"></span>
+                <h3>Directional Drilling Services &amp; Solutions</h3>
+              </button>
+              <div class="wo-item-content">
+                <div class="wo-item-content-inner">
+                  <p>
+                    Our directional drilling services (LWD, RSS, MOTORS &amp;
+                    MWD) provide a whole suite of solutions from conventional
+                    to unconventional drilling applications. From simple
+                    deviated to long horizontal wells, our directional
+                    drilling services meet our customer's targets cost
+                    effectively.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRODUCTION SERVICES -->
+      <section class="wo-block wo-block--dark">
+        <h2 class="wo-block-title">Production Services</h2>
+        <div class="wo-grid">
+          <div class="wo-img">
+            <img src="../images/Shefa-Engineering-Oil-Pump-2.jpg" alt="Production Services" />
+          </div>
+          <div class="wo-items">
+            <div class="wo-item">
+              <button class="wo-item-toggle" aria-expanded="false">
+                <span class="wo-icon"></span>
+                <h3>Cementing</h3>
+              </button>
+              <div class="wo-item-content">
+                <div class="wo-item-content-inner">
+                  <p>
+                    We recognize the importance of well integrity for our
+                    customers, especially as wells are becoming more and
+                    more complex. Through a comprehensive approach to
+                    engineering, planning, execution and post job
+                    evaluation, we ensure the highest degree of success.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="wo-item">
+              <button class="wo-item-toggle" aria-expanded="false">
+                <span class="wo-icon"></span>
+                <h3>Coiled Tubing</h3>
+              </button>
+              <div class="wo-item-content">
+                <div class="wo-item-content-inner">
+                  <p>
+                    We have extensive coiled tubing experience such as
+                    stimulation, nitrogen lifting, fishing, milling,
+                    clean-out, scale removal, through-tubing plug setting,
+                    horizontal logging and other complex well applications.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="wo-item">
+              <button class="wo-item-toggle" aria-expanded="false">
+                <span class="wo-icon"></span>
+                <h3>Laboratory Services</h3>
+              </button>
+              <div class="wo-item-content">
+                <div class="wo-item-content-inner">
+                  <p>
+                    Each of our locations worldwide possess a central
+                    laboratory. These base laboratories are operated by
+                    qualified personnel who provide support and services to
+                    all the mobile labs in all the sites where we work.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="wo-item">
+              <button class="wo-item-toggle" aria-expanded="false">
+                <span class="wo-icon"></span>
+                <h3>Stimulation &amp; Pumping</h3>
+              </button>
+              <div class="wo-item-content">
+                <div class="wo-item-content-inner">
+                  <p>
+                    Our wide range of chemical solutions enable the treatment
+                    of both sandstone and dolomite formations under the
+                    toughest reservoir conditions.
+                  </p>
+                  <p>
+                    Matrix stimulation, hydraulic fracturing and pumping
+                    services are provided throughout all our operations
+                    utilizing modern technology and state-of-the-art
+                    equipment.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="wo-item">
+              <button class="wo-item-toggle" aria-expanded="false">
+                <span class="wo-icon"></span>
+                <h3>Casing &amp; Tubular Running</h3>
+              </button>
+              <div class="wo-item-content">
+                <div class="wo-item-content-inner">
+                  <p>
+                    A full portfolio of drilling fluid systems and related
+                    technologies for the oil and gas industry.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="wo-item">
+              <button class="wo-item-toggle" aria-expanded="false">
+                <span class="wo-icon"></span>
+                <h3>Completions</h3>
+              </button>
+              <div class="wo-item-content">
+                <div class="wo-item-content-inner">
+                  <p>
+                    Surface and downhole safety, high-pressure, and a wide
+                    range of completions solutions.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="wo-item">
+              <button class="wo-item-toggle" aria-expanded="false">
+                <span class="wo-icon"></span>
+                <h3>Filtration Services</h3>
+              </button>
+              <div class="wo-item-content">
+                <div class="wo-item-content-inner">
+                  <p>
+                    We provide filtration services to our clients to meet
+                    their requirements, save additional costs of well
+                    stimulation and avoid related operational problems due
+                    to non-filtered fluids, especially across the pay zone.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <div class="cta-strip">
+        <h2>
+          Need <em>drilling or well optimization</em> support? Let's talk.
+        </h2>
+        <a href="contact.html" class="btn btn-primary">Contact Us</a>
+      </div>
+
+      <!-- PARTNERS -->
+      <div class="partners-bar">
+        <h2 class="partners-title">Our Partners</h2>
+        <div class="partners-track">
+          <div class="partners-row">
+            <img class="partner-logo" src="../images/Fonzo.png" alt="Fonzo" />
+            <img class="partner-logo" src="../images/Servest.png" alt="Servest" />
+            <img class="partner-logo" src="../images/Underwater.png" alt="Underwater" />
+            <img class="partner-logo" src="../images/logo-111w.webp" alt="Wake Marine" style="height: 52px" />
+            <img class="partner-logo" src="../images/ades-logo.png" alt="ADES" />
+            <img class="partner-logo" src="../images/nesr-logo.png" alt="NESR" />
+            <img
+              class="partner-logo"
+              src="../images/DUN-Bradstreet.png"
+              alt="Dun &amp; Bradstreet"
+              style="height: 52px"
+            />
+          </div>
+          <!-- Duplicate set for seamless infinite loop -->
+          <div class="partners-row" aria-hidden="true">
+            <img class="partner-logo" src="../images/Fonzo.png" alt="" />
+            <img class="partner-logo" src="../images/Servest.png" alt="" />
+            <img class="partner-logo" src="../images/Underwater.png" alt="" />
+            <img class="partner-logo" src="../images/logo-111w.webp" alt="" style="height: 52px" />
+            <img class="partner-logo" src="../images/ades-logo.png" alt="" />
+            <img class="partner-logo" src="../images/nesr-logo.png" alt="" />
+            <img
+              class="partner-logo"
+              src="../images/DUN-Bradstreet.png"
+              alt=""
+              style="height: 52px"
+            />
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script>
+      fetch("../components/footer.html?v=" + Date.now())
+        .then((r) => r.text())
+        .then((h) => {
+          document.getElementById("footer-placeholder").innerHTML = h;
+        });
+    </script>
+    <script>
+      fetch("../components/script.html?v=" + Date.now())
+        .then((r) => r.text())
+        .then((h) => {
+          const s = document.createElement("div");
+          s.innerHTML = h;
+          [...s.querySelectorAll("script")].forEach((el) =>
+            eval(el.textContent),
+          );
+        });
+    </script>
+
+    <!-- ACCORDION LOGIC -->
+    <script>
+      document.querySelectorAll(".wo-item-toggle").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".wo-item");
+          const isOpen = item.classList.contains("active");
+          item.classList.toggle("active", !isOpen);
+          btn.setAttribute("aria-expanded", String(!isOpen));
+        });
+      });
+    </script>
+  </body>
+</html>
