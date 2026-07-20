@@ -1,0 +1,62 @@
+<script>
+// ── MARK ACTIVE NAV LINK ──────────────────────────
+(function(){
+  const path = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('nav a[data-page], .mob-nav a[data-page]').forEach(a=>{
+    if(a.dataset.page === path) a.classList.add('active');
+  });
+})();
+
+// ── HAMBURGER ────────────────────────────────────
+const _hbg = document.getElementById('hbg');
+const _mob = document.getElementById('mobNav');
+if(_hbg && _mob){
+  _hbg.addEventListener('click',()=>{
+    _mob.classList.toggle('open');
+    _hbg.classList.toggle('open');
+  });
+  _mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    _mob.classList.remove('open');
+    _hbg.classList.remove('open');
+  }));
+}
+
+// ── HEADER SHADOW ON SCROLL ──────────────────────
+window.addEventListener('scroll',()=>{
+  const h = document.getElementById('hdr');
+  if(h) h.style.boxShadow = window.scrollY>30
+    ? '0 4px 24px rgba(0,0,0,.13)'
+    : '0 2px 16px rgba(0,0,0,.08)';
+});
+
+// ── LIGHTBOX ──────────────────────────────────────
+const _lbox    = document.getElementById('lbox');
+const _lboxImg = document.getElementById('lboxImg');
+if(_lbox && _lboxImg){
+  document.querySelectorAll('.gal-item').forEach(item=>{
+    item.addEventListener('click',()=>{ _lboxImg.src=item.dataset.src; _lbox.classList.add('open'); });
+  });
+  document.getElementById('lboxClose')?.addEventListener('click',()=>_lbox.classList.remove('open'));
+  _lbox.addEventListener('click',e=>{ if(e.target===_lbox) _lbox.classList.remove('open'); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') _lbox.classList.remove('open'); });
+}
+
+// ── SCROLL REVEAL ─────────────────────────────────
+(function initReveal(){
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.style.opacity='1';
+        e.target.style.transform='translateY(0)';
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:0.1});
+  document.querySelectorAll('.svc-card,.stat,.gal-item,.partner-logo,.mvv-card,.person-card,.csr-card,.wwd-service-row').forEach(el=>{
+    el.style.opacity='0';
+    el.style.transform='translateY(24px)';
+    el.style.transition='opacity .55s ease,transform .55s ease';
+    obs.observe(el);
+  });
+})();
+</script>

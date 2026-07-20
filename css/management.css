@@ -1,317 +1,86 @@
- /* ── executive section ── */
-      .team-section {
-        background: var(--white);
-        padding: 6rem 5% 7rem;
-      }
-      .team-section-inner {
-        max-width: 1280px;
-        margin: 0 auto;
-      }
+.person-card {
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  max-width: 280px;
+  margin: 0 auto;
+  width: 100%;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+.person-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+.person-card:hover .person-info {
+  background: #174caa;
+}
+.person-card:hover .person-name,
+.person-card:hover .person-role {
+  color: #fff;
+}
 
-      /* ── Load error ── */
-      .team-loading {
-        text-align: center;
-        padding: 8rem 5%;
-        color: var(--muted);
-      }
-      .team-loading i { font-size: 2.8rem; margin-bottom: 1.4rem; display: block; }
+.person-card img,
+.person-card .person-photo-placeholder {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+}
 
-      /* ── Members grid ── */
-      .members-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-        gap: 2.4rem;
-        margin-top: 3.5rem;
-      }
 
-      /* ── Card ── */
-      .member-card {
-         background: linear-gradient(var(--white), var(--muted));
+.person-card .person-photo-placeholder {
+  background: #e6ebf2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.person-card .person-photo-placeholder svg {
+  width: 20%;
+  height: 20%;
+  opacity: 0.4;
+}
 
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 2px 18px rgba(23,76,170,0.09);
-        border: 1px solid rgba(23,76,170,0.07);
-        position: relative;
-        cursor: pointer;
-        opacity: 0;
-        transform: translateY(22px);
-        transition: opacity 0.55s ease, transform 0.55s ease, box-shadow 0.35s ease;
-      }
-      .member-card.revealed {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .member-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 12px 40px rgba(23,76,170,0.16);
-      }
-      .member-card::before {
-        content: "";
-        position: absolute;
-        top: 0; left: 0; right: 0;
-        height: 3px;
-          background: linear-gradient(var(--white), var(--muted));
 
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.35s ease;
-      }
-      .member-card:hover::before { transform: scaleX(1); }
+.person-info {
+  padding: clamp(0.5rem, 1.2vw, 0.9rem);
+  text-align: center;
+}
+.person-name {
+  font-size: clamp(0.85rem, 0.6vw + 0.6rem, 1rem);
+  font-weight: 600;
+  line-height: 1.3;
+  word-break: break-word;
+}
+.person-role {
+  font-size: clamp(0.7rem, 0.3vw + 0.55rem, 0.8rem);
+  line-height: 1.4;
+  word-break: break-word;
+}
 
-      .member-photo-wrap {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 3 / 3.2;
-        overflow: hidden;
-      }
-      .member-photo-wrap img {
-        width: 100%; height: 100%;
-        object-fit: cover;
-        object-position: top center;
-        transition: transform 0.6s ease;
-      }
-      .member-card:hover .member-photo-wrap img { transform: scale(1.05); }
 
-      .member-photo-placeholder {
-        width: 100%; height: 100%;
-        display: flex; align-items: center; justify-content: center;
-        background: linear-gradient(135deg, #0a5e28 0%, #1a3a6e 100%);
-        font-size: 3.5rem;
-        color: rgba(255,255,255,0.25);
-      }
+.kp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: clamp(1rem, 2vw, 2rem);
+  padding-left: clamp(.5rem, 2vw, 2rem);
+  padding-right: clamp(1rem, 2vw, 2rem);
+  padding-top: 2rem;
+}
 
-      .member-info {
-        padding: 1.6rem 1.6rem 1.8rem;
-      }
-      .member-name {
-        font-family: var(--font-display);
-        font-size: 1.12rem;
-        font-weight: 700;
-        color: var(--navy);
-        margin-bottom: 0.25rem;
-        line-height: 1.25;
-      }
-      .member-title {
-        font-size: 0.78rem;
-        font-weight: 600;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--green);
-        margin-bottom: 0.9rem;
-      }
-      .member-excerpt {
-        font-size: 0.9rem;
-        color: var(--muted);
-        line-height: 1.72;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-      }
-      .member-linkedin {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        margin-top: 1.2rem;
-        font-size: 0.78rem;
-        font-weight: 600;
-        color: var(--navy);
-        text-decoration: none;
-        transition: color 0.2s;
-      }
-      .member-linkedin:hover { color: var(--green); }
 
-     
-      /* ── board of directors section ── */
-      .team-section {
-        background: var(--white);
-        padding: 6rem 5% 7rem;
-      }
-      .team-section-inner {
-        max-width: 1280px;
-        margin: 0 auto;
-      }
-
-      /* ── Load error ── */
-      .team-loading {
-        text-align: center;
-        padding: 8rem 5%;
-        color: var(--muted);
-      }
-      .team-loading i { font-size: 2.8rem; margin-bottom: 1.4rem; display: block; }
-
-      /* ── Member cards grid ── */
-      .members-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-        gap: 2.4rem;
-        margin-top: 3.5rem;
-      }
-
-      /* ── Individual card ── */
-      .member-card {
-        background: #fff;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 2px 18px rgba(23,76,170,0.09);
-        border: 1px solid rgba(23,76,170,0.07);
-        transition: transform 0.35s ease, box-shadow 0.35s ease;
-        position: relative;
-        cursor: pointer;
-        opacity: 0;
-        transform: translateY(22px);
-        transition: opacity 0.55s ease, transform 0.55s ease, box-shadow 0.35s ease;
-      }
-      .member-card.revealed {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .member-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 12px 40px rgba(23,76,170,0.16);
-      }
-      .member-card::before {
-        content: "";
-        position: absolute;
-        top: 0; left: 0; right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, var(--navy), var(--green));
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.35s ease;
-      }
-      .member-card:hover::before { transform: scaleX(1); }
-
-      .member-photo-wrap {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 3 / 3.2;
-        overflow: hidden;
-          background: linear-gradient(var(--white), var(--muted));
-
-      }
-      .member-photo-wrap img {
-        width: 100%; height: 100%;
-        object-fit: cover;
-        object-position: top center;
-        transition: transform 0.6s ease;
-      }
-      .member-card:hover .member-photo-wrap img { transform: scale(1.05); }
-
-     
-      .member-photo-placeholder {
-        width: 100%; height: 100%;
-        display: flex; align-items: center; justify-content: center;
-          background: linear-gradient(var(--white), var(--muted));
-
-        font-size: 3.5rem;
-        color: rgba(255,255,255,0.25);
-      }
-
-      .member-info {
-        padding: 1.6rem 1.6rem 1.8rem;
-      }
-      .member-name {
-        font-family: var(--font-display);
-        font-size: 1.12rem;
-        font-weight: 700;
-        color: var(--navy);
-        margin-bottom: 0.25rem;
-        line-height: 1.25;
-      }
-      .member-title {
-        font-size: 0.78rem;
-        font-weight: 600;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--green);
-        margin-bottom: 0.9rem;
-      }
-      .member-excerpt {
-        font-size: 0.9rem;
-        color: var(--muted);
-        line-height: 1.72;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-      }
-      .member-linkedin {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        margin-top: 1.2rem;
-        font-size: 0.78rem;
-        font-weight: 600;
-        color: var(--navy);
-        text-decoration: none;
-        transition: color 0.2s;
-      }
-      .member-linkedin:hover { color: var(--green); }
-
-     .mgt-tabs {
-        display: flex;
-        gap: 0;
-        border-bottom: 2px solid #e5e7eb;
-        margin-bottom: 3rem;
-      }
-      .mgt-tab-btn {
-        position: relative;
-        padding: .85rem 2rem;
-        font-size: .95rem;
-        font-weight: 600;
-        letter-spacing: .03em;
-        color: var(--muted, #6b7280);
-        background: none;
-        border: none;
-        cursor: pointer;
-        transition: color .2s;
-      }
-      .mgt-tab-btn::after {
-        content: '';
-        position: absolute;
-        bottom: -2px;
-        left: 0; right: 0;
-        height: 2px;
-        background: var(--navy, #0a2460);
-        transform: scaleX(0);
-        transition: transform .25s ease;
-      }
-      .mgt-tab-btn.active {
-        color: var(--navy, #0a2460);
-      }
-      .mgt-tab-btn.active::after {
-        transform: scaleX(1);
-      }
-      .mgt-tab-btn:hover {
-        color: var(--navy, #0a2460);
-      }
-
-      /* ── Panel visibility ── */
-      .mgt-panel { display: none; }
-      .mgt-panel.active { display: block; }
-
-      /* ── Section label above each panel ── */
-      .panel-label {
-        font-size: .7rem;
-        font-weight: 700;
-        letter-spacing: .14em;
-        text-transform: uppercase;
-        color: var(--green, #1e8a2e);
-        margin-bottom: 1.5rem;
-      }
-      @media (max-width: 640px) {
-        .members-grid { grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-        
-      }
-      @media (max-width: 420px) {
-        .members-grid { grid-template-columns: 1fr; }
-      }
-      @media (max-width: 640px) {
-        .members-grid { grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-        
-      }
-      @media (max-width: 420px) {
-        .members-grid { grid-template-columns: 1fr; }
-      }
+@media (max-width: 480px) {
+  .kp-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .person-card {
+    max-width: none;
+  }
+  .person-card img,
+  .person-card .person-photo-placeholder {
+    aspect-ratio: 3 / 4;
+  }
+}

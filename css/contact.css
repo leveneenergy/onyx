@@ -1,0 +1,113 @@
+.contact-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  min-height: 500px;
+padding: 40px;
+border: none;
+}
+.contact-info {
+  background: var(--navy);
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.contact-info h2 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 2rem;
+}
+.c-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.c-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(23, 76, 170, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.c-text h4 {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 0.3rem;
+}
+.c-text p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.7;
+}
+.contact-form {
+  background: var(--offwhite);
+  padding: 4rem;
+}
+.contact-form h2 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 2rem;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+.form-group label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  border: 1.5px solid var(--lgray);
+  background: var(--white);
+  padding: 0.8rem 1rem;
+  font-family: "Barlow", sans-serif;
+  font-size: 0.9rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--blue);
+}
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+.form-success {
+  display: none;
+  background: #e8f0ff;
+  border-left: 4px solid var(--blue);
+  padding: 1rem 1.2rem;
+  font-size: 0.9rem;
+  color: var(--blue);
+  margin-top: 1rem;
+}

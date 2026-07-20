@@ -1,36 +1,20 @@
+# Robots.txt for Shefa Engineering
 User-agent: *
 Allow: /
-
-# Block private/admin areas
-Disallow: /sanity/
+Allow: /index.html
+Allow: /about.html
+Allow: /what-we-do/
+Allow: /contact.html
+Allow: /management.html
+Allow: /csr.html
+Allow: /css/
+Allow: /components/
 Disallow: /admin/
-Disallow: /private/
-Disallow: /search?
+Disallow: /*.py
+Disallow: /__*
 
-# Optional parameter control
-Disallow: /*?*sort=
-Disallow: /*?*filter=
-
-# Bing crawler settings
-User-agent: Bingbot
+# Crawl delay
 Crawl-delay: 1
 
-
-User-agent: LinkedInBot
-Allow: /
-
-# Block aggressive SEO bots
-User-agent: AhrefsBot
-Disallow: /
-
-User-agent: SemrushBot
-Disallow: /
-
-User-agent: MJ12bot
-Disallow: /
-
-User-agent: DotBot
-Disallow: /
-
-# Sitemap
-Sitemap: https://leveneenergies.com/sitemap.xml
+# Sitemap location
+Sitemap: https://shefaengineering.com/sitemap.xml
