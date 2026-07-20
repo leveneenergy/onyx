@@ -30,8 +30,8 @@
   <!-- EmailJS SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
-
-    emailjs.init({ publicKey: "PUBLIC_KEY" });
+    
+    emailjs.init({ publicKey: "ZNn1aG519ziJ2NLmZ" });
   </script>
 
   <script type="application/ld+json">
@@ -228,7 +228,8 @@
       submitBtn.disabled = true;
       submitBtn.textContent = "Sending...";
 
-      emailjs.sendForm("SERVICE_ID", "TEMPLATE_ID", contactForm)
+   
+      emailjs.sendForm("service_d2weufj", "template_gifg8ql", contactForm)
         .then(() => {
           formSuccess.style.display = "block";
           contactForm.reset();
