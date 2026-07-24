@@ -957,22 +957,6 @@ section {
   color: yellowgreen;
 }
 
-.contact-item {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 13px;
-  align-items: flex-start;
-}
-
-.contact-item a {
-  color: #ddd;
-  text-decoration: none;
-}
-
-.contact-item a:hover {
-  color: yellowgreen;
-}
-
 .icon {
   font-size: 1rem;
   width: 26px;
@@ -1113,14 +1097,6 @@ section {
     grid-template-columns: 1fr;
     padding: 1.5rem 6% 3.5rem;
   }
-  .contact-wrap {
-    grid-template-columns: 1fr;
+ 
+ 
   }
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-  .contact-info,
-  .contact-form {
-    padding: 2.5rem 6%;
-  }
-}
