@@ -111,3 +111,36 @@ border: none;
   color: var(--blue);
   margin-top: 1rem;
 }
+
+
+.contact-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 13px;
+  align-items: flex-start;
+}
+
+.contact-item a {
+  color: #ddd;
+  text-decoration: none;
+}
+
+.contact-item a:hover {
+  color: yellowgreen;
+}
+
+@media (max-width: 768px) {
+  .contact-wrap {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    min-height: auto;
+  }
+  .contact-info,
+  .contact-form {
+    padding: 2.5rem 6%;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}

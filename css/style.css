@@ -159,6 +159,7 @@ nav a.active::after {
   border-bottom: none;
 }
 
+
 /* ── PAGE OFFSET ── */
 main {
   padding-top: 76px;
@@ -194,7 +195,7 @@ main {
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--blue);
+  color: var(--offwhite);
   margin-bottom: 0.8rem;
 }
 .page-banner h1 {
@@ -374,7 +375,7 @@ section {
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--blue);
+  color: var(--gray);
   border-left: 3px solid var(--blue);
   padding-left: 0.75rem;
   margin-bottom: 1.2rem;
@@ -989,13 +990,7 @@ section {
   font-size: 0.95rem;
 }
 
-@media (max-width: 900px) {
-  .footer-container {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 40px;
-  }
-}
+
 /* ── LIGHTBOX ── */
 .lbox {
   display: none;
@@ -1028,7 +1023,16 @@ section {
   justify-content: center;
 }
 
-/* ── RESPONSIVE ── */
+
+@media (max-width: 900px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    text-align: left;
+    text-decoration: none!important;
+  }
+}
+
+
 @media (max-width: 1024px) {
   .svc-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1059,13 +1063,15 @@ section {
   header {
     padding: 0 5%;
   }
+
   .logo-icon {
     width: clamp(100px, 32vw, 160px);
-    max-height: 44px;
+    max-height: 56px;
   }
   .logo-icon img {
-    max-height: 44px;
+    max-height: 560px;
   }
+
   nav {
     display: none;
   }
@@ -1112,15 +1118,5 @@ section {
   .csr-grid {
     grid-template-columns: 1fr;
     padding: 1.5rem 6% 3.5rem;
-  }
-  .contact-wrap {
-    grid-template-columns: 1fr;
-  }
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-  .contact-info,
-  .contact-form {
-    padding: 2.5rem 6%;
   }
 }
