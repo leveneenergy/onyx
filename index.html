@@ -1,4 +1,4 @@
-﻿<!doctype html>
+﻿<!Doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -20,6 +20,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
+    <!-- Preload the first hero slide image so it paints as fast as possible -->
+    <link rel="preload" as="image" href="./images/Shefa-Engineering-Drilling-6.jpg" />
    
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-L4YB16SQW6"></script>
@@ -71,7 +73,7 @@
     <main>
       <!-- HERO SLIDER -->
       <div class="hero">
-        <div class="slide s1 active">
+        <div class="slide s1 active" data-bg="./images/Shefa-Engineering-Drilling-6.jpg" style="background-image: url('./images/Shefa-Engineering-Drilling-6.jpg');">
           <div class="hero-content">
             <div class="slide-info">
               <div class="slide-label">Drilling &amp; Evaluation</div>
@@ -91,7 +93,7 @@
             </div>
           </div>
         </div>
-        <div class="slide s2">
+        <div class="slide s2" data-bg="./images/Shefa-Engineering-Marine-ship.jpg">
           <div class="hero-content">
             <div class="slide-info">
               <div class="slide-label">Marine Solutions</div>
@@ -110,7 +112,7 @@
             </div>
           </div>
         </div>
-        <div class="slide s3">
+        <div class="slide s3" data-bg="./images/Shefa-Engineering-Drilling-2-1.jpg">
           <div class="hero-content">
             <div class="slide-info">
               <div class="slide-label">ROV Inspection</div>
@@ -141,6 +143,8 @@
             <img
               src="./images/Shefa-Engineering-Drilling-6.jpg"
               alt="Operations"
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <div>
@@ -198,6 +202,8 @@
               <img
                 src="./images/Shefa-Engineering-Marine-ship.jpg"
                 alt="Marine"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div class="svc-card-body">
@@ -229,6 +235,8 @@
               <img
                 src="./images/Shefa-Engineering-Drilling-2-1.jpg"
                 alt="Drilling"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div class="svc-card-body">
@@ -262,6 +270,8 @@
               <img
                 src="./images/Shefa-Engineering-Construction-2.jpg"
                 alt="Construction"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div class="svc-card-body">
@@ -301,6 +311,8 @@
             <img
               src="./images/Shefa-Engineering-Oil-well-2.jpg"
               alt="Oil Well"
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <div
@@ -310,6 +322,8 @@
             <img
               src="./images/Shefa-Engineering-oil-pump-1.jpg"
               alt="Oil Pump"
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <div
@@ -319,6 +333,8 @@
             <img
               src="./images/Shefa-Engineering-Drilling-5-1.jpg"
               alt="Drilling"
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <div
@@ -328,6 +344,8 @@
             <img
               src="./images/Shefa-Engineering-Drilling-7.jpg"
               alt="Operations"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
@@ -340,23 +358,23 @@
         <h2 class="partners-title">Our Partners</h2>
         <div class="partners-track">
           <div class="partners-row">
-            <img class="partner-logo" src="./images/Fonzo.png" alt="Fonzo" />
-            <img class="partner-logo" src="./images/Servest.png" alt="Servest" />
-            <img class="partner-logo" src="./images/Underwater.png" alt="Underwater" />
-            <img class="partner-logo" src="./images/ades-logo.png" alt="ADES" />
-            <img class="partner-logo" src="./images/nesr-logo.png" alt="NESR" />
-            <img class="partner-logo" src="./images/DUN-Bradstreet.png" alt="Dun &amp; Bradstreet" style="height: 52px" />
-            <img class="partner-logo" src="./images/logo-111w.webp" alt="Partner" style="height: 52px" />
+            <img class="partner-logo" src="./images/Fonzo.png" alt="Fonzo" loading="lazy" decoding="async" />
+            <img class="partner-logo" src="./images/Servest.png" alt="Servest" loading="lazy" decoding="async" />
+            <img class="partner-logo" src="./images/Underwater.png" alt="Underwater" loading="lazy" decoding="async" />
+            <img class="partner-logo" src="./images/ades-logo.png" alt="ADES" loading="lazy" decoding="async" />
+            <img class="partner-logo" src="./images/nesr-logo.png" alt="NESR" loading="lazy" decoding="async" />
+            <img class="partner-logo" src="./images/DUN-Bradstreet.png" alt="Dun &amp; Bradstreet" style="height: 52px" loading="lazy" decoding="async" />
+            <img class="partner-logo" src="./images/logo-111w.webp" alt="Partner" style="height: 52px" loading="lazy" decoding="async" />
           </div>
           <!-- loop -->
           <div class="partners-row" aria-hidden="true">
-            <img class="partner-logo" src="./images/Fonzo.png" alt="" />
-            <img class="partner-logo" src="./images/Servest.png" alt="" />
-            <img class="partner-logo" src="./images/Underwater.png" alt="" />
-            <img class="partner-logo" src="./images/ades-logo.png" alt="" />
-            <img class="partner-logo" src="./images/nesr-logo.png" alt="" />
-            <img class="partner-logo" src="./images/DUN-Bradstreet.png" alt="" style="height: 52px" />
-            <img class="partner-logo" src="./images/logo-111w.webp" alt="" style="height: 52px" />
+            <img class="partner-logo" src="./images/Fonzo.png" alt="" loading="lazy" decoding="async" />
+            <img class="partner-logo" src="./images/Servest.png" alt="" loading="lazy" decoding="async" />
+            <img class="partner-logo" src="./images/Underwater.png" alt="" loading="lazy" decoding="async" />
+            <img class="partner-logo" src="./images/ades-logo.png" alt="" loading="lazy" decoding="async" />
+            <img class="partner-logo" src="./images/nesr-logo.png" alt="" loading="lazy" decoding="async" />
+            <img class="partner-logo" src="./images/DUN-Bradstreet.png" alt="" style="height: 52px" loading="lazy" decoding="async" />
+            <img class="partner-logo" src="./images/logo-111w.webp" alt="" style="height: 52px" loading="lazy" decoding="async" />
           </div>
         </div>
       </div>
@@ -382,10 +400,21 @@
         dots = [...document.querySelectorAll(".dot")];
       let cur = 0,
         t;
+
+      function ensureBg(slide) {
+        if (!slide.style.backgroundImage && slide.dataset.bg) {
+          slide.style.backgroundImage = `url('${slide.dataset.bg}')`;
+        }
+      }
+      window.addEventListener("load", () => {
+        setTimeout(() => slides.forEach(ensureBg), 1200);
+      });
+
       function goSlide(n) {
         slides[cur].classList.remove("active");
         dots[cur].classList.remove("active");
         cur = (n + slides.length) % slides.length;
+        ensureBg(slides[cur]);
         slides[cur].classList.add("active");
         dots[cur].classList.add("active");
       }
